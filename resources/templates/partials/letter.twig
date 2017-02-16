@@ -1,0 +1,158 @@
+{% extends "page.twig" %}
+{% block content %}
+	<div id="letter-body" class="col-xs-10 col-xs-offset-1">
+		<div>&nbsp;</div>
+		<div class="text-center">
+			<b>Request for VALIDATION, NOT Verification</b>
+		</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>{{name}}</div>
+		<div>{{address}}</div>
+		<div>{{city}}, {{state}} {{zip}}</div>
+		<div>&nbsp;</div>
+		<div>{{"now"|date("F jS, Y")}}</div>
+		<div>&nbsp;</div>
+		<div>Company: {{recipient_name}}</div>
+		<div>Address: {{recipient_address}}</div>
+		<div>{{recipient_city}}, {{recipient_state}} {{recipient_zip}}</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>RE: Account # {{account_num}}</div>
+		<div>&nbsp;</div>
+		To Whom It May Concern:
+		<div>&nbsp;</div>
+		<div>
+		This letter is being sent to you in response to notices sent to me from your company and
+
+		more importantly, due to your erroneous reporting to the Credit Bureau{s}, the highly
+
+		negative impact on my personal credit report. Please be advised that this is not a refusal
+
+		to pay, but a notice sent pursuant to the Fair Debt Collection Practices Act, 15 USC
+
+		1692g Sec. 809 {b} that your claim is disputed and validation is requested.
+		</div>
+		<div>&nbsp;</div>
+		<div>
+		This is NOT a request for “verification” or proof of my mailing address, but a request for
+
+		VALIDATION made pursuant to the above named Title and Section. I respectfully
+
+		request that your offices provide me with competent evidence that I have any legal
+
+		obligation to pay you.
+		</div>
+		<div>&nbsp;</div>
+		<div>
+		Please provide me with the following:
+			<ul>
+				<li>What the money you say I owe is for:</li>
+
+				<li>Explain and show me how you calculated what you say I owe:</li>
+
+				<li> Provide me with copies of any papers that show I agreed to pay what you say I
+
+				owe:</li>
+
+				<li> Provide a verification or copy of any judgment if applicable:</li>
+
+				<li> Identify the original creditor:</li>
+
+				<li> Prove the Statute of Limitations has not expired on this account:</li>
+
+				<li> Show me the you are licensed to collect in my state:</li>
+
+				<li> Provide me with your license numbers and Registered Agent or Agent of Service:</li>
+			</ul>
+		</div>
+		<div>&nbsp;</div>
+		<div>
+		At this time I will also inform you that if your offices have reported invalidated
+
+		information to any of the 3 major Credit Bureau’s {Experian, Equifax or TransUnion}
+
+		this action might constitute fraud under both Federal and State Laws. Due to this fact, if
+
+		any negative mark is found on any of my credit reports by your company or the company
+
+		that you represent, I will not hesitate to bring legal action against you for the following:
+		<ul>
+		<li> Violation of the Fair Credit Reporting Act</li>
+
+		<li> Violation of the Fair Debt Collection Practices Act</li>
+
+		<li> Defamation of Character</li>
+		</ul>
+		</div>
+		<div>&nbsp;</div>
+		<div>
+		If your offices are able to provide proper documentation as requested in the following
+
+		Declaration, I will require at least 30 days to investigate this information and during
+
+		such time all collection activity must cease and desist.
+		</div>
+		<div>&nbsp;</div>
+		<div>
+		Also, during this validation period, if any action is taken which could be considered
+
+		detrimental to any of my credit reports, I will consult with my legal counsel for suit.
+
+		This includes listing any information with a credit reporting repository that could be
+
+		inaccurate or invalidated or verifying an account as accurate, when it fact there is no
+
+		provided proof that it is accurate.
+		</div>
+		<div>&nbsp;</div>
+		<div>
+		If your company fails to respond to this validation request within 30 days from the
+
+		date of your receipt, all references to this account must be deleted and completely
+
+		removed from my credit report and a copy of such deletion {to any/all of the 3 major
+
+		credit reporting bureaus: Equifax, Experian and TransUnion} request shall be sent to
+
+		me immediately.
+		</div>
+		<div>&nbsp;</div>
+		<div>
+		I would also like to request, in writing, that no telephone contact be made by your
+
+		company to my home or my place of employment. If your offices attempt telephone
+
+		communication with me, including but not limited to computer generated calls and
+
+		calls or correspondence sent to or with any third parties, it will be considered
+
+		harassment and I will have no choice but to file suit. All future communications with
+
+		me MUST be done in writing and sent to the address noted in this letter by USPS.
+		</div>
+		<div>&nbsp;</div>
+		<div>
+		It would be advisable that you assure your records are in order before I am forced to
+
+		take legal action against your company and your client. This is an attempt to correct
+
+		your records, any information obtained shall be used for that purpose.
+		</div>
+		<div>&nbsp;</div>
+		<div>
+		Best Regards,
+		</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>
+		DOB: {{dob|date("F jS, Y")}}
+		</div>
+		<div>
+		SSN: {{ssn}}
+		</div>
+		<div>&nbsp;</div>
+	</div>
+{% endblock %}
+{% block footer %}{% endblock %}

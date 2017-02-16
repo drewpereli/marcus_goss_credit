@@ -1,0 +1,35 @@
+<?php
+	require_once __DIR__ . "/../resources/config.php";
+	//Validate $_POST here
+	//Get letter content
+	$content = $twig->render('letter.twig', $_POST);
+	//Write to temp html file
+	$fileHash = md5(rand());
+	$htmlPath = __DIR__ . '/../tmp/' . $fileHash . '.html';
+	$file = fopen($htmlPath, "w");
+	fwrite($file, $content);
+	fclose($file);
+	chmod($htmlPath, 0400);
+	//Create temp pdf of temp html file
+	use mikehaertl\wkhtmlto\Pdf;
+	$pdf = new Pdf($htmlPath);
+	$pdfPath = __DIR__ . '/../tmp/' . $fileHash . '.pdf';
+	$success = $pdf->saveAs($pdfPath);
+	//Delete html file
+	unlink($htmlPath);
+	if (!$success) {
+	    echo $pdf->getError();
+		die();
+	}
+	//Provide download link
+	ignore_user_abort(true);
+	header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="CreditLetter.pdf"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($pdfPath));
+    readfile($pdfPath);
+    unlink($pdfPath);
+?>
