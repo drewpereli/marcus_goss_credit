@@ -1,168 +1,309 @@
 {% extends "page.twig" %}
+{% import "form_fields.twig" as field %}
 {% block content %}
 <form class="bs-form col-xs-12 col-md-6 col-md-offset-3" action="letter.php" method="POST" target="_blank">
-	<!-- User info -->
+	<!-- form info -->
+	{{ field.text("test_test") }}
 	<div>
-		<label for="field-name">Name</label>
-		<input id="field-name" name="name" required="true"/>
-	</div>
-	<div>
-		<label for="field-address">Street Address</label>
-		<input id="field-address" name="address" required="true"/>
-	</div>
-	<div>
-		<label for="field-city">City</label>
-		<input id="field-city" name="city" required="true"/>
-	</div>
-	<div>
-		<label for="field-name">State</label>
-		<select id="field-state" name="state" required="true">
-			<option value="AL">Alabama</option>
-			<option value="AK">Alaska</option>
-			<option value="AZ">Arizona</option>
-			<option value="AR">Arkansas</option>
-			<option value="CA">California</option>
-			<option value="CO">Colorado</option>
-			<option value="CT">Connecticut</option>
-			<option value="DE">Delaware</option>
-			<option value="DC">District Of Columbia</option>
-			<option value="FL">Florida</option>
-			<option value="GA">Georgia</option>
-			<option value="HI">Hawaii</option>
-			<option value="ID">Idaho</option>
-			<option value="IL">Illinois</option>
-			<option value="IN">Indiana</option>
-			<option value="IA">Iowa</option>
-			<option value="KS">Kansas</option>
-			<option value="KY">Kentucky</option>
-			<option value="LA">Louisiana</option>
-			<option value="ME">Maine</option>
-			<option value="MD">Maryland</option>
-			<option value="MA">Massachusetts</option>
-			<option value="MI">Michigan</option>
-			<option value="MN">Minnesota</option>
-			<option value="MS">Mississippi</option>
-			<option value="MO">Missouri</option>
-			<option value="MT">Montana</option>
-			<option value="NE">Nebraska</option>
-			<option value="NV">Nevada</option>
-			<option value="NH">New Hampshire</option>
-			<option value="NJ">New Jersey</option>
-			<option value="NM">New Mexico</option>
-			<option value="NY">New York</option>
-			<option value="NC">North Carolina</option>
-			<option value="ND">North Dakota</option>
-			<option value="OH">Ohio</option>
-			<option value="OK">Oklahoma</option>
-			<option value="OR">Oregon</option>
-			<option value="PA">Pennsylvania</option>
-			<option value="RI">Rhode Island</option>
-			<option value="SC">South Carolina</option>
-			<option value="SD">South Dakota</option>
-			<option value="TN">Tennessee</option>
-			<option value="TX">Texas</option>
-			<option value="UT">Utah</option>
-			<option value="VT">Vermont</option>
-			<option value="VA">Virginia</option>
-			<option value="WA">Washington</option>
-			<option value="WV">West Virginia</option>
-			<option value="WI">Wisconsin</option>
-			<option value="WY">Wyoming</option>
+		<label for="field-form-name">Form</label>
+		<select id="field-form-name" name="form-name" require="true">
+			<option value="validation">Request for Validation</option>
+			<option value="hippa">HIPPA Violation</option>
+			<option value="lawsuit">Intent to file lawsuit</option>
+			<option value="609">Section 609 Verification</option>
 		</select>
 	</div>
-	<div>
-		<label for="field-zip">Zip</label>
-		<input type="number" id="field-zip" name="zip" required="true"/>
-	</div>
-	<div>
-		<label for="field-dob">Date of Birth</label>
-		<input type="date" id="field-dob" name="dob" required="true"/>
-	</div>
-	<div>
-		<label for"field-ssn">Social Security Number</label>
-		<input id="field-ssn" name="ssn" required="true"/>
+	<!-- User info -->
+	<div class="field-group">
+		<h3>Your Info</h3>
+		<div>
+			<label for="field-name">Name</label>
+			<input id="field-name" name="name" required="true"/>
+		</div>
+		<div>
+			<label for="field-address">Street Address</label>
+			<input id="field-address" name="address" required="true"/>
+		</div>
+		<div>
+			<label for="field-city">City</label>
+			<input id="field-city" name="city" required="true"/>
+		</div>
+		<div>
+			<label for="field-name">State</label>
+			<select id="field-state" name="state" required="true">
+				<option value="AL">Alabama</option>
+				<option value="AK">Alaska</option>
+				<option value="AZ">Arizona</option>
+				<option value="AR">Arkansas</option>
+				<option value="CA">California</option>
+				<option value="CO">Colorado</option>
+				<option value="CT">Connecticut</option>
+				<option value="DE">Delaware</option>
+				<option value="DC">District Of Columbia</option>
+				<option value="FL">Florida</option>
+				<option value="GA">Georgia</option>
+				<option value="HI">Hawaii</option>
+				<option value="ID">Idaho</option>
+				<option value="IL">Illinois</option>
+				<option value="IN">Indiana</option>
+				<option value="IA">Iowa</option>
+				<option value="KS">Kansas</option>
+				<option value="KY">Kentucky</option>
+				<option value="LA">Louisiana</option>
+				<option value="ME">Maine</option>
+				<option value="MD">Maryland</option>
+				<option value="MA">Massachusetts</option>
+				<option value="MI">Michigan</option>
+				<option value="MN">Minnesota</option>
+				<option value="MS">Mississippi</option>
+				<option value="MO">Missouri</option>
+				<option value="MT">Montana</option>
+				<option value="NE">Nebraska</option>
+				<option value="NV">Nevada</option>
+				<option value="NH">New Hampshire</option>
+				<option value="NJ">New Jersey</option>
+				<option value="NM">New Mexico</option>
+				<option value="NY">New York</option>
+				<option value="NC">North Carolina</option>
+				<option value="ND">North Dakota</option>
+				<option value="OH">Ohio</option>
+				<option value="OK">Oklahoma</option>
+				<option value="OR">Oregon</option>
+				<option value="PA">Pennsylvania</option>
+				<option value="RI">Rhode Island</option>
+				<option value="SC">South Carolina</option>
+				<option value="SD">South Dakota</option>
+				<option value="TN">Tennessee</option>
+				<option value="TX">Texas</option>
+				<option value="UT">Utah</option>
+				<option value="VT">Vermont</option>
+				<option value="VA">Virginia</option>
+				<option value="WA">Washington</option>
+				<option value="WV">West Virginia</option>
+				<option value="WI">Wisconsin</option>
+				<option value="WY">Wyoming</option>
+			</select>
+		</div>
+		<div>
+			<label for="field-zip">Zip</label>
+			<input type="number" id="field-zip" name="zip" required="true"/>
+		</div>
+		<div>
+			<label for="field-dob">Date of Birth</label>
+			<input type="date" id="field-dob" name="dob" required="true"/>
+		</div>
+		<div>
+			<label for"field-ssn">Social Security Number</label>
+			<input id="field-ssn" name="ssn" required="true"/>
+		</div>
+		<div>
+			<label for="field-account-num">Account #</label>
+			<input id="field-account-num" name="account_num" required="true" />
+		</div>
 	</div>
 	<!-- Creditor info -->
-	<div>
-		<label for="field-recipient-name">Recipient Name</label>
-		<input id="field-recipient-name" name="recipient_name" required="true"/>
+	<div class="field-group" id="creditor-fields">
+		<h3>Creditor Info</h3>
+		<div>
+			<label for="field-creditor-name">Creditor Name</label>
+			<input id="field-creditor-name" name="creditor_name" required="true"/>
+		</div>
+		<div>
+			<label for="field-creditor-address">Street Address</label>
+			<input id="field-creditor-address" name="creditor_address" required="true"/>
+		</div>
+		<div>
+			<label for="field-creditor-city">City</label>
+			<input id="field-creditor-city" name="creditor_city" required="true"/>
+		</div>
+		<div>
+			<label for="field-creditor-name">State</label>
+			<select id="field-creditor-state" name="creditor_state" required="true">
+				<option value="AL">Alabama</option>
+				<option value="AK">Alaska</option>
+				<option value="AZ">Arizona</option>
+				<option value="AR">Arkansas</option>
+				<option value="CA">California</option>
+				<option value="CO">Colorado</option>
+				<option value="CT">Connecticut</option>
+				<option value="DE">Delaware</option>
+				<option value="DC">District Of Columbia</option>
+				<option value="FL">Florida</option>
+				<option value="GA">Georgia</option>
+				<option value="HI">Hawaii</option>
+				<option value="ID">Idaho</option>
+				<option value="IL">Illinois</option>
+				<option value="IN">Indiana</option>
+				<option value="IA">Iowa</option>
+				<option value="KS">Kansas</option>
+				<option value="KY">Kentucky</option>
+				<option value="LA">Louisiana</option>
+				<option value="ME">Maine</option>
+				<option value="MD">Maryland</option>
+				<option value="MA">Massachusetts</option>
+				<option value="MI">Michigan</option>
+				<option value="MN">Minnesota</option>
+				<option value="MS">Mississippi</option>
+				<option value="MO">Missouri</option>
+				<option value="MT">Montana</option>
+				<option value="NE">Nebraska</option>
+				<option value="NV">Nevada</option>
+				<option value="NH">New Hampshire</option>
+				<option value="NJ">New Jersey</option>
+				<option value="NM">New Mexico</option>
+				<option value="NY">New York</option>
+				<option value="NC">North Carolina</option>
+				<option value="ND">North Dakota</option>
+				<option value="OH">Ohio</option>
+				<option value="OK">Oklahoma</option>
+				<option value="OR">Oregon</option>
+				<option value="PA">Pennsylvania</option>
+				<option value="RI">Rhode Island</option>
+				<option value="SC">South Carolina</option>
+				<option value="SD">South Dakota</option>
+				<option value="TN">Tennessee</option>
+				<option value="TX">Texas</option>
+				<option value="UT">Utah</option>
+				<option value="VT">Vermont</option>
+				<option value="VA">Virginia</option>
+				<option value="WA">Washington</option>
+				<option value="WV">West Virginia</option>
+				<option value="WI">Wisconsin</option>
+				<option value="WY">Wyoming</option>
+			</select>
+		</div>
+		<div>
+			<label for="field-creditor-zip">Zip</label>
+			<input type="number" id="field-creditor-zip" name="creditor_zip" required="true"/>
+		</div>
 	</div>
-	<div>
-		<label for="field-recipient-address">Street Address</label>
-		<input id="field-recipient-address" name="recipient_address" required="true"/>
-	</div>
-	<div>
-		<label for="field-recipient-city">City</label>
-		<input id="field-recipient-city" name="recipient_city" required="true"/>
-	</div>
-	<div>
-		<label for="field-recipient-name">State</label>
-		<select id="field-recipient-state" name="recipient_state" required="true">
-			<option value="AL">Alabama</option>
-			<option value="AK">Alaska</option>
-			<option value="AZ">Arizona</option>
-			<option value="AR">Arkansas</option>
-			<option value="CA">California</option>
-			<option value="CO">Colorado</option>
-			<option value="CT">Connecticut</option>
-			<option value="DE">Delaware</option>
-			<option value="DC">District Of Columbia</option>
-			<option value="FL">Florida</option>
-			<option value="GA">Georgia</option>
-			<option value="HI">Hawaii</option>
-			<option value="ID">Idaho</option>
-			<option value="IL">Illinois</option>
-			<option value="IN">Indiana</option>
-			<option value="IA">Iowa</option>
-			<option value="KS">Kansas</option>
-			<option value="KY">Kentucky</option>
-			<option value="LA">Louisiana</option>
-			<option value="ME">Maine</option>
-			<option value="MD">Maryland</option>
-			<option value="MA">Massachusetts</option>
-			<option value="MI">Michigan</option>
-			<option value="MN">Minnesota</option>
-			<option value="MS">Mississippi</option>
-			<option value="MO">Missouri</option>
-			<option value="MT">Montana</option>
-			<option value="NE">Nebraska</option>
-			<option value="NV">Nevada</option>
-			<option value="NH">New Hampshire</option>
-			<option value="NJ">New Jersey</option>
-			<option value="NM">New Mexico</option>
-			<option value="NY">New York</option>
-			<option value="NC">North Carolina</option>
-			<option value="ND">North Dakota</option>
-			<option value="OH">Ohio</option>
-			<option value="OK">Oklahoma</option>
-			<option value="OR">Oregon</option>
-			<option value="PA">Pennsylvania</option>
-			<option value="RI">Rhode Island</option>
-			<option value="SC">South Carolina</option>
-			<option value="SD">South Dakota</option>
-			<option value="TN">Tennessee</option>
-			<option value="TX">Texas</option>
-			<option value="UT">Utah</option>
-			<option value="VT">Vermont</option>
-			<option value="VA">Virginia</option>
-			<option value="WA">Washington</option>
-			<option value="WV">West Virginia</option>
-			<option value="WI">Wisconsin</option>
-			<option value="WY">Wyoming</option>
-		</select>
-	</div>
-	<div>
-		<label for="field-recipient-zip">Zip</label>
-		<input type="number" id="field-recipient-zip" name="recipient_zip" required="true"/>
-	</div>
-	<div>
-		<label for="field-account-num">Account #</label>
-		<input id="field-account-num" name="account_num" required="true" />
+	<!-- credit bearuea info -->
+	<div class="field-group display-none" id="bureau-fields">
+		<h3>Credit Bureau Info</h3>
+		<div>
+			<label for="field-bureau">Bureau</label>
+			<select id="field-bureau" name="bureau" require="true">
+				<option value="equifax">Equifax</option>
+				<option value="experian">Experian</option>
+				<option value="transunion">TransUnion</option>
+				<option value="custom">Custom</option>
+			</select>
+		</div>
+		<span id="custom-creditor-fields" class="display-none">
+			<div>
+				<label for="field-bureau-name">Bureau Name</label>
+				<input id="field-bureau-name" name="bureau_name" required="true"/>
+			</div>
+			<div>
+				<label for="field-bureau-address">Street Address</label>
+				<input id="field-bureau-address" name="bureau_address" required="true"/>
+			</div>
+			<div>
+				<label for="field-bureau-city">City</label>
+				<input id="field-bureau-city" name="bureau_city" required="true"/>
+			</div>
+			<div>
+				<label for="field-bureau-name">State</label>
+				<select id="field-bureau-state" name="bureau_state" required="true">
+					<option value="AL">Alabama</option>
+					<option value="AK">Alaska</option>
+					<option value="AZ">Arizona</option>
+					<option value="AR">Arkansas</option>
+					<option value="CA">California</option>
+					<option value="CO">Colorado</option>
+					<option value="CT">Connecticut</option>
+					<option value="DE">Delaware</option>
+					<option value="DC">District Of Columbia</option>
+					<option value="FL">Florida</option>
+					<option value="GA">Georgia</option>
+					<option value="HI">Hawaii</option>
+					<option value="ID">Idaho</option>
+					<option value="IL">Illinois</option>
+					<option value="IN">Indiana</option>
+					<option value="IA">Iowa</option>
+					<option value="KS">Kansas</option>
+					<option value="KY">Kentucky</option>
+					<option value="LA">Louisiana</option>
+					<option value="ME">Maine</option>
+					<option value="MD">Maryland</option>
+					<option value="MA">Massachusetts</option>
+					<option value="MI">Michigan</option>
+					<option value="MN">Minnesota</option>
+					<option value="MS">Mississippi</option>
+					<option value="MO">Missouri</option>
+					<option value="MT">Montana</option>
+					<option value="NE">Nebraska</option>
+					<option value="NV">Nevada</option>
+					<option value="NH">New Hampshire</option>
+					<option value="NJ">New Jersey</option>
+					<option value="NM">New Mexico</option>
+					<option value="NY">New York</option>
+					<option value="NC">North Carolina</option>
+					<option value="ND">North Dakota</option>
+					<option value="OH">Ohio</option>
+					<option value="OK">Oklahoma</option>
+					<option value="OR">Oregon</option>
+					<option value="PA">Pennsylvania</option>
+					<option value="RI">Rhode Island</option>
+					<option value="SC">South Carolina</option>
+					<option value="SD">South Dakota</option>
+					<option value="TN">Tennessee</option>
+					<option value="TX">Texas</option>
+					<option value="UT">Utah</option>
+					<option value="VT">Vermont</option>
+					<option value="VA">Virginia</option>
+					<option value="WA">Washington</option>
+					<option value="WV">West Virginia</option>
+					<option value="WI">Wisconsin</option>
+					<option value="WY">Wyoming</option>
+				</select>
+			</div>
+			<div>
+				<label for="field-bureau-zip">Zip</label>
+				<input type="number" id="field-bureau-zip" name="bureau_zip" required="true"/>
+			</div>
+		</span>
 	</div>
 	<div>
 		<input type="submit" value="Submit" class="btn btn-primary"/>
 	</div>
 </form>
+<script>
+	$(() => {
+		$("#field-form-name").change(() => {
+			var formName = $("#field-form-name").val();
+			if (formName === "hippa" || formName === "lawsuit")
+				$("#creditor-fields").add("#bureau-fields").removeClass("display-none");
+			else if (formName === "validation") {
+				$("#creditor-fields").removeClass("display-none");
+				$("#bureau-fields").addClass("display-none");
+			}
+			else{
+				$("#creditor-fields").addClass("display-none");
+				$("#bureau-fields").removeClass("display-none");
+			}
+		});
+		$("#field-bureau").change(() => {
+			var bureau = $("#field-bureau").val();
+			if (bureau === "custom")
+				$("#custom-creditor-fields").removeClass("display-none");
+			else
+				$("#custom-creditor-fields").addClass("display-none");
+		});
+	});
+</script>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
 
 

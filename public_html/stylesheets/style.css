@@ -2,3 +2,7 @@
 body {
 	padding: 1em;
 }
+
+.display-none{
+	display: none;
+}

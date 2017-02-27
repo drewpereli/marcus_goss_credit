@@ -1,0 +1,11 @@
+{% macro text(name, type="text") %}
+	<div class="form-group">
+		<label for="{{ name }}">{{ name|replace("_":" ")|title }}</label>
+		<input
+			id="{{ name }}"
+			name="{{ name }}"
+			type="{{ type }}"
+			class="form-control"
+		/>
+	</div>
+{% endmacro %}

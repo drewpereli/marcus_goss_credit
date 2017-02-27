@@ -1,1 +1,7 @@
-
+.field-group {
+    background-color: #ddd;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-radius: 5px;
+}
