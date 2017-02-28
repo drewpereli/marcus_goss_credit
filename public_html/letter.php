@@ -13,7 +13,8 @@
 	}
 	//Write to temp html file
 	$fileHash = md5(rand());
-	$htmlPath = __DIR__ . '/../tmp/' . $fileHash . '.html';
+	//$htmlPath = __DIR__ . '/../tmp/' . $fileHash . '.html';
+	$htmlPath = 'tmp/{$fileHash}.html'; 
 	$file = fopen($htmlPath, "w");
 	fwrite($file, $content);
 	fclose($file);
