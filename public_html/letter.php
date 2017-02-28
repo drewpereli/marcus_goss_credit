@@ -1,8 +1,16 @@
 <?php
 	require_once __DIR__ . "/../resources/config.php";
+	//
 	//Validate $_POST here
-	//Get letter content
-	$content = $twig->render('letter.twig', $_POST);
+	//
+	//Get letter content 
+	try{
+		$content = $twig->render($_POST["form_type"] . ".twig", $_POST);
+	}
+	catch (Exception $e){
+		echo $e->getMessage();
+		die();
+	}
 	//Write to temp html file
 	$fileHash = md5(rand());
 	$htmlPath = __DIR__ . '/../tmp/' . $fileHash . '.html';
@@ -25,7 +33,7 @@
 	ignore_user_abort(true);
 	header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="CreditLetter.pdf"');
+    header("Content-Disposition: attachment; filename=\"{$_POST['form_type']}.pdf\"");
     header('Expires: 0');
     header('Cache-Control: must-revalidate');
     header('Pragma: public');

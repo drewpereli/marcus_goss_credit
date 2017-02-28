@@ -1,25 +1,26 @@
 {% extends "page.twig" %}
+{% import "contact_info.twig" as contact %}
 {% block content %}
-	<div id="letter-body" class="col-xs-10 col-xs-offset-1">
+	<div id="letter-body" class="col-xs-10 col-xs-offset-1" style="color:blue;">
 		<div>&nbsp;</div>
 		<div class="text-center">
 			<b>Request for VALIDATION, NOT Verification</b>
 		</div>
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>
-		<div>{{name}}</div>
-		<div>{{address}}</div>
-		<div>{{city}}, {{state}} {{zip}}</div>
+		{{ contact.display(name, street_address, city, state, zip) }}
 		<div>&nbsp;</div>
 		<div>{{"now"|date("F jS, Y")}}</div>
 		<div>&nbsp;</div>
-		<div>Company: {{recipient_name}}</div>
-		<div>Address: {{recipient_address}}</div>
-		<div>{{recipient_city}}, {{recipient_state}} {{recipient_zip}}</div>
+		<div>Company: {{creditor_name}}</div>
+		<div>Address: {{creditor_address}}</div>
+		<div>{{creditor_city}}, {{creditor_state}} {{creditor_zip}}</div>
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>
-		<div>RE: Account # {{account_num}}</div>
-		<div>&nbsp;</div>
+		{% if account_number|length > 0 %}
+			<div>RE: Account #{{ account_number }}</div>
+			<div>&nbsp;</div>
+		{% endif %}
 		To Whom It May Concern:
 		<div>&nbsp;</div>
 		<div>
@@ -150,10 +151,13 @@
 		{{name}}
 		</div>
 		<div>
-		DOB: {{dob|date("F jS, Y")}}
+		DOB: {{date_of_birth|date("F jS, Y")}}
 		</div>
 		<div>
-		SSN: {{ssn}}
+			SSN:
+			{% if social_security_number|length > 0 %}
+				 {{social_security_number}}
+			{% endif %}
 		</div>
 		<div>&nbsp;</div>
 	</div>

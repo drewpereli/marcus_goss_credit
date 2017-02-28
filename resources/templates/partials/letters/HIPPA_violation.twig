@@ -1,0 +1,71 @@
+{% extends "page.twig" %}
+{% import "contact_info.twig" as contact %}
+{% block content %}
+	<div id="letter-body" class="col-xs-10 col-xs-offset-1">
+		<div>&nbsp;</div>
+		<div>{{"now"|date("F jS, Y")}}</div>
+		<div>&nbsp;</div>
+		{{ contact.display(bureau_name, bureau_street_address, bureau_city, bureau_state, bureau_zip) }}
+		<div>&nbsp;</div>
+		<div>RE: Intent to file lawsuit, HIPPA Privacy Violation</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>Validation Letter sent to:</div>
+		{{ contact.display(creditor_name, creditor_street_address, creditor_city, creditor_state, creditor_zip) }}
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		{% if account_number|length > 0 %}
+			<div>Account #{{ account_number }}</div>
+			<div>&nbsp;</div>
+		{% endif %}
+		<div>To Whom It May Concern</div>
+		<div>&nbsp;</div>
+		<div>
+			Please be advised I have requested “validation” {not verification} of an item reported
+			to you by the above original creditor/collection agency. I have received a response that
+			clearly violates my rights according to HIPPA.
+		</div>
+		<div>&nbsp;</div>
+		<div>
+			{{ creditor_name }} did NOT provide me a HIPPA release that releases my
+
+			medical information to them, therefore by providing such information they are in
+
+			VIOLATION of my HIPPA rights. I am proceeding with legal action as prescribed by
+
+			law against the above named original creditor/collection agency should this item not be
+
+			deleted within the required time allowed by law. I will seek every legal remedy
+
+			available to me and file suit against the credit bureau responsible for reporting this
+
+			violation.
+		</div>
+		<div>&nbsp;</div>
+		<div>
+			I urge you to take this extremely seriously as I have documented my case without
+
+			error. I encourage a response from you expeditiously.
+		</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>Sincerely</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		{{ contact.display(name, street_address, city, state, zip) }}
+	</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

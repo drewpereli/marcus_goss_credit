@@ -1,8 +1,10 @@
-
 body {
-	padding: 1em;
-}
+  padding: 1em; }
 
-.display-none{
-	display: none;
-}
+.display-none {
+  display: none; }
+
+.slide-down {
+  display: none; }
+
+/*# sourceMappingURL=style.css.map */

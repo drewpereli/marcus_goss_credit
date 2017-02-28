@@ -1,0 +1,5 @@
+{% macro display(name, street_address, city, state, zip) %}
+	<div>{{ name|title }}</div>
+	<div>{{ street_address|title }}</div>
+	<div>{{ city|title }}, {{ state|upper }} {{ zip }}</div>
+{% endmacro %}

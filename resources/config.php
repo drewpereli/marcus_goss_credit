@@ -4,8 +4,9 @@
 	$loader = new Twig_Loader_Filesystem(
 		array(
 			__DIR__ . "/templates/layout",
-			__DIR__ . "/templates/partials",
-			__DIR__ . "/templates/pages"
+			__DIR__ . "/templates/pages",
+			__DIR__ . "/templates/partials/letters",
+			__DIR__ . "/templates/partials/macros"
 			)
 		);
 	if (ENVIRONMENT === "DEVELOPMENT"){	
