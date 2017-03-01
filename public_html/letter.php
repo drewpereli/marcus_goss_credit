@@ -14,15 +14,16 @@
 	//Write to temp html file
 	$fileHash = md5(rand());
 	//$htmlPath = __DIR__ . '/../tmp/' . $fileHash . '.html';
-	$htmlPath = 'tmp/{$fileHash}.html'; 
+	$htmlPath = "tmp/{$fileHash}.html"; 
 	$file = fopen($htmlPath, "w");
 	fwrite($file, $content);
 	fclose($file);
-	chmod($htmlPath, 0400);
+	//chmod($htmlPath, 0400);
 	//Create temp pdf of temp html file
 	use mikehaertl\wkhtmlto\Pdf;
-	$pdf = new Pdf($htmlPath);
-	$pdfPath = __DIR__ . '/../tmp/' . $fileHash . '.pdf';
+	//$pdf = new Pdf($htmlPath);
+	$pdf = new Pdf(HOST_URL . "/tmp/{$fileHash}.html");
+	$pdfPath = __DIR__ . "/../tmp/{$fileHash}.pdf";
 	$success = $pdf->saveAs($pdfPath);
 	//Delete html file
 	unlink($htmlPath);

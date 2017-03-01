@@ -1,8 +1,9 @@
 <?php
 	define("ENVIRONMENT", "DEVELOPMENT");
 	define("PROTOCOL", "http");
-	define("HOST_URL", PROTOCOL . "://marcus-credit.com/");
+	define("HOST_URL", PROTOCOL . "://marcus-credit.drewpereli.com/");
 	require_once __DIR__ . "/library/vendor/autoload.php";
+	require_once __DIR__ . "/secrets.php";
 	$loader = new Twig_Loader_Filesystem(
 		array(
 			__DIR__ . "/templates/layout",
