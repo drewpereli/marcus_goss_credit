@@ -1,0 +1,6 @@
+{% macro flash(type, message) %}
+	<div class="col-xs-12 alert alert-{{type}} fade in">
+		<a href="#" class="close" data-dismiss="alert">&times;</a>
+		{{message}}
+	</div>
+{% endmacro %}

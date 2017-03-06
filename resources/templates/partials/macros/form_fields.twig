@@ -19,6 +19,24 @@
 	</div>
 {% endmacro %}
 
+{% macro t(p) %}
+	<div class="form-group">
+		<label for="{{ p.name }}">
+			{{ p.label|default(p.name|replace({"_": " "})|title) }}
+		</label>
+		<input
+			id="{{ p.name }}"
+			name="{{ p.name }}"
+			type="{{ p.type|default('text') }}"
+			class="form-control {{p.required}}"
+			value="{{ p.value|default('') }}"
+			{% if p.required %}
+				required="true"
+			{% endif %}
+		/>
+	</div>
+{% endmacro %}
+
 
 {% macro select(name, required=true, values) %}
 	<div class="form-group">
@@ -103,6 +121,11 @@
 			<option value="WY">Wyoming</option>
 		</select>
 	</div>
+{% endmacro %}
+
+
+{% macro submit(text="Submit") %}
+	<input type="submit" value="{{ text }}" class="btn btn-primary" />
 {% endmacro %}
 
 

@@ -1,5 +1,12 @@
 #letter-body {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 12pt; }
+	background-color: white;
+	color: black;
+	padding: 20px 15px;
+  	font-family: "Times New Roman", Times, serif;
+  	font-size: 12pt; }
+
+.letter {
+	background-color: white;
+}
 
 /*# sourceMappingURL=letter.css.map */

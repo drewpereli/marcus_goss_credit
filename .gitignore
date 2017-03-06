@@ -2,3 +2,4 @@ vendor/
 sftp-config.json
 secrets/
 secrets.php
+todo.txt

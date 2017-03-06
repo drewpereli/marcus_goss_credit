@@ -1,5 +1,8 @@
 {
     "require": {
-        "twig/twig": "~2.0"
+        "twig/twig": "~2.0",
+        "mikehaertl/phpwkhtmltopdf": "^2.2",
+        "j4mie/idiorm": "^1.5",
+        "drewpereli/flasher": "^1.1"
     }
 }

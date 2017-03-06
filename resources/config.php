@@ -4,6 +4,10 @@
 	define("HOST_URL", PROTOCOL . "://marcus-credit.drewpereli.com/");
 	require_once __DIR__ . "/library/vendor/autoload.php";
 	require_once __DIR__ . "/secrets.php";
+	require_once __DIR__ . "/library/functions.php";
+
+	$flasher = new Flasher();
+	
 	$loader = new Twig_Loader_Filesystem(
 		array(
 			__DIR__ . "/templates/layout",
@@ -22,4 +26,8 @@
 		    'cache' => __DIR__ . "/../resources/templates/compilation_cache/",
 		));
 	}
+
+	ORM::configure('mysql:host=localhost;dbname=credit');
+	ORM::configure('username', DB_USER);
+	ORM::configure('password', DB_PASSWORD);
 ?>
