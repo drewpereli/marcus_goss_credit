@@ -21,8 +21,10 @@
 			$pwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
 			unset($_POST["password"]);
 			if (!password_verify($_POST["password_confirmation"], $pwd)){
+				unset($_POST["password_confirmation"]);
 				throw new Exception("The passwords don't match.");
 			}
+			unset($_POST["password_confirmation"]);
 			//If we're here, the posted info is valid. Create the user and redirect to their profile.
 			$user = ORM::forTable("users")->create();
 			$user->first_name = $_POST["first_name"];
@@ -31,6 +33,10 @@
 			$user->password_hash = $pwd;
 			$user->activation_hash = hash('sha256', rand());
 			$user->save();
+			if (!sendActivationEmail($user)){
+				$user->delete();
+				throw new Exception("There was an error. Please try again later.");
+			}
 			$flasher->success = "Thanks for signing up! Check your email for an activation link.";
 			header("Location:index.php");
 			die();

@@ -8,8 +8,8 @@
 			if (!$user)
 				throw new Exception("Invalid email address.");
 			//If user isn't activated
-			if ($user->activated)
-				throw new Exception("You need to activate your account. Please check your email for an activation link. <a href='#'>Click here</a> to resend the link.");
+			if ($user->activated !== '1')
+				throw new Exception('You need to activate your account. Please check your email for an activation link. <a href="#">Click here</a> to resend the link.');
 			//Check password
 			if (!password_verify($_POST["password"], $user->password_hash))
 				throw new Exception("Invalid password.");

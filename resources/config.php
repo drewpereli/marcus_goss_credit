@@ -13,6 +13,7 @@
 			__DIR__ . "/templates/layout",
 			__DIR__ . "/templates/pages",
 			__DIR__ . "/templates/partials/letters",
+			__DIR__ . "/templates/partials/emails",
 			__DIR__ . "/templates/partials/macros"
 			)
 		);
@@ -30,4 +31,16 @@
 	ORM::configure('mysql:host=localhost;dbname=credit');
 	ORM::configure('username', DB_USER);
 	ORM::configure('password', DB_PASSWORD);
+
+	$mailer = new PHPMailer();
+	$mailer->isSMTP();                       
+    $mailer->Host = 'smtp.zoho.com';
+    $mailer->SMTPAuth = true;
+    $mailer->Username   = EMAIL_USER;
+    $mailer->Password   = EMAIL_PASSWORD;
+    $mailer->SMTPSecure = 'ssl';                 
+    $mailer->Port = 465;
+    $mailer->setFrom(EMAIL_USER, 'White Label Credit Repairs');
 ?>
+
+
