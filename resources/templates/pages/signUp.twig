@@ -2,11 +2,11 @@
 {% import 'form_fields.twig' as field %}
 {% block content %}
 	<form class="bs-form col-xs-12 col-md-6 col-md-offset-3" action="signUp.php" method="POST">
-		{{ field.t({name:"first_name", value:post_data.first_name}) }}
-		{{ field.t({name:"last_name", value:post_data.last_name}) }}
-		{{ field.t({name:"email", type:"email", value:post_data.email}) }}
-		{{ field.t({name:"password", type:"password"})}}
-		{{ field.t({name:"password_confirmation", type:"password"}) }}
+		{{ field.text({name:"first_name", value:post_data.first_name}) }}
+		{{ field.text({name:"last_name", value:post_data.last_name}) }}
+		{{ field.text({name:"email", type:"email", value:post_data.email}) }}
+		{{ field.password }}
+		{{ field.password_confirmation }}
 		{{ field.submit("Sign Up") }}
 	</form>
 {% endblock %}

@@ -1,25 +1,5 @@
-{% macro text(name, required=true, type="text", label=false) %}
-	<div class="form-group">
-		<label for="{{ name }}">
-			{% if label %}
-				{{ label }}
-			{% else %}
-				{{ name|replace({"_": " "})|title }}
-			{% endif %}
-		</label>
-		<input
-			id="{{ name }}"
-			name="{{ name }}"
-			type="{{ type }}"
-			class="form-control {% if required %}required{% endif %}"
-			{% if required %}
-				required="true"
-			{% endif %}
-		/>
-	</div>
-{% endmacro %}
 
-{% macro t(p) %}
+{% macro text(p) %}
 	<div class="form-group">
 		<label for="{{ p.name }}">
 			{{ p.label|default(p.name|replace({"_": " "})|title) }}
@@ -28,13 +8,27 @@
 			id="{{ p.name }}"
 			name="{{ p.name }}"
 			type="{{ p.type|default('text') }}"
-			class="form-control {{p.required}}"
+			class="form-control {{p.required}} {{p.classes}}"
 			value="{{ p.value|default('') }}"
 			{% if p.required %}
 				required="true"
 			{% endif %}
+			{% if p.title %}
+				title="{{p.title}}"
+			{% endif %}
 		/>
 	</div>
+{% endmacro %}
+
+{% macro password() %}
+	{% import _self as field %}
+	{{ field.text({name:"password", type:"password", classes:"pwstrength", 
+		title:"Password must be at least 8 characters long, contain at least 1 lowercase letter, at least 1 uppercase letter, and at least 1 number."}) }}
+{% endmacro %}
+
+{% macro password_confirmation() %}
+	{% import _self as field %}
+	{{ field.text({name:"password_confirmation", type:"password", classes:"password_confirmation"}) }}
 {% endmacro %}
 
 
@@ -134,11 +128,37 @@
 	{% if name|length != 0 %}
 		{% set name = name ~ "_" %}
 	{% endif %}
-	{{ field.text("#{name}name") }}
-	{{ field.text("#{name}street_address") }}
-	{{ field.text("#{name}city") }}
-	{{ field.state("#{name}state") }}
-	{{ field.text("#{name}zip", true, "number") }}
+	{{ field.text({name:"#{name}name"}) }}
+	{{ field.text({name:"#{name}street_address"}) }}
+	{{ field.text({name:"#{name}city"}) }}
+	{{ field.state({name:"#{name}state"}) }}
+	{{ field.text({name:"#{name}zip", type:"number"}) }}
+{% endmacro %}
+
+
+
+
+
+
+{% macro textOLD(name, required=true, type="text", label=false) %}
+	<div class="form-group">
+		<label for="{{ name }}">
+			{% if label %}
+				{{ label }}
+			{% else %}
+				{{ name|replace({"_": " "})|title }}
+			{% endif %}
+		</label>
+		<input
+			id="{{ name }}"
+			name="{{ name }}"
+			type="{{ type }}"
+			class="form-control {% if required %}required{% endif %}"
+			{% if required %}
+				required="true"
+			{% endif %}
+		/>
+	</div>
 {% endmacro %}
 
 
