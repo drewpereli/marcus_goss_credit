@@ -16,6 +16,11 @@
 		return isLoggedIn() ? ORM::forTable('users')->findOne($_SESSION["user_id"]) : false;
 	}
 
+	function getCurrentUserAsArray(){
+		$u = getCurrentUser();
+		return $u ? $u->asArray('id', 'first_name', 'last_name', 'email', 'role') : false;
+	}
+
 	function requireLogIn(){
 		if (!isLoggedIn()){
 			header("Location:index.php");
