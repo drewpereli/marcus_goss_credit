@@ -1,7 +1,11 @@
 {% extends "page.twig" %}
 {% import "form_fields.twig" as field %}
 {% block content %}
-<form class="bs-form col-xs-12 col-md-6 col-md-offset-3" action="letter.php" method="POST" target="_blank">
+<form class="bs-form col-xs-12 col-md-6 col-md-offset-3" 
+		action="letter.php" 
+		method="POST" 
+		target="_blank"
+		autocomplete="on">
 	{{ field.select("form_type", "required", 
 		[
 		"request_for_validation",
@@ -12,9 +16,9 @@
 	<div class="field-group">
 		<h3>Your Info</h3>
 		{{ field.contact_info }}
-		{{ field.text("date_of_birth", true, "date") }}
-		{{ field.text("social_security_number", false, "text", "Social Security Number") }}
-		{{ field.text("account_number") }}
+		{{ field.text({name:"date_of_birth", type:"date"}) }}
+		{{ field.text({name:"social_security_number", required:false}) }}
+		{{ field.text({name:"account_number"}) }}
 	</div>
 	<div class="field-group" id="creditor_fields">
 		<h3>Creditor Info</h3>

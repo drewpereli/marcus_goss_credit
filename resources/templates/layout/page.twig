@@ -2,18 +2,32 @@
 <html>
 <head>
 	{% block head %}
+		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-		<!-- Latest compiled and minified CSS -->
+		<!-- jQuery UI -->
+		<script src="https://code.jquery.com/ui/1.12.1/themes/dark-hive/jquery-ui.css"></script>
+		<!-- Bootstrap -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<!-- Optional theme -->
-		<!--
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-		-->
 		<link rel="stylesheet" href="https://bootswatch.com/slate/bootstrap.min.css" type="text/css" />
-		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="http://marcus-credit.drewpereli.com/stylesheets/style.css" type="text/css" />
-		<link rel="stylesheet" href="http://marcus-credit.drewpereli.com/stylesheets/forms.css" type="text/css" />	
+		<!-- PWStrength -->
+		<script src="library/pwstrength/pwstrength.min.js"></script>
+		<link rel="stylesheet" href="stylesheets/style.css" type="text/css" />
+		<link rel="stylesheet" href="stylesheets/forms.css" type="text/css" />	
+		<script>
+			$(()=>{
+				$("[title]").tooltip();
+				var pwoptions = {
+					ui: {
+						progressBarEmptyPercentage: 10,
+						progressBarMinPercentage: 10,
+						showVerdictsInsideProgressBar: true,
+						scores: [10, 20, 30, 40, 50]
+					}
+				}
+				$(".pwstrength").pwstrength(pwoptions);
+			});
+		</script>
 	{% endblock %}
 </head>
 <body>
