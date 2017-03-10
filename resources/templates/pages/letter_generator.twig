@@ -4,7 +4,6 @@
 <form class="bs-form col-xs-12 col-md-6 col-md-offset-3" 
 		action="letter.php" 
 		method="POST" 
-		target="_blank"
 		autocomplete="on">
 	{{ field.select("form_type", "required", 
 		[
@@ -15,23 +14,30 @@
 		]) }}
 	<div class="field-group">
 		<h3>Your Info</h3>
-		{{ field.contact_info }}
+		{{ field.contact_info({user:current_user}) }}
 		{{ field.text({name:"date_of_birth", type:"date"}) }}
 		{{ field.text({name:"social_security_number", required:false}) }}
 		{{ field.text({name:"account_number"}) }}
 	</div>
 	<div class="field-group" id="creditor_fields">
 		<h3>Creditor Info</h3>
-		{{ field.contact_info("creditor") }}
+		{{ field.contact_info({name:"creditor"}) }}
 	</div>
 	<div class="field-group display-none" id="bureau_fields">
 		<h3>Credit Bureau Info</h3>
 		{{ field.select("bureau", true, ["equifax", "experion", "trans_union", "custom"])}}
 		<span id="custom_creditor_fields">
-			{{ field.contact_info("bureau") }}
+			{{ field.contact_info({name:"bureau"}) }}
 		</span>
 	</div>
-	<input type="submit" value="Generate Letter" class="btn btn-primary"/>
+	<button type="submit" name="submit" value="email" class="btn btn-primary">
+		Generate Letter
+	</button>
+	{% if current_user.role == 1 %}
+		<button type="submit" name="submit" value="download" class="btn btn-primary" formtarget="_blank">
+			Download Letter
+		</button>
+	{% endif %}
 </form>
 <script>
 	$(() => {

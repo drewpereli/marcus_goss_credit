@@ -123,12 +123,12 @@
 {% endmacro %}
 
 
-{% macro contact_info(name) %}
+{% macro contact_info(p) %}
 	{% import _self as field %}
-	{% if name|length != 0 %}
-		{% set name = name ~ "_" %}
+	{% if p.name|length != 0 %}
+		{% set name = p.name ~ "_" %}
 	{% endif %}
-	{{ field.text({name:"#{name}name"}) }}
+	{{ field.text({name:"#{name}name", value:"#{p.user.first_name} #{p.user.last_name}"}) }}
 	{{ field.text({name:"#{name}street_address"}) }}
 	{{ field.text({name:"#{name}city"}) }}
 	{{ field.state({name:"#{name}state"}) }}
