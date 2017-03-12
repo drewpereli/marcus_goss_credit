@@ -1,44 +1,55 @@
 {% extends "page.twig" %}
 {% import "form_fields.twig" as field %}
 {% block content %}
-<form class="bs-form col-xs-12 col-md-6 col-md-offset-3" 
-		action="letter.php" 
-		method="POST" 
-		autocomplete="on">
-	{{ field.select("form_type", "required", 
-		[
-		"request_for_validation",
-		"HIPPA_violation",
-		"intent_to_file_lawsuit",
-		"section_609_verification"
-		]) }}
-	<div class="field-group">
-		<h3>Your Info</h3>
-		{{ field.contact_info({user:current_user}) }}
-		{{ field.text({name:"date_of_birth", type:"date"}) }}
-		{{ field.text({name:"social_security_number", required:false}) }}
-		{{ field.text({name:"account_number"}) }}
-	</div>
-	<div class="field-group" id="creditor_fields">
-		<h3>Creditor Info</h3>
-		{{ field.contact_info({name:"creditor"}) }}
-	</div>
-	<div class="field-group display-none" id="bureau_fields">
-		<h3>Credit Bureau Info</h3>
-		{{ field.select("bureau", true, ["equifax", "experion", "trans_union", "custom"])}}
-		<span id="custom_creditor_fields">
-			{{ field.contact_info({name:"bureau"}) }}
-		</span>
-	</div>
-	<button type="submit" name="submit" value="email" class="btn btn-primary">
-		Generate Letter
-	</button>
-	{% if current_user.role == 1 %}
-		<button type="submit" name="submit" value="download" class="btn btn-primary" formtarget="_blank">
-			Download Letter
+<div class="col-xs-12 col-md-6 col-md-offset-3">
+	<form class="bs-form" 
+			action="letter.php" 
+			method="POST" 
+			autocomplete="on">
+		{{ field.select("form_type", "required", 
+			[
+			"request_for_validation",
+			"HIPPA_violation",
+			"intent_to_file_lawsuit",
+			"section_609_verification"
+			]) }}
+		<div class="field-group">
+			<h3>Your Info</h3>
+			{{ field.contact_info({user:current_user}) }}
+			{{ field.text({name:"date_of_birth", type:"date"}) }}
+			{{ field.text({name:"social_security_number", required:false}) }}
+			{{ field.text({name:"account_number"}) }}
+		</div>
+		<div class="field-group" id="creditor_fields">
+			<h3>Creditor Info</h3>
+			{{ field.contact_info({name:"creditor"}) }}
+		</div>
+		<div class="field-group display-none" id="bureau_fields">
+			<h3>Credit Bureau Info</h3>
+			{{ field.select("bureau", true, ["equifax", "experion", "trans_union", "custom"])}}
+			<span id="custom_creditor_fields">
+				{{ field.contact_info({name:"bureau"}) }}
+			</span>
+		</div>
+		<input type="hidden" name="action" id="action-field"/>
+		<button type="button" class="btn btn-primary submit-btn" id="email-btn">
+			Generate Letter
 		</button>
-	{% endif %}
-</form>
+		{% if current_user.role == 1 %}
+			<button type="button" class="btn btn-primary submit-btn" id="download-btn">
+				Download Letter
+			</button>
+		{% endif %}
+	</form>
+	<div id="progress-bar-container" class="display-none">
+		<div class="progress">
+			<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+		    	<span class="sr-only">45% Complete</span>
+			</div>
+		</div>
+		<div id="progress-message"></div>
+	</div>
+</div>
 <script>
 	$(() => {
 		$("#form_type").change(() => {
@@ -127,6 +138,45 @@
 			}
 		});
 		$("#bureau").change();
+		$(".submit-btn").click(function() {
+			if ($(this).attr("id") === "download-btn"){
+				$("#action-field").val("download");
+				$("form").attr("target", "_blank");
+			}
+			else{
+				$("#action-field").val("email");
+				$("form").removeAttr('target');
+			}
+			//Trigger animation
+			$("#progress-bar-container").removeClass("display-none");
+			var getRandomTime = function(){
+				return Math.round(Math.random() * 2000 + 200);
+			}
+			var keyframes = [
+				{time:0, message: "Contacting Equifax...", progress: 10},
+				{time:getRandomTime(), message: "Verifying...", progress: 22},
+				{time:getRandomTime(), message: "Contacting Experion...", progress: 34},
+				{time:getRandomTime(), message: "Verifying...", progress: 46},
+				{time:getRandomTime(), message: "Contacting TransUnion...", progress: 58},
+				{time:getRandomTime(), message: "Verifying...", progress: 70},
+				{time:getRandomTime(), message: "Generatint Letter...", progress: 82},
+				{time:getRandomTime(), message: "Finishing...", progress: 99},
+				{time:getRandomTime(), done: true},
+			];
+			var animate = function(index){
+				var frame = keyframes[index];
+				if (frame.done){
+					$("#progress-bar-container").addClass("display-none");
+					$("form").submit();
+					return;
+				}
+				if (frame.message)
+					$("#progress-message").html(frame.message);
+				$(".progress-bar").attr("aria-valuenow", frame.progress).css("width", frame.progress + "%");
+				setTimeout(()=>{animate(index+1);}, keyframes[index+1].time);
+			}
+			animate(0);
+		})
 	});
 </script>
 {% endblock %}

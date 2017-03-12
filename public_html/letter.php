@@ -32,7 +32,7 @@
 	    echo $pdf->getError();
 		die();
 	}
-	if ($_POST["submit"] === 'email'){
+	if ($_POST["action"] === 'email'){
 		$user = getCurrentUser();
 		$mailer->addAddress($user->email, "{$user->first_name} {$user->last_name}");
 		$mailer->Subject = 'Credit Repair Letter';
@@ -48,7 +48,7 @@
 		header("Location:letter_generator.php");
 		die();
 	}
-	if ($_POST["submit"] === 'download'){
+	if ($_POST["action"] === 'download'){
 		if (getCurrentUser()->role == '1')
 		{
 			//Provide download link
