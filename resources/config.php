@@ -1,6 +1,6 @@
 <?php
 	define("ENVIRONMENT", "DEVELOPMENT");
-	define("PROTOCOL", "http");
+	define("PROTOCOL", "https");
 	define("HOST_URL", PROTOCOL . "://marcus-credit.drewpereli.com/");
 	require_once __DIR__ . "/library/vendor/autoload.php";
 	require_once __DIR__ . "/secrets.php";
