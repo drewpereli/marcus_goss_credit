@@ -1,5 +1,5 @@
 <?php
-	define("ENVIRONMENT", "PRODUCTION");
+	define("ENVIRONMENT", "DEVELOPMENT");
 	define("PROTOCOL", "http");
 	define("HOST_URL", PROTOCOL . "://marcus-credit.drewpereli.com/");
 	require_once __DIR__ . "/library/vendor/autoload.php";
