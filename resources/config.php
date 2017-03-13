@@ -1,5 +1,5 @@
 <?php
-	define("ENVIRONMENT", "DEVELOPMENT");
+	define("ENVIRONMENT", "PRODUCTION");
 	define("PROTOCOL", "https");
 	
 	require_once __DIR__ . "/library/vendor/autoload.php";

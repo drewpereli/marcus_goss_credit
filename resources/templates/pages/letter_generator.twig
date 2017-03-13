@@ -144,6 +144,8 @@
 			if ($(this).attr("id") === "download-btn"){
 				$("#action-field").val("download");
 				$("form").attr("target", "_blank");
+				$("form").submit();
+				return;
 			}
 			else{
 				$("#action-field").val("email");

@@ -7,4 +7,8 @@ body {
   font-family: "Times New Roman", Times, serif;
   font-size: 12pt;
 }
+.signature-line {
+  width: 100%;
+  border-bottom: 1px solid black;
+}
 /*# sourceMappingURL=letter.css.map */
