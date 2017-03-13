@@ -43,7 +43,7 @@
 				$user->delete();
 				throw new Exception("There was an error. Please try again later.");
 			}
-			$flasher->success = "Thanks for signing up! Check your email for an activation link.";
+			$flasher->success = "Thanks for signing up! Check your email for an activation link (it may take a few minutes).";
 			header("Location:index.php");
 			die();
 		}
