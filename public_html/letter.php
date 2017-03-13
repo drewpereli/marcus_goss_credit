@@ -15,7 +15,7 @@
 	//Write to temp html file
 	$fileHash = md5(rand());
 	//$htmlPath = __DIR__ . '/../tmp/' . $fileHash . '.html';
-	$htmlPath = "tmp/{$fileHash}.html"; 
+	$htmlPath = __DIR__ . "/tmp/{$fileHash}.html"; 
 	$file = fopen($htmlPath, "w");
 	fwrite($file, $content);
 	fclose($file);
@@ -23,11 +23,11 @@
 	//Create temp pdf of temp html file
 	use mikehaertl\wkhtmlto\Pdf;
 	//$pdf = new Pdf($htmlPath);
-	$pdf = new Pdf(HOST_URL . "/tmp/{$fileHash}.html");
+	$pdf = new Pdf(HOST_URL . "tmp/{$fileHash}.html");
 	$pdfPath = __DIR__ . "/../tmp/{$fileHash}.pdf";
 	$success = $pdf->saveAs($pdfPath);
 	//Delete html file
-	unlink($htmlPath);
+	//unlink($htmlPath);
 	if (!$success) {
 	    echo $pdf->getError();
 		die();

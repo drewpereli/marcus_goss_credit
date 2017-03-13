@@ -1,7 +1,7 @@
 <?php
-	define("ENVIRONMENT", "DEVELOPMENT");
+	define("ENVIRONMENT", "PRODUCTION");
 	define("PROTOCOL", "https");
-	define("HOST_URL", PROTOCOL . "://marcus-credit.drewpereli.com/");
+	
 	require_once __DIR__ . "/library/vendor/autoload.php";
 	require_once __DIR__ . "/secrets.php";
 	require_once __DIR__ . "/library/functions.php";
@@ -18,13 +18,15 @@
 			)
 		);
 	if (ENVIRONMENT === "DEVELOPMENT"){	
+		define("HOST_URL", PROTOCOL . "://marcus-credit.drewpereli.com/");
 		$twig = new Twig_Environment($loader, array(
 		    //'cache' => __DIR__ . "/../resources/templates/compilation_cache/",
 		));
 	}
 	elseif (ENVIRONMENT === "PRODUCTION"){
+		define("HOST_URL", PROTOCOL . "://whitelabelcreditrepairs.com/");
 		$twig = new Twig_Environment($loader, array(
-		    'cache' => __DIR__ . "/../resources/templates/compilation_cache/",
+		    //'cache' => __DIR__ . "/../resources/templates/compilation_cache/",
 		));
 	}
 

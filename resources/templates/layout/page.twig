@@ -62,7 +62,7 @@
 		  </div><!-- /.container-fluid -->
 		</nav>
 	{% endblock %}
-	<div id="content">
+	<div id="content" class="container-fluid">
 		{% block flasher %}
 			{% if flash_messages %}
 				<div class="row">
@@ -78,7 +78,9 @@
 		{% endblock %}
 	</div>
 	{% block footer %}
-		
+		<div id="footer" class="text-center row">
+			Website by <a href="pereliwebworks.com">Drew Pereli</a>
+		</div>
 	{% endblock %}
 </body>
 </html>

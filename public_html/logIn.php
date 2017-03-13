@@ -14,17 +14,19 @@
 			if (!password_verify($_POST["password"], $user->password_hash))
 				throw new Exception("Invalid password.");
 			//If we're here, we're good. Log the user in.
+			unset($_POST["password"]);
 			logIn($user);
 			$flasher->success = "You are now logged in.";
 			header("Location:index.php");
 			die();
 		}
 		catch(Exception $e){
+			unset($_POST["password"]);
 			$flasher->danger = $e->getMessage();
 		}
 	}
 	echo $twig->render("logIn.twig", array(
 		"flash_messages" => $flasher->getAll(),
-		"current_user" => getCurrentUserAsArray()
+		"post_data" => $_POST
 		));
 ?>
