@@ -4,6 +4,7 @@
         "mikehaertl/phpwkhtmltopdf": "^2.2",
         "j4mie/idiorm": "^1.5",
         "drewpereli/flasher": "^1.1",
-        "phpmailer/phpmailer": "^5.2"
+        "phpmailer/phpmailer": "^5.2",
+        "stripe/stripe-php": "4.*"
     }
 }

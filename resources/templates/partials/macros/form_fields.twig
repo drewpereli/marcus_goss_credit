@@ -122,6 +122,18 @@
 	<input type="submit" value="{{ text }}" class="btn btn-primary" />
 {% endmacro %}
 
+{% macro stripe() %}
+	<div class="form-group">
+		<label for="stripe-card-element">
+			Credit or debit card
+		</label>
+		<div id="stripe-card-element">
+		</div>
+		<div id="stripe-card-errors"></div>
+	</div>
+	<button class="btn btn-default">Submit Payment</button>
+{% endmacro %}
+
 
 {% macro contact_info(p) %}
 	{% import _self as field %}
