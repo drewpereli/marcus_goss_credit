@@ -39,7 +39,6 @@
 				<tr><td></td><td></td><td></td></tr>
 			{% endfor %}
 		</table>
-		<div>&nbsp;</div>
 		<div><small>* Please remove all <b>non-account holding inquiries</b> over 30 days old.</small></div>
 		<div><small>* Please add a <b>Promotional Suppression</b> to my credit file.</small></div>
 		<div>&nbsp;</div>
@@ -54,9 +53,10 @@
 
 	first above written.</div>
 		<div>&nbsp;</div>
-		<div class="col-xs-6">Signed, sealed and delivered in the presence of:</div>
-		<div class="col-xs-6">
+		<div style="width:50%;float:left;">Signed, sealed and delivered in the presence of:</div>
+		<div style="width:50%;float:left;">
 			<div>{{ name }}</div>
+			<div>&nbsp;</div>
 			<div>&nbsp;</div>
 			<div class="signature-line"></div>
 			<div>Signature</div>
@@ -67,7 +67,7 @@
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>
 		<div>STATE OF {{ state }}</div>
-		<div>COUNTY OF {{  }}</div>
+		<div>COUNTY OF {{ county }}</div>
 		<div>&nbsp;</div>
 		<div>I HEREBY CERTIFY that on this day before me, an officer duly qualified to take
 
@@ -86,9 +86,12 @@
 		</div>
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>
-		<div class="col-xs-6">
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div style="width:50%">
 			<div class="signature-line"></div>
 		</div>
+		<div>&nbsp;</div>
 		<div>Notary Public:</div>
 		<div>Printed Name:</div>
 		<div>&nbsp;</div>

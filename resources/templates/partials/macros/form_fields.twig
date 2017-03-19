@@ -32,18 +32,18 @@
 {% endmacro %}
 
 
-{% macro select(name, required=true, values) %}
+{% macro select(p) %}
 	<div class="form-group">
-		<label for="{{ name }}">{{ name|replace({"_": " "})|title }}</label><br/>
+		<label for="{{ name }}">{{ p.name|replace({"_": " "})|title }}</label><br/>
 		<select 
-			id="{{ name }}" 
-			name="{{ name }}" 
-			class="form-control {% if required %}required{% endif %}"
-			{% if required %}
+			id="{{ p.name }}" 
+			name="{{ p.name }}" 
+			class="form-control {% if p.required %}required{% endif %}"
+			{% if p.required %}
 				required="true"
 			{% endif %}
 		>
-			{% for value in values %}
+			{% for value in p.values %}
 				<option value="{{ value }}">{{ value|replace({"_": " "})|title }}</div>
 			{% endfor %}
 		</select>
@@ -51,13 +51,13 @@
 {% endmacro %}
 
 
-{% macro state(name, required=true) %}
+{% macro state(p) %}
 	<div class="form-group">
-		<label for="{{ name }}">{{ name|replace({"_": " "})|title }}</label><br/>
+		<label for="{{ p.name }}">{{ p.name|replace({"_": " "})|title }}</label><br/>
 		<select 
-			id="{{ name }}" 
-			name="{{ name }}" 
-			class="form-control {% if required %}required{% endif %}"
+			id="{{ p.name }}" 
+			name="{{ p.name }}" 
+			class="form-control {% if p.required %}required{% endif %}"
 			{% if required %}
 				required="true"
 			{% endif %}
@@ -143,6 +143,9 @@
 	{{ field.text({name:"#{name}name", value:"#{p.user.first_name} #{p.user.last_name}"}) }}
 	{{ field.text({name:"#{name}street_address"}) }}
 	{{ field.text({name:"#{name}city"}) }}
+	{% if p.include_county %}
+		{{ field.text({name:"#{name}county"}) }}
+	{% endif %}
 	{{ field.state({name:"#{name}state"}) }}
 	{{ field.text({name:"#{name}zip", type:"number"}) }}
 {% endmacro %}

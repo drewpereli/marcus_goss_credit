@@ -9,7 +9,7 @@
 		$content = $twig->render($_POST["form_type"] . ".twig", $_POST);
 	}
 	catch (Exception $e){
-		echo $e->getMessage();
+		echo $e->getFile() . ":" . $e->getLine()." -- ".$e->getMessage();
 		die();
 	}
 	//Write to temp html file

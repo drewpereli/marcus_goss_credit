@@ -11,7 +11,7 @@
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>
 		<div>Validation Letter sent to:</div>
-		{{ contact.display(creditor_name, creditor_street_address, creditor_city, creditor_state, creditor_zip) }}
+		{{ contact.display(collection_agency_name, collection_agency_street_address, collection_agency_city, collection_agency_state, collection_agency_zip) }}
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>
 		{% if account_number|length > 0 %}
@@ -27,13 +27,13 @@
 		</div>
 		<div>&nbsp;</div>
 		<div>
-			{{ creditor_name }} did NOT provide me a HIPPA release that releases my
+			{{ collection_agency_name }} did NOT provide me a HIPPA release that releases my
 
 			medical information to them, therefore by providing such information they are in
 
 			VIOLATION of my HIPPA rights. I am proceeding with legal action as prescribed by
 
-			law against the above named original creditor/collection agency should this item not be
+			law against the above named original collection_agency/collection agency should this item not be
 
 			deleted within the required time allowed by law. I will seek every legal remedy
 

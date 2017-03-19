@@ -11,4 +11,10 @@ body {
   width: 100%;
   border-bottom: 1px solid black;
 }
+table {
+  background-color: inherit;
+}
+tr {
+  height: 30px;
+}
 /*# sourceMappingURL=letter.css.map */

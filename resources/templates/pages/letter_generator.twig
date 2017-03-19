@@ -7,27 +7,46 @@
 				action="letter.php" 
 				method="POST" 
 				autocomplete="on">
-			{{ field.select("form_type", "required", 
-				[
-				"request_for_validation",
-				"HIPPA_violation",
-				"intent_to_file_lawsuit",
-				"section_609_verification"
-				]) }}
+			{{ 
+				field.select({
+								name: "form_type", 
+								required: true, 
+								values: [
+										"request_for_validation",
+										"HIPPA_violation",
+										"intent_to_file_lawsuit",
+										"section_609_verification"
+										]
+							}) 
+			}}
 			<div class="field-group">
 				<h3>Your Info</h3>
-				{{ field.contact_info({user:current_user}) }}
+				{{ field.contact_info({user:current_user, include_county: true}) }}
 				{{ field.text({name:"date_of_birth", type:"date"}) }}
 				{{ field.text({name:"social_security_number", required:false}) }}
 				{{ field.text({name:"account_number"}) }}
+				<span id="accounts-in-question_field" class="display-none">
+					{{ 
+						field.select({
+							name: "number_of_accounts_in_question",
+							values: ["1","2","3","4","5","6","7","8","9",]
+						}) 
+					}}
+				</span>
 			</div>
 			<div class="field-group" id="creditor_fields">
-				<h3>Creditor Info</h3>
-				{{ field.contact_info({name:"creditor"}) }}
+				<h3>Collection Agency Info</h3>
+				{{ field.contact_info({name:"collection_agency"}) }}
 			</div>
 			<div class="field-group display-none" id="bureau_fields">
 				<h3>Credit Bureau Info</h3>
-				{{ field.select("bureau", true, ["equifax", "experion", "trans_union", "custom"])}}
+				{{ 
+					field.select({
+						name: "bureau", 
+						required: true, 
+						values: ["equifax", "experion", "trans_union", "custom"]
+					}) 
+				}}
 				<span id="custom_creditor_fields">
 					{{ field.contact_info({name:"bureau"}) }}
 				</span>
@@ -44,8 +63,13 @@
 		</form>
 		<div id="progress-bar-container" class="hidden">
 			<div class="progress">
-				<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-			    	<span class="sr-only">45% Complete</span>
+				<div 	class="progress-bar progress-bar-info" 
+						role="progressbar" 
+						aria-valuenow="0" 
+						aria-valuemin="0" 
+						aria-valuemax="100" 
+						style="width: 0%">
+			    	0%
 				</div>
 			</div>
 			<div id="progress-message"></div>
@@ -61,23 +85,27 @@
 					$("#social_security_number").parent().removeClass("display-none");
 					$("#creditor_fields").removeClass("display-none").find(".required").attr("required", "true");
 					$("#bureau_fields").addClass("display-none").find(".required").removeAttr("required");
+					$("#accounts-in-question_field").addClass("display-none");
 					break;
 				case "HIPPA_violation":
 					$("#social_security_number").parent().addClass("display-none");
 					$("#creditor_fields").add("#bureau_fields")
 						.removeClass("display-none")
 						.find(".required").attr("required", "true");
+					$("#accounts-in-question_field").addClass("display-none");
 					break;
 				case "intent_to_file_lawsuit":
 					$("#social_security_number").parent().addClass("display-none");
 					$("#creditor_fields").add("#bureau_fields")
 						.removeClass("display-none")
 						.find(".required").attr("required", "true");
+					$("#accounts-in-question_field").addClass("display-none");
 					break;
 				case "section_609_verification":
-					$("#social_security_number").parent().addClass("display-none");
+					$("#social_security_number").parent().remove("display-none");
 					$("#creditor_fields").addClass("display-none").find(".required").removeAttr("required");
 					$("#bureau_fields").removeClass("display-none").find(".required").attr("required", "true");
+					$("#accounts-in-question_field").removeClass("display-none");
 					break;
 			}
 		});
@@ -167,20 +195,43 @@
 				{time:getRandomTime(), message: "Finishing...", progress: 99},
 				{time:getRandomTime(), done: true},
 			];
+			//Add random "busy" frames
+			for (var i = keyframes.length - 4 ; i >= 0 ; i--){
+				if (Math.random() < .2){
+					keyframes.splice(i, 0, {
+						time:getRandomTime(),
+						message: "Busy...",
+						progress: false
+					});
+				}
+			}
+
 			var animate = function(index){
 				var frame = keyframes[index];
 				if (frame.done){
-					$("#progress-bar-container").addClass("display-none");
+					//$("#progress-bar-container").addClass("display-none");
+					$("#progress-message").html("Complete");
+					$(".progress-bar")
+						.attr("aria-valuenow", 100)
+						.css("width", "100%")
+						.html("100%");
 					$("form").submit();
 					return;
 				}
 				if (frame.message)
 					$("#progress-message").html(frame.message);
-				$(".progress-bar").attr("aria-valuenow", frame.progress).css("width", frame.progress + "%");
+				if (frame.progress){
+					$(".progress-bar")
+						.attr("aria-valuenow", frame.progress)
+						.css("width", frame.progress + "%")
+						.html(frame.progress + "%");
+				}
+				/*
 				if (index === 2)
 					$(".progress-bar").removeClass('progress-bar-danger').addClass('progress-bar-warning');
 				else if (index === 6)
 					$(".progress-bar").removeClass('progress-bar-warning').addClass('progress-bar-success');
+				*/
 				setTimeout(()=>{animate(index+1);}, keyframes[index+1].time);
 			}
 			animate(0);

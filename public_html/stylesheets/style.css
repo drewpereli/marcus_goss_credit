@@ -9,4 +9,21 @@
   padding: 2em;
   border-top: 1px solid #555;
 }
-/*# sourceMappingURL=style.css.map */
+
+.progress{
+	height: 23px;
+	border-radius: 4px;
+	margin-top: 3em;
+}
+
+.progress-bar{
+	background-color: rgb(51, 122, 182);
+}
+
+#progress-message{
+  margin-top: -1em;
+}
+
+.progress-bar-info:last-child.progress-bar:before{
+  background-color: #cae6fc;
+}
