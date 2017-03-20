@@ -3,6 +3,6 @@
 	requireLogIn();
 	logOut();
 	$flasher->success = "You're logged out.";
-	header("Location: index.php");
+	header("Location: /");
 	die();
 ?>
