@@ -1,12 +1,40 @@
 {% extends 'page.twig' %}
 {% import 'form_fields.twig' as field %}
 {% block content %}
+	<!-- Modal -->
+	<div class="modal fade" id="confirmation_modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Before you sign up...</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="">
+	      		When disputing items on your credit report the first thing you need to do is obtain a copy of your credit report. The best way to accomplish this is to order a free one from <a href="http://www.annualcreditreport.com">http://www.annualcreditreport.com</a>. Please make sure you complete this step before signing up.
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" id="sign-up-btn">Sign Up</button>
+	        <script>
+	        	$("#sign-up-btn").click(function(){
+	        		$("form").submit();
+	        	});
+	        </script>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	<form class="bs-form col-xs-12 col-md-6 col-md-offset-3" action="signUp.php" method="POST">
 		{{ field.text({name:"first_name", value:post_data.first_name}) }}
 		{{ field.text({name:"last_name", value:post_data.last_name}) }}
 		{{ field.text({name:"email", type:"email", value:post_data.email}) }}
 		{{ field.password }}
 		{{ field.password_confirmation }}
-		{{ field.submit("Sign Up") }}
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmation_modal">
+		  Sign Up
+		</button>
 	</form>
 {% endblock %}
