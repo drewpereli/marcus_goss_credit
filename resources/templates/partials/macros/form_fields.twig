@@ -22,8 +22,62 @@
 
 {% macro password() %}
 	{% import _self as field %}
-	{{ field.text({name:"password", type:"password", classes:"pwstrength", 
-		title:"Password must be at least 8 characters long, contain at least 1 lowercase letter, at least 1 uppercase letter, and at least 1 number."}) }}
+	{{ field.text({name:"password", type:"password", classes:"pwstrength"}) }}
+	<div class="password-criteria-checklist">
+		<ul>
+			<li class="min_length text-danger">
+				<span class="checked">&#10008;</span> At least 8 characters long.
+			</li>
+			<li class="lowercase_letter text-danger">
+				<span class="checked">&#10008;</span> Must contain at least one lowercase letter.
+			</li>
+			<li class="uppercase_letter text-danger">
+				<span class="checked">&#10008;</span> Must contain at least one uppercase letter.
+			</li>
+			<li class="number text-danger">
+				<span class="checked">&#10008;</span> Must contain at least one number.
+			</li>
+		</ul>
+	</div>
+	<script>
+		$("#password").keyup(function(){
+			var val = $(this).val();
+			var markAsValid = function(liElement){
+				$(liElement)
+					.removeClass("text-danger")
+					.addClass("text-success")
+					.find(".checked")
+					.html("&#10004;");
+			}
+			var markAsInvalid = function(liElement){
+				$(liElement)
+					.addClass("text-danger")
+					.removeClass("text-success")
+					.find(".checked")
+					.html("&#10008;");
+			}
+			//Check length
+			if (val.length >= 8)
+				markAsValid($(".min_length"));
+			else
+				markAsInvalid($(".min_length"));
+			//Check for lowercase letter
+			if (val.match(/[a-z]+/))
+				markAsValid($(".lowercase_letter"));
+			else
+				markAsInvalid($(".lowercase_letter"));
+			//Check for uppercase letter
+			if (val.match(/[A-Z]+/))
+				markAsValid($(".uppercase_letter"));
+			else
+				markAsInvalid($(".uppercase_letter"));
+			//Check for number
+			if (val.match(/[0-9]+/))
+				markAsValid($(".number"));
+			else
+				markAsInvalid($(".number"));
+		});
+	</script>
 {% endmacro %}
 
 {% macro password_confirmation() %}

@@ -10,13 +10,13 @@
   border-top: 1px solid #555;
 }
 
-.progress{
+.letter-generator-progress.progress{
 	height: 23px;
 	border-radius: 4px;
 	margin-top: 3em;
 }
 
-.progress-bar{
+.letter-generator-progress .progress-bar{
 	background-color: rgb(51, 122, 182);
 }
 
@@ -24,6 +24,6 @@
   margin-top: -1em;
 }
 
-.progress-bar-info:last-child.progress-bar:before{
+.letter-generator-progress .progress-bar-info:last-child.progress-bar:before{
   background-color: #cae6fc;
 }
