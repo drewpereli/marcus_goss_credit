@@ -38,20 +38,7 @@
 				<h3>Collection Agency Info</h3>
 				{{ field.contact_info({name:"collection_agency"}) }}
 			</div>
-			<div class="field-group display-none" id="bureau_fields">
-				<h3>Credit Bureau Info</h3>
-				{{ 
-					field.select({
-						name: "bureau", 
-						required: true, 
-						values: ["equifax", "experion", "trans_union", "custom"]
-					}) 
-				}}
-				<span id="custom_creditor_fields">
-					{{ field.contact_info({name:"bureau"}) }}
-				</span>
-			</div>
-			<input type="hidden" name="action" id="action-field"/>
+			<input type="hidden" name="action" value="email" id="action-field"/>
 			<button type="button" class="btn btn-primary submit-btn" id="email-btn">
 				Generate Letter
 			</button>
@@ -84,19 +71,18 @@
 				case "request_for_validation":
 					$("#social_security_number").parent().removeClass("display-none");
 					$("#creditor_fields").removeClass("display-none").find(".required").attr("required", "true");
-					$("#bureau_fields").addClass("display-none").find(".required").removeAttr("required");
 					$("#accounts-in-question_field").addClass("display-none");
 					break;
 				case "HIPPA_violation":
 					$("#social_security_number").parent().addClass("display-none");
-					$("#creditor_fields").add("#bureau_fields")
+					$("#creditor_fields")
 						.removeClass("display-none")
 						.find(".required").attr("required", "true");
 					$("#accounts-in-question_field").addClass("display-none");
 					break;
 				case "intent_to_file_lawsuit":
 					$("#social_security_number").parent().addClass("display-none");
-					$("#creditor_fields").add("#bureau_fields")
+					$("#creditor_fields")
 						.removeClass("display-none")
 						.find(".required").attr("required", "true");
 					$("#accounts-in-question_field").addClass("display-none");
@@ -104,70 +90,12 @@
 				case "section_609_verification":
 					$("#social_security_number").parent().remove("display-none");
 					$("#creditor_fields").addClass("display-none").find(".required").removeAttr("required");
-					$("#bureau_fields").removeClass("display-none").find(".required").attr("required", "true");
 					$("#accounts-in-question_field").removeClass("display-none");
 					break;
 			}
 		});
 		$("#form_type").change();//Trigger the change event to set all the required fields properly
 
-		$("#bureau").change(() => {
-			var bureau = $("#bureau").val();
-			if (bureau === "custom"){
-				$("#custom_creditor_fields").find("input, select").val("");
-				/*
-				$("#custom_creditor_fields").children().hide();
-				$("#custom_creditor_fields").slideDown({
-					complete: () => {
-						$("#custom_creditor_fields").children().fadeIn();
-					}
-				});
-				*/
-			}
-			else{
-				var bureau_info;
-				switch (bureau){
-					case "equifax":
-						bureau_info = [
-							"Equifax Information Services LLC",
-							"P.O. Box 740256",
-							"Atlanta",
-							"GA",
-							"30374"
-						];
-						break;
-					case "experion":
-						bureau_info = [
-							"Experian",
-							"P.O. Box 4500",
-							"Allen",
-							"TX",
-							"75013"
-						];
-						break;
-					case "trans_union":
-						bureau_info = [
-							"TransUnion LLC -- Consumer Dispute Center",
-							"P.O. Box 2000",
-							"Chester",
-							"PA",
-							"19022"
-						];
-						break;
-				}
-				$("#custom_creditor_fields").find("input, select").each((i, element) => {
-					$(element).val(bureau_info[i]);
-				})
-				/*
-				$("#custom_creditor_fields").children().fadeOut({
-					complete: () => {
-						$("#custom_creditor_fields").slideUp();
-					}
-				});
-				*/
-			}
-		});
-		$("#bureau").change();
 		$(".submit-btn").click(function() {
 			if ($(this).attr("id") === "download-btn"){
 				$("#action-field").val("download");
