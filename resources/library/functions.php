@@ -23,7 +23,8 @@
 
 	function requireLogIn(){
 		if (!isLoggedIn()){
-			header("Location:index.php");
+			$flasher->danger = "You must be logged in to view that page.";
+			header("Location:logIn");
 			die();
 		}
 	}

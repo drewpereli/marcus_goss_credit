@@ -3,10 +3,14 @@
 {% block content %}
 	<div id="letter-body" class="col-xs-10 col-xs-offset-1">
 		<div>&nbsp;</div>
-		<div>{{"now"|date("F jS, Y")}}</div>
+		<div>{{"now"|date_modify("+7 days")|date("F jS, Y")}}</div>
 		<div>&nbsp;</div>
 		{{ contact.display(name, street_address, city, state, zip) }}
-		<div>SSN: {{ social_security_number }} | DOB: {{ date_of_birth }}</div>
+		<div>
+			{% if social_security_number|length > 0 %}
+				***-**-{{social_security_number}} |
+			{% endif %}
+			DOB: {{ date_of_birth }}</div>
 		<div>&nbsp;</div>
 		{{ contact.display(bureau_name, bureau_street_address, bureau_city, bureau_state, bureau_zip) }}
 		<div>&nbsp;</div>

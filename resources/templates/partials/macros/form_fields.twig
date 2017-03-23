@@ -5,7 +5,7 @@
 			{{ p.label|default(p.name|replace({"_": " "})|title) }}
 		</label>
 		<input
-			id="{{ p.name }}"
+			id="{{ p.id|default(p.name) }}"
 			name="{{ p.name }}"
 			type="{{ p.type|default('text') }}"
 			class="form-control {{p.required}} {{p.classes}}"

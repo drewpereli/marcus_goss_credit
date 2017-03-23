@@ -15,7 +15,8 @@
 										"request_for_validation",
 										"HIPPA_violation",
 										"intent_to_file_lawsuit",
-										"section_609_verification"
+										"section_609_verification",
+										"x_deletion"
 										]
 							}) 
 			}}
@@ -23,8 +24,14 @@
 				<h3>Your Info</h3>
 				{{ field.contact_info({user:current_user, include_county: true}) }}
 				{{ field.text({name:"date_of_birth", type:"date"}) }}
-				{{ field.text({name:"social_security_number", required:false}) }}
-				{{ field.text({name:"account_number"}) }}
+				{{ 
+					field.text({
+								type: "number", 
+								name:"social_security_number", 
+								label: "Last Four Digits of Social Security Number"
+								}) 
+				}}
+				{{ field.text({name:"item"}) }}
 				<span id="accounts-in-question_field" class="display-none">
 					{{ 
 						field.select({
@@ -33,6 +40,49 @@
 						}) 
 					}}
 				</span>
+				<span id="account_numbers">
+					<span class="display-none">
+						{{ 
+							field.text({
+										name:"account_number", 
+										label:"Account Number",
+										id: "account_number_template"
+										}) 
+						}}
+					</span>
+					{{ 
+						field.text({
+									name:"account_number[0]", 
+									label:"Account Number 1",
+									}) 
+					}}
+					<span id="extra_accounts">
+						<!-- If the user has more than one account in question
+							the elements will go here -->
+					</span>
+				</span>
+				{{ 
+					field.select({
+						name: "reason",
+						values: [
+							"This account does not belong to me",
+							"I was not 30, 60, 90, or 120 days late on this account",
+							"This is a duplicate account",
+							"This account is closed",
+							"This account is open",
+							"You are not reporting the correct limit on my account",
+							"You are not reporting a positive account on my credit report",
+							"This collection/charge-off was paid",
+							"I never authorized this inquiry",
+							"The 7-year reporting period has expired on this account",
+							"You are reporting incorrect addresses on my credit report",
+							"You are reporting incorrect names on my credit report",
+							"You are reporting the wrong birth date on my credit report",
+							"You are reporting the wrong employment on my credit report",
+							"I am an authorized user on this account. Please remove it"
+						]
+					}) 
+				}}
 			</div>
 			<div class="field-group" id="creditor_fields">
 				<h3>Collection Agency Info</h3>
@@ -71,30 +121,83 @@
 				case "request_for_validation":
 					$("#social_security_number").parent().removeClass("display-none");
 					$("#creditor_fields").removeClass("display-none").find(".required").attr("required", "true");
-					$("#accounts-in-question_field").addClass("display-none");
+					$("#accounts-in-question_field").removeClass("display-none");
+					$("#county").parent().addClass("display-none");
+					$("#item").parent().addClass("display-none");
+					$("#reason").parent().addClass("display-none");
 					break;
 				case "HIPPA_violation":
 					$("#social_security_number").parent().addClass("display-none");
 					$("#creditor_fields")
 						.removeClass("display-none")
 						.find(".required").attr("required", "true");
-					$("#accounts-in-question_field").addClass("display-none");
+					$("#accounts-in-question_field").removeClass("display-none");
+					$("#county").parent().addClass("display-none");
+					$("#item").parent().addClass("display-none");
+					$("#reason").parent().addClass("display-none");
 					break;
 				case "intent_to_file_lawsuit":
 					$("#social_security_number").parent().addClass("display-none");
 					$("#creditor_fields")
 						.removeClass("display-none")
 						.find(".required").attr("required", "true");
-					$("#accounts-in-question_field").addClass("display-none");
+					$("#accounts-in-question_field").removeClass("display-none");
+					$("#county").parent().addClass("display-none");
+					$("#item").parent().addClass("display-none");
+					$("#reason").parent().addClass("display-none");
 					break;
 				case "section_609_verification":
-					$("#social_security_number").parent().remove("display-none");
+					$("#social_security_number").parent().removeClass("display-none");
 					$("#creditor_fields").addClass("display-none").find(".required").removeAttr("required");
 					$("#accounts-in-question_field").removeClass("display-none");
+					$("#account_numbers").addClass("display-none");
+					$("#county").parent().removeClass("display-none");
+					$("#item").parent().addClass("display-none");
+					$("#reason").parent().addClass("display-none");
+					break;
+				case "x_deletion":
+					$("#social_security_number").parent().removeClass("display-none");
+					$("#creditor_fields").addClass("display-none").find(".required").removeAttr("required");
+					$("#accounts-in-question_field").removeClass("display-none");
+					$("#account_numbers").removeClass("display-none");
+					$("#county").parent().addClass("display-none");
+					$("#item").parent().removeClass("display-none");
+					$("#reason").parent().removeClass("display-none");
 					break;
 			}
 		});
 		$("#form_type").change();//Trigger the change event to set all the required fields properly
+
+		$("#number_of_accounts_in_question").change(function(){
+			var val = ~~$("#number_of_accounts_in_question").val();
+			var currentNum = $("#extra_accounts").children().length + 1;
+			if (currentNum < val){
+				//Add elements
+				for (var i = currentNum ; i < val ; i++){
+					$("#account_number_template").parent()
+						.clone()
+						.appendTo("#extra_accounts")
+						.hide()
+						.slideDown()
+						.find("label")
+						.html("Account Number " + (i+1))
+						.parent().find("input")
+						.attr("name", "account_number[" + i + "]")
+						.attr("id", $(this).attr("name"))
+						.attr("type", "text");
+				}
+			}
+			else if (currentNum > val){
+				//Remove elements
+				console.log(currentNum - val)
+				for (var i = currentNum ; i >= val ; i--){
+					$("#extra_accounts").children().eq(i - 1)
+						.slideUp({
+							complete: function(){$(this).remove();}
+						})
+				}
+			}
+		});
 
 		$(".submit-btn").click(function() {
 			if ($(this).attr("id") === "download-btn"){
@@ -137,7 +240,6 @@
 			var animate = function(index){
 				var frame = keyframes[index];
 				if (frame.done){
-					//$("#progress-bar-container").addClass("display-none");
 					$("#progress-message").html("Complete");
 					$(".progress-bar")
 						.attr("aria-valuenow", 100)
@@ -154,12 +256,6 @@
 						.css("width", frame.progress + "%")
 						.html(frame.progress + "%");
 				}
-				/*
-				if (index === 2)
-					$(".progress-bar").removeClass('progress-bar-danger').addClass('progress-bar-warning');
-				else if (index === 6)
-					$(".progress-bar").removeClass('progress-bar-warning').addClass('progress-bar-success');
-				*/
 				setTimeout(()=>{animate(index+1);}, keyframes[index+1].time);
 			}
 			animate(0);

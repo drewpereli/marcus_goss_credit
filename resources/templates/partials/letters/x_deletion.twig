@@ -1,0 +1,73 @@
+{% extends "letter.twig" %}
+{% import "contact_info.twig" as contact %}
+{% block content %}
+	<div id="letter-body" class="col-xs-10 col-xs-offset-1">
+		<div>&nbsp;</div>
+		<div>{{"now"|date_modify("+7 days")|date("F jS, Y")}}</div>
+		<div>&nbsp;</div>
+		{{ contact.display(bureau_name, bureau_street_address, bureau_city, bureau_state, bureau_zip) }}
+		<div>&nbsp;</div>
+		<div>RE: Intent to file lawsuit, HIPPA Privacy Violation</div>
+		<div>&nbsp;</div>
+		<div>Dear Sir or Madam:</div>
+		<div>&nbsp;</div>
+		<div>I respectfully request your prompt attention on the following inaccurate information on
+
+my credit report. For your convenience, the disputed item is listed on the enclosed page
+
+of my credit report.</div>
+		<div>&nbsp;</div>
+		<div>
+			The following item is inaccurate and negatively effecting my credit. Please reinvestigate
+
+this matter and delete and/or correct the disputed item. I respectfully request that you
+
+provide me with proof of the disputed item, specifically any contract, note, court
+
+documents or any instrument bearing my signature. Failing that, this item must be
+
+deleted.
+		</div>
+		<div>&nbsp;</div>
+		<div>Item: {{ item }}</div>
+		{% for number in account_number %}
+			<div>Account #{{ number }}</div>
+		{% endfor %}
+		<div>Reason: {{ reason|capitalize|replace({"_":" "}) }}</div>
+		<div>&nbsp;</div>
+		<div>It is my understanding that under law you have 30 days from the receipt of this letter to
+
+verify this item. It should be understood that failure to do so within the 30 day period
+
+constitutes reason to immediately delete this item from my credit report. {FCRA 15
+
+U.SC. section 1681 (5) (A).</div>
+		<div>&nbsp;</div>
+		<div>Also, pursuant to 15 U.S.C. section 1681i (6) (A) of the Fair Credit Reporting Act, please
+
+notify me the item has been deleted. You may send an updated copy of my credit report
+
+to the below address. According to the provisions of 15 U.S.C. section 1681j, there
+
+should be no charge for this notification.</div>
+		<div>&nbsp;</div>
+		<div>Sincerely,</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		{{ contact.display(name, street_address, city, state, zip) }}
+		{% if social_security_number|length > 0 %}
+			<div>
+				***-**-{{social_security_number}}
+			</div>
+		{% endif %}
+		<div>Date of Birth: {{date_of_birth}}</div>
+	</div>
+{% endblock %}
+
+
+
+
+
+
+

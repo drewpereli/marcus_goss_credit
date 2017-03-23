@@ -17,7 +17,7 @@
 			unset($_POST["password"]);
 			logIn($user);
 			$flasher->success = "You are now logged in.";
-			header("Location: /a");
+			header("Location: /");
 			die();
 		}
 		catch(Exception $e){

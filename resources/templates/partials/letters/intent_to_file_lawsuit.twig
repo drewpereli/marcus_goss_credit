@@ -3,7 +3,7 @@
 {% block content %}
 	<div id="letter-body" class="col-xs-10 col-xs-offset-1">
 		<div>&nbsp;</div>
-		<div>{{"now"|date("F jS, Y")}}</div>
+		<div>{{"now"|date_modify("+7 days")|date("F jS, Y")}}</div>
 		<div>&nbsp;</div>
 		{{ contact.display(bureau_name, bureau_street_address, bureau_city, bureau_state, bureau_zip) }}
 		<div>&nbsp;</div>
@@ -14,10 +14,10 @@
 		{{ contact.display(collection_agency_name, collection_agency_street_address, collection_agency_city, collection_agency_state, collection_agency_zip) }}
 		<div>&nbsp;</div>
 		<div>&nbsp;</div>
-		{% if account_number|length > 0 %}
-			<div>Account #{{ account_number }}</div>
-			<div>&nbsp;</div>
-		{% endif %}
+		{% for number in account_number %}
+			<div>Account #{{ number }}</div>
+		{% endfor %}
+		<div>&nbsp;</div>
 		<div>To Whom It May Concern</div>
 		<div>&nbsp;</div>
 		<div>
