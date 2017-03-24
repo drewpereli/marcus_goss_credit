@@ -37,14 +37,14 @@
 			$user->last_name = $_POST["last_name"];
 			$user->email = $email;
 			$user->password_hash = $pwd;
-			$user->activation_hash = hash('sha256', rand());
+			//$user->activation_hash = hash('sha256', rand());
 			$user->save();
 			if (!sendActivationEmail($user)){
 				$user->delete();
 				throw new Exception("There was an error. Please try again later.");
 			}
 			$flasher->success = "Thanks for signing up! Check your email for an activation link (it may take a few minutes).";
-			header("Location:index.php");
+			header("Location:/");
 			die();
 		}
 		catch(Exception $e){

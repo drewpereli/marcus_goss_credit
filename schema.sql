@@ -29,14 +29,14 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
   `role` int(11) NOT NULL DEFAULT '0',
   `password_hash` varchar(256) NOT NULL,
-  `activation_hash` varchar(64) NOT NULL,
+  `activation_hash` varchar(64) NOT NULL DEFAULT '0',
   `activated` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `activation_hash` (`activation_hash`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +48,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-13 16:47:56
+-- Dump completed on 2017-03-23 20:54:59

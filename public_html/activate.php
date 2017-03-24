@@ -6,7 +6,9 @@
 		$user = ORM::forTable('users')->findOne($_GET['i']);
 		if (!$user)
 			throw new Exception("Bad id.");
-		if ($user->activation_hash !== $_GET["c"])
+		if ($user->activation_hash == '0')
+			throw new Exception("Activation email wasn't sent properly.");
+		if (!password_verify($_GET["c"], $user->activation_hash))
 			throw new Exception("Bad hash.");
 		//If we're here, the has is proper
 		//Activate the user

@@ -84,16 +84,16 @@
 	if ($_POST["action"] === 'email'){
 		$user = getCurrentUser();
 		$mailer->addAddress($user->email, "{$user->first_name} {$user->last_name}");
-		$mailer->Subject = 'Credit Repair Letter';
+		$mailer->Subject = 'White Label Credit Repairs';
 		$mailer->isHTML(true);
-		$mailer->Body = "Here is your credit repair letter.";
+		$mailer->Body = $twig->render($_POST["form_type"] . "_email.twig");
 		foreach ($letters as $l){
 			$mailer->addAttachment($l, "Credit_Repair_Letter_{$i}.pdf");
 		}
 		if(!$mailer->send()) {
 		    $flasher->danger = "There was an error sending your email. Please try again later.";
 		} else {
-		    $flasher->success = "Your credit repair letter has been sent to your email!";
+		    $flasher->success = "<b>Your credit repair letter has been sent to your email!</b><br/>Make sure to read the email for instructions.";
 		}
 		foreach ($letters as $l){
 			unlink($l);

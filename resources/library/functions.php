@@ -38,7 +38,10 @@
 		if ($user->activated)
 			return false;
 		//Generate activation url
-		$activation_url = HOST_URL . "activate.php?i={$user->id}&c={$user->activation_hash}";
+		$code = hash('sha256', rand());
+		$activation_url = HOST_URL . "activate.php?i={$user->id}&c={$code}";
+		$user->activation_hash = password_hash($code, PASSWORD_DEFAULT);
+		$user->save();
 		//Send activation email.
 		$mailer = $GLOBALS['mailer'];
 		$mailer->addAddress($user->email, "{$user->first_name} {$user->last_name}");

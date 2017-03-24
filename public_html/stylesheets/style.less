@@ -1,0 +1,80 @@
+
+
+.display-none {
+  display: none;
+}
+.slide-down {
+  display: none;
+}
+
+body{
+  padding-top: 64px;
+}
+
+#container, #content{
+  padding: 0;
+}
+
+.navbar-default{
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#body-content{
+  padding: 0;
+}
+
+#main-header{
+  width: 100%;
+  padding: 1em;
+  margin: 0em;
+}
+
+.carousel{
+  position: relative;
+  & > *{
+    position: absolute;
+  }
+}
+
+#main-carousel{
+  height: 100vh;
+  .slide{
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    height: 100%;
+    opacity: 0;
+    img{
+      width: 100%;
+    }
+    &.active{
+      opacity: 1;
+    }
+  }
+}
+
+
+#footer {
+  margin: 5em 2em 0em 2em;
+  padding: 2em;
+  border-top: 1px solid #555;
+}
+
+.letter-generator-progress.progress{
+	height: 23px;
+	border-radius: 4px;
+	margin-top: 3em;
+}
+
+.letter-generator-progress .progress-bar{
+	background-color: rgb(51, 122, 182);
+}
+
+#progress-message{
+  margin-top: -1em;
+}
+
+.letter-generator-progress .progress-bar-info:last-child.progress-bar:before{
+  background-color: #cae6fc;
+}
