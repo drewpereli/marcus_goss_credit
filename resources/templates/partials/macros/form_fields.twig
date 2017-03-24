@@ -20,6 +20,28 @@
 	</div>
 {% endmacro %}
 
+{% macro textarea(p) %}
+	<div class="form-group">
+		<label for="{{ p.name }}">
+			{{ p.label|default(p.name|replace({"_": " "})|title) }}
+		</label>
+		<textarea
+			id="{{ p.id|default(p.name) }}"
+			name="{{ p.name }}"
+			class="form-control {{p.required}} {{p.classes}}"
+			value="{{ p.value|default('') }}"
+			rows="5"
+			{% if p.required %}
+				required="true"
+			{% endif %}
+			{% if p.title %}
+				title="{{p.title}}"
+			{% endif %}
+		>
+		</textarea>
+	</div>
+{% endmacro %}
+
 {% macro password() %}
 	{% import _self as field %}
 	{{ field.text({name:"password", type:"password", classes:"pwstrength"}) }}

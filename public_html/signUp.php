@@ -51,9 +51,6 @@
 			$flasher->danger = $e->getMessage();
 		}
 	}
-	echo $twig->render("signUp.twig", array(
-		"flash_messages" => $flasher->getAll(),
-		"current_user" => getCurrentUserAsArray(),
-		"post_data" => $_POST
-		));
+	header("Location:/");
+		die();
 ?>

@@ -5,6 +5,12 @@
 	//
 	//Validate $_POST here
 	//
+	//If non-admin, set name to current user name
+	$currentUser = getCurrentUser();
+	if ($currentUser->role === '0'){
+		$_POST["name"] = $currentUser->first_name . " " . $currentUser->last_name;
+	}
+	//
 	//Get letter content 
 	//If it's a hippa or intent to file lawsuit letter, generate one for each bureau
 	$numLetters;
@@ -102,7 +108,7 @@
 		die();
 	}
 	if ($_POST["action"] === 'download'){
-		if (getCurrentUser()->role == '1')
+		if ($currentUser->role == '1')
 		{
 			$downloadPath;
 			$filename = $_POST['form_type'];

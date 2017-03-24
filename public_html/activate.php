@@ -16,12 +16,12 @@
 		$user->save();
 		logIn($user);
 		$flasher->success = "Your account has been activated!";
-		header("Location: index.php");
+		header("Location: /");
 		die();
 	}
 	catch (Exception $e){
 		$flasher->danger = $e->getMessage();
-		header("Location: index.php");
+		header("Location: /");
 		die();
 	}
 ?>

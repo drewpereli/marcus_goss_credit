@@ -24,7 +24,7 @@
 		));
 	}
 	elseif (ENVIRONMENT === "PRODUCTION"){
-		define("HOST_URL", PROTOCOL . "://whitelabelcreditrepairs.com/");
+		define("HOST_URL", PROTOCOL . "://basicscredit.com/");
 		$twig = new Twig_Environment($loader, array(
 		    //'cache' => __DIR__ . "/../resources/templates/compilation_cache/",
 		));

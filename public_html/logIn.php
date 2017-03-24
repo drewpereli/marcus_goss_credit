@@ -17,7 +17,7 @@
 			unset($_POST["password"]);
 			logIn($user);
 			$flasher->success = "You are now logged in.";
-			header("Location: /");
+			header("Location: /#sign-up-log-in");
 			die();
 		}
 		catch(Exception $e){
@@ -25,8 +25,6 @@
 			$flasher->danger = $e->getMessage();
 		}
 	}
-	echo $twig->render("logIn.twig", array(
-		"flash_messages" => $flasher->getAll(),
-		"post_data" => $_POST
-		));
+	header("Location: /");
+	die();
 ?>

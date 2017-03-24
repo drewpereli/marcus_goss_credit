@@ -114,7 +114,11 @@
 	</div>
 </div>
 <script>
-	$(() => {
+	$(function() {
+		var userRole = "{{ current_user.role }}";
+		//First make name input read only if their not an admin
+		if (userRole == 0)
+			$("#name").attr("readonly", "true");
 		$("#form_type").change(() => {
 			var formName = $("#form_type").val();
 			switch (formName){
