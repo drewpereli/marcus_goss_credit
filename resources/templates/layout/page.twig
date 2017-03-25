@@ -1,4 +1,5 @@
 {% import "flash_messages.twig" as flasher %}
+{% import 'navbar.twig' as navbar %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,18 +95,23 @@
 				//
 				//
 				//Navbar animation
-				/*
-				var animation = new TimelineMax()
-								//.from($("#navbar"), 1, {height: '100px'})
-								.from($(".navbar-brand, .navbar-nav.navbar-right>li>a"), 1, {paddingTop: "50px"}, 0);
-				new ScrollMagic.Scene({
-					triggerElement: "#navbar-animation-trigger",
-					triggerHook: "onLeave",
-					duration: 100
-				})
-				*/
-				//.setTween(animation)
-				//.addTo(controller);
+				var navbarAnimation;
+				$(".navbar-collapse li").on( "mouseover",
+					function(){
+						navbarAnimation = new TimelineMax();
+						navbarAnimation.to(
+							$(this).find(".nav-link-fill"), 
+							.1, 
+							{
+								opacity: 1, 
+								height: "100%",
+							}
+						);
+					}).on("mouseout",
+					function(){
+						navbarAnimation.reverse();
+					}
+				);
 				
 			});
 
@@ -136,11 +142,13 @@
 	<div class="container-fluid display-none" id="container">
 		<div  id="content">
 		{% block header %}
+			<!--
 			<div class="row display-none" id="main-header">
 				<img class="img-responsive col-xs-2" 
 					src="http://stockpictures.io/wp-content/uploads/2016/06/42471-cube-box-shape-concept-abstract-3d-block-creative-element-group-geometric-symbol-presentation-structure-decor.png"/>
-				<h2 class="col-xs-10">White Label Credit Repairs</h2>
+				<h2 class="col-xs-10">Basics Credit</h2>
 			</div>
+		-->
 			<nav class="navbar navbar-default navbar-fixed-top" id="navbar">
 			  <div class="container-fluid">
 			    <!-- Brand and toggle get grouped for better mobile display -->
@@ -151,20 +159,20 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			      <a class="navbar-brand" href="/">Home</a>
+			      <a class="navbar-brand" href="/">Basics Credit</a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="navbar-collapse">
 			      <ul class="nav navbar-nav navbar-right">
-			      	<li><a href="/">Home</a></li>
-			      	<li><a href="#contact-row">Contact</a></li>
+			      	{{ navbar.link("Home", "/") }}
+			      	{{ navbar.link("Contact", "/#contact-row") }}
 			        {% if current_user %}
-			        	<li><a href="letter_generator">Letter Generator</a></li>
+			        	{{ navbar.link("Letter Generator", "/letter_generator") }}
 			        {% else %}
-				        <li><a href="/#sign-up-log-in-row">Sign Up</a></li>
-				        <li><a href="/#sign-up-log-in-row">Log In</a></li>
+			        	{{ navbar.link("Sign Up", "/#sign-up-log-in-row") }}
+			        	{{ navbar.link("Log In", "/#sign-up-log-in-row") }}
 				    {% endif %}
 				    {% if current_user %}
-				        <li><a href="logOut">Log Out</a></li>
+				    	{{ navbar.link("Log Out", "logOut") }}
 				    {% endif %}  
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
