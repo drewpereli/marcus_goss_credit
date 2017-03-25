@@ -159,15 +159,19 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			      <a class="navbar-brand" href="/">Basics Credit</a>
+			      <a class="navbar-brand" href="/">
+			      	Basics Credit
+			      </a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="navbar-collapse">
 			      <ul class="nav navbar-nav navbar-right">
 			      	{{ navbar.link("Home", "/") }}
 			      	{{ navbar.link("Contact", "/#contact-row") }}
 			        {% if current_user %}
-			        	{{ navbar.link("Letter Generator", "/letter_generator") }}
-			        {% else %}
+			        	{{ navbar.link("Dispute Letters", "/dispute_letters") }}
+			        {% endif %}
+			        {{ navbar.link("Rights", "/rights") }}
+			        {% if current_user == false %}
 			        	{{ navbar.link("Sign Up", "/#sign-up-log-in-row") }}
 			        	{{ navbar.link("Log In", "/#sign-up-log-in-row") }}
 				    {% endif %}
@@ -200,7 +204,7 @@
 		</div>
 		{% block footer %}
 			<div id="footer" class="row">
-				<div class="col-xs-12 text-center">&copy;{{"now"|date("Y")}} All Rights Reserved, White Label Credit Repairs</div>
+				<div class="col-xs-12 text-center">&copy;{{"now"|date("Y")}} All Rights Reserved, Basics Credit</div>
 				<div class="col-xs-12 text-center">Website by <a href="https://pereliwebworks.com">Drew Pereli</a></div>
 			</div>
 		{% endblock %}

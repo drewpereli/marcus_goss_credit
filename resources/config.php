@@ -42,7 +42,7 @@
     $mailer->Password   = EMAIL_PASSWORD;
     $mailer->SMTPSecure = 'ssl';                 
     $mailer->Port = 465;
-    $mailer->setFrom(EMAIL_USER, 'White Label Credit Repairs');
+    $mailer->setFrom(EMAIL_USER, 'Basics Credit');
 ?>
 
 

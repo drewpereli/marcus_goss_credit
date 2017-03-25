@@ -7,3 +7,8 @@ textarea, textarea.form-control, input.form-control, input[type=text], input[typ
 input[readonly].form-control{
   background-color: inherit;
 }
+
+label{
+	color: #111;
+	font-weight: bold;
+}

@@ -5,6 +5,7 @@
 @blue: rgb(40, 93, 169);
 @ocean-blue: rgb(70, 118, 184);
 @white: #f0f0f0;
+@black: #111;
 
 @circle-offset: 30%;
 
@@ -33,7 +34,7 @@ body{
   font-weight: 600;
 }
 
-h1,h2,h3{
+h1,h2,h3,.btn{
   font-weight: bold;
 }
 
@@ -163,16 +164,17 @@ h1,h2,h3{
       padding-right: 20px;
     }
   }
+
   > :nth-child(1){
-    background-color: #7cdbd5;
+    background-color: darken(@blue, 20%);
     left: 0;
   }
   > :nth-child(2){
-    background-color: #f53240;
+    background-color: @blue;
     left: @circle-offset;
   }
   > :nth-child(3){
-    background-color: #f9be02;
+    background-color: lighten(@blue, 20%);
     left: 2 * @circle-offset;
   }
 }
@@ -196,47 +198,47 @@ h1,h2,h3{
 
 
 #what-we-do-row{
+  /*
   background-image: url("https://static.pexels.com/photos/29642/pexels-photo-29642.jpg");
   background-size: 100%;
   background-position: center center;
   background-attachment: fixed;
-  color: @white;
-  position: relative;
-  height: 45em;
-  .bg-overlay{
-    background-color: rgba(0,100,100,.5);
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-  }
+  */
+  bakground-color: @white;
+  color: @black;
   h2{
     margin: 0;
+    margin-bottom: 2em;
     padding-top: 1em;
-    color: @white;
+    color: @black;
   }
   ul{
     list-style-type: none;
     margin: 0;
     padding-bottom: 1em;
     padding-top: 1em;
+    padding-left: 4em;
     li{
       border-radius: 100px;
       font-weight: bold;
       font-size: 1.3em;
-      text-align: center;
+      //text-align: center;
       @li-margin-increment: 15%;
-      width: @li-margin-increment + 15;
+      //width: @li-margin-increment + 15;
+      width: 80%;
+      padding: .5em;
       margin-top: 2em;
       margin-bottom: 2em;
+      /*
       &:nth-child(2){margin-left: @li-margin-increment;}
       &:nth-child(3){margin-left: 2*@li-margin-increment;}
       &:nth-child(4){margin-left: 3*@li-margin-increment;}
       &:nth-child(5){margin-left: 4*@li-margin-increment;margin-bottom: 0;}
+      */
       &.active{
-        background-color: rgba(10,10,10,.5);
-        transform: scale(1.2);
+        background-color: rgb(53, 54, 118, .5);
+        color: @white;
+        transform: scale(1.15);
       }
     }
   }
@@ -252,12 +254,22 @@ h1,h2,h3{
 }
 
 
+#sign-up-log-in {
+  color: @black;
+}
+
+
 
 #dont-wait-row{
   background-color: @ocean-blue;
-  h2, h3{
+  h1,h2,h3,h4{
+    font-weight: bold;
     color: @white;
   }
+}
+
+#contact-us-row{
+  color: @black;
 }
 
 

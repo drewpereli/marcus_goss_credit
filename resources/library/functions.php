@@ -51,7 +51,7 @@
 		$body = $twig->render("activation.twig", array("activation_url"=>$activation_url));
 		$mailer->Body = $body;
 		$mailer->altBody = `
-			Thanks for signing up with White Label Credit Repairs!
+			Thanks for signing up with Basics Credit!
 			Begin improving your credit today. Click the link below to activate your account.
 		` . $activation_url;
 		if ($mailer->send())

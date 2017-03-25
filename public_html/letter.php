@@ -90,7 +90,7 @@
 	if ($_POST["action"] === 'email'){
 		$user = getCurrentUser();
 		$mailer->addAddress($user->email, "{$user->first_name} {$user->last_name}");
-		$mailer->Subject = 'White Label Credit Repairs';
+		$mailer->Subject = 'Basics Credit';
 		$mailer->isHTML(true);
 		$mailer->Body = $twig->render($_POST["form_type"] . "_email.twig");
 		foreach ($letters as $l){
