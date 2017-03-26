@@ -10,6 +10,9 @@
 			//If user isn't activated
 			if ($user->activated !== '1')
 				throw new Exception('You need to activate your account. Please check your email for an activation link. <a href="#">Click here</a> to resend the link.');
+			//Check if user tried to reset their password
+			if ($user->password_hash == "0")
+				throw new Exception('It looks like you recently reset your password, but have not clicked the password reset link sent to you. Please look for that link in your email. If you\'d like it to be sent again, <a href="password_reset">click here</a>.');
 			//Check password
 			if (!password_verify($_POST["password"], $user->password_hash))
 				throw new Exception("Invalid password.");
@@ -17,7 +20,7 @@
 			unset($_POST["password"]);
 			logIn($user);
 			$flasher->success = "You are now logged in.";
-			header("Location: /#sign-up-log-in");
+			header("Location: /");
 			die();
 		}
 		catch(Exception $e){

@@ -1,4 +1,11 @@
+//Breakpoints
+@xs: 576px;
+@sm: 768px;
+@md: 992px;
+@lg: 1200px;
 
+
+//Colors
 @light-blue: rgb(0, 172, 236);
 @dark-blue: rgb(53, 54, 118);
 @teal: rgb(120, 192, 204);
@@ -7,7 +14,7 @@
 @white: #f0f0f0;
 @black: #111;
 
-@circle-offset: 30%;
+
 
 @defaultFontFamily: 'drugs';
 
@@ -32,6 +39,13 @@ body{
   background-color: @white;
   font-family: @defaultFontFamily;
   font-weight: 600;
+  @media screen and (max-width: @md){
+
+  }
+}
+
+.row{
+  margin: 0;
 }
 
 h1,h2,h3,.btn{
@@ -44,9 +58,14 @@ h1,h2,h3,.btn{
   height: 100%;
   top: 0;
   z-index: 9999;
-  //background-color: rgba(0,0,0,.5);
+  background-color: rgba(0,0,0,.5);
   display: flex;
   align-items: center;
+  .flash-message{
+    font-size: 1.5em;
+    padding: 2em;
+    box-shadow: 0px 0px 10px black;
+  }
 }
 
 //Navbar
@@ -81,7 +100,7 @@ h1,h2,h3,.btn{
 }
 
 .row{
-   margin: 0 !important;
+   //margin: 0 !important;
    .row-padding;
 }
 
@@ -130,21 +149,31 @@ h1,h2,h3,.btn{
 }
 
 #get-started-row{
-   display: flex;
-   align-items: center;
-   height: 130px;
-   background-color: @light-blue;
+  @media screen and (min-width: @md){
+    display: flex;
+    align-items: center;
+    height: 130px;
+  }
+  background-color: @light-blue;
 }
 
 
 
 .circle-container{
+  @ctWidth: 60vw;
+  @circleRadius: 24vw;
+  @circleOffset: @ctWidth / 2 - @circleRadius / 2;
+  //2a + r = width = 60
+  //a = 15
+  //r = 30
   position: relative;
-  width: 66.66666666%;
+  width: @ctWidth;
+  height: @circleRadius;
   margin: auto;
   .circle{
     position: absolute;
-    width: 40%;
+    width: @circleRadius;
+    height: 100%;
     border-radius: 999px;
     box-shadow: -5px 5px 10px black;
     > span{
@@ -155,7 +184,7 @@ h1,h2,h3,.btn{
       width: 100%;
       padding-left: 20px;
       padding-right: 30%;
-      font-size: 1.6em;
+      font-size: 1.8vw;
       color: white;
       font-weight: bold;
       text-shadow: -1px 1px 1px black;
@@ -164,18 +193,47 @@ h1,h2,h3,.btn{
       padding-right: 20px;
     }
   }
-
   > :nth-child(1){
     background-color: darken(@blue, 20%);
     left: 0;
   }
   > :nth-child(2){
     background-color: @blue;
-    left: @circle-offset;
+    left: @circleOffset;
   }
   > :nth-child(3){
     background-color: lighten(@blue, 20%);
-    left: 2 * @circle-offset;
+    left: 2 * @circleOffset;
+  }
+}
+
+//Responsive circle container
+@media screen and (max-width: @md ){
+  .circle-container{
+    @circleRadius: 80vw;
+    @circleOffset: 60vw;
+    @ctHeight: 2 * @circleOffset + @circleRadius;
+    //2a + r = height = 2(20vh) + 80vw
+    width: @circleRadius;
+    height: @ctHeight;
+    .circle{
+      left: 0;
+      width: 100%;
+      height: @circleRadius;
+      > span{
+        padding: 1em;
+        font-size: 3vw;
+      }
+    }
+    > :nth-child(1){
+      top: 0;
+    }
+    > :nth-child(2){
+      top: @circleOffset;
+    }
+    > :nth-child(3){
+      top: 2 * @circleOffset;
+    }
   }
 }
 
@@ -217,7 +275,9 @@ h1,h2,h3,.btn{
     margin: 0;
     padding-bottom: 1em;
     padding-top: 1em;
-    padding-left: 4em;
+    @media screen and (min-width: @md){
+      padding-left: 4em;
+    }
     li{
       border-radius: 100px;
       font-weight: bold;
@@ -226,7 +286,7 @@ h1,h2,h3,.btn{
       @li-margin-increment: 15%;
       //width: @li-margin-increment + 15;
       width: 80%;
-      padding: .5em;
+      padding: 1em;
       margin-top: 2em;
       margin-bottom: 2em;
       /*
@@ -235,10 +295,21 @@ h1,h2,h3,.btn{
       &:nth-child(4){margin-left: 3*@li-margin-increment;}
       &:nth-child(5){margin-left: 4*@li-margin-increment;margin-bottom: 0;}
       */
-      &.active{
-        background-color: rgb(53, 54, 118, .5);
-        color: @white;
-        transform: scale(1.15);
+      //Different animation depending on screen size
+      @media screen and (min-width: @md){
+        &.active{
+          transform: scale(1.15);
+          background-color: rgb(53, 54, 118, .5);
+          color: @white;
+        }
+      }
+      @media screen and (max-width: @md){
+        text-align: center;
+        margin: auto;
+        &.active{
+          transform: scale(1.25);
+          color: @dark-blue;
+        }
       }
     }
   }
@@ -254,8 +325,13 @@ h1,h2,h3,.btn{
 }
 
 
-#sign-up-log-in {
+#sign-up-log-in-row {
   color: @black;
+  @media screen and (max-width: @md){
+    #log-in{
+      margin-top: 4em;
+    }
+  }
 }
 
 

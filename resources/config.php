@@ -30,7 +30,9 @@
 		));
 	}
 
-	ORM::configure('mysql:host=localhost;dbname=credit');
+	define("GENERIC_ERROR_MESSAGE", "There was an error. Please try again later.");
+
+	ORM::configure('mysql:host=localhost;dbname=credit_db');
 	ORM::configure('username', DB_USER);
 	ORM::configure('password', DB_PASSWORD);
 

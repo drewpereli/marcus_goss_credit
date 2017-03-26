@@ -18,10 +18,7 @@
 			if (ORM::forTable("users")->where("email", $email)->findOne())
 				throw new Exception("There is already an account with that email address.");
 			//Check password regex
-			$uppercase = preg_match('@[A-Z]@', $_POST["password"]);
-			$lowercase = preg_match('@[a-z]@', $_POST["password"]);
-			$number    = preg_match('@[0-9]@', $_POST["password"]);
-			if (!$uppercase || !$lowercase || !$number || strlen($_POST["password"]) < 8)
+			if (!passwordSecure($_POST["password"]))
 				throw new Exception("Your password must be at least 8 characters long, contain at least 1 lowercase letter, at least 1 uppercase letter, and at least 1 number.");
 			//Check password match
 			$pwd = password_hash($_POST["password"], PASSWORD_DEFAULT);

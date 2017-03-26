@@ -1,6 +1,10 @@
 
 {% macro text(p) %}
-	<div class="form-group">
+	{% set extra_class = "" %}
+	{% if p.type == 'hidden' %}
+		{% set extra_class = "display-none" %}
+	{% endif %}
+	<div class="form-group {{extra_class}}">
 		<label for="{{ p.name }}">
 			{{ p.label|default(p.name|replace({"_": " "})|title) }}
 		</label>
@@ -105,6 +109,14 @@
 	{% import _self as field %}
 	{{ field.text({name:"password_confirmation", type:"password", classes:"password_confirmation"}) }}
 {% endmacro %}
+
+
+{% macro passwords() %}
+	{% import _self as field %}
+	{{ field.password() }}
+	{{ field.password_confirmation() }}
+{% endmacro %}
+
 
 
 {% macro select(p) %}

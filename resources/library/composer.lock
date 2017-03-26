@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "31fa2b5cf025482819715f9cc4fa21e2",
+    "content-hash": "f274312eefe1d74d861255e4638e5366",
     "packages": [
         {
             "name": "drewpereli/flasher",
-            "version": "v1.1",
+            "version": "1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drewpereli/flasher.git",
-                "reference": "b43c4da7ac90326eacff29bb4191bbacf703e13e"
+                "reference": "81bd4868b905fdf9515b32594c94b41244355251"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drewpereli/flasher/zipball/b43c4da7ac90326eacff29bb4191bbacf703e13e",
-                "reference": "b43c4da7ac90326eacff29bb4191bbacf703e13e",
+                "url": "https://api.github.com/repos/drewpereli/flasher/zipball/81bd4868b905fdf9515b32594c94b41244355251",
+                "reference": "81bd4868b905fdf9515b32594c94b41244355251",
                 "shasum": ""
             },
             "type": "library",
@@ -40,27 +40,27 @@
             ],
             "description": "Flash messages for php",
             "homepage": "https://github.com/drewpereli/flasher",
-            "time": "2017-03-05T02:06:41+00:00"
+            "time": "2017-03-26T17:56:02+00:00"
         },
         {
             "name": "j4mie/idiorm",
-            "version": "v1.5.2",
+            "version": "v1.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/j4mie/idiorm.git",
-                "reference": "00b5fcd6e615a8572577eae401f80e41525efd5e"
+                "reference": "f2f170c44af4761fef8ef34d6dbc237cd95df799"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/j4mie/idiorm/zipball/00b5fcd6e615a8572577eae401f80e41525efd5e",
-                "reference": "00b5fcd6e615a8572577eae401f80e41525efd5e",
+                "url": "https://api.github.com/repos/j4mie/idiorm/zipball/f2f170c44af4761fef8ef34d6dbc237cd95df799",
+                "reference": "f2f170c44af4761fef8ef34d6dbc237cd95df799",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.6"
+                "phpunit/phpunit": "^4.8"
             },
             "type": "library",
             "autoload": {
@@ -101,7 +101,7 @@
                 "orm",
                 "query builder"
             ],
-            "time": "2016-12-14T06:28:26+00:00"
+            "time": "2017-03-21T01:31:25+00:00"
         },
         {
             "name": "mikehaertl/php-shellcommand",
@@ -177,16 +177,16 @@
         },
         {
             "name": "mikehaertl/phpwkhtmltopdf",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikehaertl/phpwkhtmltopdf.git",
-                "reference": "318aed9ad8d7622c6d00a0fdf3b199e71d48e47e"
+                "reference": "877dd0b13d7006cbaa4a272d62152e07310f4bd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/phpwkhtmltopdf/zipball/318aed9ad8d7622c6d00a0fdf3b199e71d48e47e",
-                "reference": "318aed9ad8d7622c6d00a0fdf3b199e71d48e47e",
+                "url": "https://api.github.com/repos/mikehaertl/phpwkhtmltopdf/zipball/877dd0b13d7006cbaa4a272d62152e07310f4bd3",
+                "reference": "877dd0b13d7006cbaa4a272d62152e07310f4bd3",
                 "shasum": ""
             },
             "require": {
@@ -222,28 +222,44 @@
                 "wkhtmltoimage",
                 "wkhtmltopdf"
             ],
-            "time": "2016-06-02T08:06:45+00:00"
+            "time": "2017-03-16T10:45:28+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v5.2.22",
+            "version": "v5.2.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "b18cb98131bd83103ccb26a888fdfe3177b8a663"
+                "reference": "7115df4a6f76281109ebe352900c42403b728bb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/b18cb98131bd83103ccb26a888fdfe3177b8a663",
-                "reference": "b18cb98131bd83103ccb26a888fdfe3177b8a663",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/7115df4a6f76281109ebe352900c42403b728bb4",
+                "reference": "7115df4a6f76281109ebe352900c42403b728bb4",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.0.0"
             },
             "require-dev": {
-                "phpdocumentor/phpdocumentor": "*",
-                "phpunit/phpunit": "4.7.*"
+                "doctrine/annotations": "1.2.*",
+                "jms/serializer": "0.16.*",
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "4.8.*",
+                "symfony/debug": "2.8.*",
+                "symfony/filesystem": "2.8.*",
+                "symfony/translation": "2.8.*",
+                "symfony/yaml": "2.8.*",
+                "zendframework/zend-cache": "2.5.1",
+                "zendframework/zend-config": "2.5.1",
+                "zendframework/zend-eventmanager": "2.5.1",
+                "zendframework/zend-filter": "2.5.1",
+                "zendframework/zend-i18n": "2.5.1",
+                "zendframework/zend-json": "2.5.1",
+                "zendframework/zend-math": "2.5.1",
+                "zendframework/zend-serializer": "2.5.*",
+                "zendframework/zend-servicemanager": "2.5.*",
+                "zendframework/zend-stdlib": "2.5.1"
             },
             "suggest": {
                 "league/oauth2-google": "Needed for Google XOAUTH2 authentication"
@@ -282,20 +298,20 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2017-01-09T09:33:47+00:00"
+            "time": "2017-03-15T19:32:56+00:00"
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v4.4.2",
+            "version": "v4.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "c9d4326bb99edd1a9849a6f22c0d8ea3351105de"
+                "reference": "420d34ae71059700ea2a2e466670f66ddd97777d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/c9d4326bb99edd1a9849a6f22c0d8ea3351105de",
-                "reference": "c9d4326bb99edd1a9849a6f22c0d8ea3351105de",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/420d34ae71059700ea2a2e466670f66ddd97777d",
+                "reference": "420d34ae71059700ea2a2e466670f66ddd97777d",
                 "shasum": ""
             },
             "require": {
@@ -337,7 +353,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2017-02-27T15:48:36+00:00"
+            "time": "2017-03-22T17:51:32+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -400,16 +416,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "29bb02dde09ff56291d30f7687eb8696918023af"
+                "reference": "9718186a5df85a4f7917e78d3ffcabc204c75d25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/29bb02dde09ff56291d30f7687eb8696918023af",
-                "reference": "29bb02dde09ff56291d30f7687eb8696918023af",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9718186a5df85a4f7917e78d3ffcabc204c75d25",
+                "reference": "9718186a5df85a4f7917e78d3ffcabc204c75d25",
                 "shasum": ""
             },
             "require": {
@@ -419,12 +435,12 @@
             "require-dev": {
                 "psr/container": "^1.0",
                 "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~3.2"
+                "symfony/phpunit-bridge": "~3.3@dev"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -459,7 +475,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-02-27T00:16:20+00:00"
+            "time": "2017-03-22T15:41:51+00:00"
         }
     ],
     "packages-dev": [],

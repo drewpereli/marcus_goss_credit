@@ -45,7 +45,12 @@
 						scores: [10, 20, 30, 40, 50]
 					}
 				}
+				
 				$(".pwstrength").pwstrength(pwoptions);
+
+				$(".alert-close").click(function(){
+					$("#flash-messages").remove();
+				})
 				//
 				//
 				//
@@ -121,12 +126,14 @@
 				$("#container").removeClass("display-none");
 				$("#loading-img-container").remove();
 				setTimeout(function(){
+					/*
 					//Hacky style fix
 					var circleContainerWidth = $(".circle-container").width(); //C container width in pixels
 					var circleOffset = 30; //In percent!!!!!!
 					var circleOffsetPx = circleContainerWidth * circleOffset / 100; //circle offset in px
 					var circleRadius = circleContainerWidth - 2 * circleOffsetPx;
 					$(".circle-container, .circle").css("height", circleRadius + "px");
+					*/
 				}, 0);
 			});
 		</script>
@@ -172,8 +179,8 @@
 			        {% endif %}
 			        {{ navbar.link("Rights", "/rights") }}
 			        {% if current_user == false %}
-			        	{{ navbar.link("Sign Up", "/#sign-up-log-in-row") }}
-			        	{{ navbar.link("Log In", "/#sign-up-log-in-row") }}
+			        	{{ navbar.link("Sign Up", "/#sign-up") }}
+			        	{{ navbar.link("Log In", "/#log-in") }}
 				    {% endif %}
 				    {% if current_user %}
 				    	{{ navbar.link("Log Out", "logOut") }}

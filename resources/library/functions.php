@@ -60,4 +60,24 @@
 			return false;
 		}
 	}
+
+
+
+
+	//Returns a boolean. True if the password is secure enough, false if not
+	function passwordSecure($pwd){
+		//Check password regex
+		$uppercase = preg_match('@[A-Z]@', $pwd);
+		$lowercase = preg_match('@[a-z]@', $pwd);
+		$number    = preg_match('@[0-9]@', $pwd);
+		if (!$uppercase || !$lowercase || !$number || strlen($pwd) < 8){
+			return false;
+		}
+		return true;
+	}
+
+
+
+
+
 ?>
