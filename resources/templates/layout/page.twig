@@ -4,7 +4,8 @@
 <html>
 <head>
 	{% block head %}
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Basics Credit</title>
 		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<!-- jQuery UI -->
@@ -106,7 +107,7 @@
 						navbarAnimation = new TimelineMax();
 						navbarAnimation.to(
 							$(this).find(".nav-link-fill"), 
-							.1, 
+							.15, 
 							{
 								opacity: 1, 
 								height: "100%",
@@ -167,7 +168,8 @@
 			        <span class="icon-bar"></span>
 			      </button>
 			      <a class="navbar-brand" href="/">
-			      	Basics Credit
+			      	<span>Basics Credit</span>
+			      	<img src="img/logo.png" class="img-responsive img-fluid hidden-xs hidden-sm" />
 			      </a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="navbar-collapse">
