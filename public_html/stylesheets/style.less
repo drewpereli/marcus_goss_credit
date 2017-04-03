@@ -184,18 +184,30 @@ h1,h2,h3,.btn{
     height: 100%;
     border-radius: 999px;
     box-shadow: -5px 5px 10px black;
+    .text-container{
+      font-size: 1.8vw;
+      color: @black;
+      font-weight: bold;
+      //text-shadow: -1px 1px 1px @white;
+      width: @circleRadius;
+      padding-left: @circleOffset / 4;
+      padding-right: @circleOffset / 2;
+    }
     > span{
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100%;
       width: 100%;
-      padding-left: 20px;
-      padding-right: 30%;
-      font-size: 1.8vw;
-      color: white;
-      font-weight: bold;
-      text-shadow: -1px 1px 1px black;
+      //padding-left: 20px;
+      //padding-right: 30%;
+      .img-container{
+        width: 60%;
+        img{
+          width: 100%;
+        }
+      }
     }
     &:nth-child(3) > span{
       padding-right: 20px;
@@ -204,6 +216,9 @@ h1,h2,h3,.btn{
   > :nth-child(1){
     background-color: darken(@blue, 20%);
     left: 0;
+    .img-container{
+      width: 70% !important;
+    }
   }
   > :nth-child(2){
     background-color: @blue;
@@ -212,8 +227,19 @@ h1,h2,h3,.btn{
   > :nth-child(3){
     background-color: lighten(@blue, 20%);
     left: 2 * @circleOffset;
+    .img-container{
+      margin-left: 17%;
+    }
   }
 }
+
+
+
+
+
+
+
+
 
 //Responsive circle container
 @media screen and (max-width: @md ){
@@ -246,9 +272,18 @@ h1,h2,h3,.btn{
 }
 
 #instructions{
+  margin-top: 7em;
   background-color: #fff;
   padding: 1em;
 }
+
+#instructions-ul{
+  font-size: 2em;
+}
+
+
+
+
 
 #credit-consultation-row{
   background-color: @dark-blue;
@@ -274,7 +309,9 @@ h1,h2,h3,.btn{
   color: @black;
   h2{
     margin: 0;
-    margin-bottom: 2em;
+    @media screen and (min-width: @md){
+      margin-bottom: 2em;
+    }
     padding-top: 1em;
     color: @black;
   }
