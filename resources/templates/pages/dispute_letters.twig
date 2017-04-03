@@ -7,6 +7,33 @@
 				action="letter.php" 
 				method="POST" 
 				autocomplete="on">
+			{{
+				field.select({
+					name: "disupte_method",
+					required: true,
+					values: [
+						"request_for_validation",
+						"HIPPA_violation",
+						"section_609_verification"
+					]
+				})
+			}}
+			<span class="display-none" id="form_type_templates">
+				<span class="request_for_validation">
+					{{ field.option("request_for_validation") }}
+					{{ field.option("x_deletion") }}
+					{{ field.option("intent_to_file_lawsuit") }}
+				</span>
+				<span class="HIPPA_violation">
+					{{ field.option("HIPPA_violation") }}
+				</span>
+				<span class="section_609_verification">
+					{{ field.option("section_609_verification:_first_attempt") }}
+					{{ field.option("section_609_verification:_second_attempt") }}
+					{{ field.option("section_609_verification:_third_attempt") }}
+					{{ field.option("section_609_verification:_fourth_attempt") }}
+				</span>
+			</span>
 			{{ 
 				field.select({
 								name: "form_type", 
@@ -15,10 +42,8 @@
 										"request_for_validation",
 										"x_deletion",
 										"intent_to_file_lawsuit",
-										"HIPPA_violation",
-										"section_609_verification"
 										]
-							}) 
+				}) 
 			}}
 			<div class="field-group">
 				<h3>Your Info</h3>
@@ -119,8 +144,19 @@
 		//First make name input read only if their not an admin
 		if (userRole == 0)
 			$("#name").attr("readonly", "true");
-		$("#form_type").change(() => {
-			var formName = $("#form_type").val();
+
+		//When dispute method changes, change form type options 
+		//(and select the top form type so the input fields change)
+		$("#disupte_method").change(function(){
+			var dispute_method = $(this).val();
+			//Get options based on disupte method
+			var options = $("#form_type_templates ." + dispute_method).html();
+			$("#form_type").html(options).change();
+		})
+
+		//When the form type changes, change the input fields as well
+		$("#form_type").change(function(){
+			var formName = $("#form_type").val().split(":")[0];
 			switch (formName){
 				case "request_for_validation":
 					$("#social_security_number").parent().removeClass("display-none");
@@ -172,6 +208,7 @@
 		});
 		$("#form_type").change();//Trigger the change event to set all the required fields properly
 
+		//Add/subtract account fields depending on "number of accounts in question" value
 		$("#number_of_accounts_in_question").change(function(){
 			var val = ~~$("#number_of_accounts_in_question").val();
 			var currentNum = $("#extra_accounts").children().length + 1;

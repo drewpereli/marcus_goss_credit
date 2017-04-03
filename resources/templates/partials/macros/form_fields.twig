@@ -120,6 +120,7 @@
 
 
 {% macro select(p) %}
+	{% import _self as field %}
 	<div class="form-group">
 		<label for="{{ name }}">{{ p.name|replace({"_": " "})|title }}</label><br/>
 		<select 
@@ -131,10 +132,14 @@
 			{% endif %}
 		>
 			{% for value in p.values %}
-				<option value="{{ value }}">{{ value|replace({"_": " "})|title }}</div>
+				{{ field.option(value) }}
 			{% endfor %}
 		</select>
 	</div>
+{% endmacro %}
+
+{% macro option(value) %}
+	<option value="{{ value }}">{{ value|replace({"_": " "})|title }}</option>
 {% endmacro %}
 
 
