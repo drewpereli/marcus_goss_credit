@@ -1,0 +1,131 @@
+{% extends "letter.twig" %}
+{% import "contact_info.twig" as contact %}
+{% block content %}
+	<div id="letter-body" class="col-xs-10 col-xs-offset-1">
+		<div>&nbsp;</div>
+		<div>{{"now"|date_modify("+7 days")|date("F jS, Y")}}</div>
+		<div>&nbsp;</div>
+		{{ contact.display(name, street_address, city, state, zip) }}
+		<div>
+			{% if social_security_number|length > 0 %}
+				***-**-{{social_security_number}} |
+			{% endif %}
+			DOB: {{ date_of_birth }}</div>
+		<div>&nbsp;</div>
+		{{ contact.display(bureau_name, bureau_street_address, bureau_city, bureau_state, bureau_zip) }}
+		<div>&nbsp;</div>
+		<div>
+			<b>Please be advised this is my THIRD WRITTEN REQUEST and FINAL WARNING that I fully intend
+
+to pursue litigation in accordance with the FCRA to enforce my rights and seek relief and
+
+recover all monetary damages that I may be entitled to under Section 616 and Section 617
+
+regarding your continued willful and negligent noncompliance.</b>
+		</div>
+		<div>&nbsp;</div>
+		<div>
+
+			Despite two written requests, the unverified items listed below still remain on my credit report in
+
+violation of Federal Law. You are required under the FCRA to have a copy of the original creditors’
+
+documentation on file to verify that this information is mine and is correct. In the results of your first
+
+investigation and subsequent reinvestigation, you stated in writing that you <b>"verified"</b> that these items
+
+are being <b>"reported correctly"</b>? Who verified these accounts? You have <b>NOT</b> provided me a copy of ANY 
+
+original documentation required under <b>Section 609
+
+(a)(1)(A) &amp; Section 611 (a)(1)(A)</b> ( a consumer contract with my signature on it ) and under <b>Section
+
+611 (5)(A)</b> of the FCRA – you are required to <b>"…promptly DELETE all information which cannot be
+
+verified."</b>
+		</div>
+		<div>&nbsp;</div>
+		<div>
+			The law is very clear as to the Civil liability and the remedy available to me for "negligent
+
+noncompliance" <b>(Section 617)</b> if you fail to comply. <b>I am a litigious consumer and fully intend on
+
+pursuing litigation in this matter to enforce my rights under the FCRA.</b>
+		</div>
+		<div>&nbsp;</div>
+		<div><b>I demand the following accounts be verified or removed immediately.</b></div>
+		<table class="table table-bordered">
+			<tr>
+				<th>Name of Account</th><th>Account Number</th><th>Provide Physical Verification</th>
+			</tr>
+			{% for i in range (1, number_of_accounts_in_question) %}
+				<tr><td></td><td></td><td></td></tr>
+			{% endfor %}
+		</table>
+		<div><small>* Please remove all <b>non-account holding inquiries</b> over 30 days old.</small></div>
+		<div><small>* Please add a <b>Promotional Suppression</b> to my credit file.</small></div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>Thank you,</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>{{ name }}</div>
+		<div>&nbsp;</div>
+		<div>IN WITNESS WHEREOF, the said party has signed and sealed these presents the day and year
+
+	first above written.</div>
+		<div>&nbsp;</div>
+		<div style="width:50%;float:left;">Signed, sealed and delivered in the presence of:</div>
+		<div style="width:50%;float:left;">
+			<div>{{ name }}</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div class="signature-line"></div>
+			<div>Signature</div>
+		</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>STATE OF {{ state }}</div>
+		<div>COUNTY OF {{ county }}</div>
+		<div>&nbsp;</div>
+		<div>I HEREBY CERTIFY that on this day before me, an officer duly qualified to take
+
+	acknowledgments, personally appeared {{ name }}, who is personally known to me or
+
+	who has produced _____________________________________________ as identification and
+
+	who executed the foregoing instrument and he/she acknowledged before me that he/she executed
+
+	the same.</div>
+		<div>&nbsp;</div>
+		<div>
+			WITNESS my hand and official seal in the County and State aforesaid this _____ day of
+
+	____________________ 2016.
+		</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+		<div style="width:50%">
+			<div class="signature-line"></div>
+		</div>
+		<div>&nbsp;</div>
+		<div>Notary Public:</div>
+		<div>Printed Name:</div>
+		<div>&nbsp;</div>
+		<div>My commission expires:</div>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
+	</div>
+
+{% endblock %}
+
+
+
+
+
