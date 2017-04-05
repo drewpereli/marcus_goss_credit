@@ -35,6 +35,7 @@
 		<link rel="stylesheet" href="stylesheets/forms.css" type="text/css" />	
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
 		<script>
+			window.addEventListener("hashchange", function() { scrollBy(0, -64) });
 			var controller = new ScrollMagic.Controller();
 			$(()=>{
 				$("[title]").tooltip();
@@ -176,6 +177,7 @@
 			      <ul class="nav navbar-nav navbar-right">
 			      	{{ navbar.link("Home", "/") }}
 			      	{{ navbar.link("Contact", "/#contact-row") }}
+			      	{{ navbar.link("FAQ", "/FAQ") }}
 			        {% if current_user %}
 			        	{{ navbar.link("Dispute Letters", "/dispute_letters") }}
 			        {% endif %}

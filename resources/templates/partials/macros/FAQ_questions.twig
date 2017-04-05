@@ -1,0 +1,19 @@
+{% macro question(text) %}
+	<div class="col-xs-12 question">
+		{{ text|raw }}
+	</div>
+{% endmacro %}
+
+{% macro answer(text) %}
+	<div class="col-xs-12 answer">
+		{{ text|raw }}
+	</div>
+{% endmacro %}
+
+{% macro qa(q, a, options) %}
+	{% import _self as faq %}
+	<div class="row QandA" id="{{ options.id|default('') }}">
+		{{ faq.question(q) }}
+		{{ faq.answer(a) }}
+	</div>
+{% endmacro %}

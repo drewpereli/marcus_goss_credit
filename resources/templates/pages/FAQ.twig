@@ -1,0 +1,555 @@
+{% extends 'page.twig' %}
+
+{% 
+	set questions =  [
+		{ 
+			q: "What if I don’t have the entire account number?", 
+			a: "Use as much of the account number that you have. XXX’s or ….’s are fine. PARTIAL ACCOUNT NUMBERS are Okay."
+		},
+
+		{ 
+			q: "So I&#39;ve mailed everything off, exactly how you said what do I do next? How effective is the dispute process?", 
+			a: "You will track the letters and make sure they get them. After the 3 CRA’s get them they
+
+	have 30 days to respond. Keep EXCELLENT RECORDS. From you mailing the letters
+
+	with tracking to the date they get them to when you get the response. If they mess up
+
+	anywhere you got them and can sue.
+
+	The dispute process is awesome because if they fail to verify within 30 days they delete
+
+	the negative accounts. If they fail to provide physical proof to you within 30 days the
+
+	negative accounts are deleted.
+
+	And if they try to stall you send another letter. They might try to call your disputes
+
+	frivolous so get my frivolous letter response letter if they call your disputes frivolous.
+
+	Go through all 4 rounds of disputing, keep excellent records and if they don&#39;t delete the
+
+	negative accounts sue them in small claims court."
+		},
+
+		{ 
+			q: "How long should I wait for answers before I start sending second, third and fourth
+
+	letters?", 
+			a: "30 days."
+		},
+
+		{ 
+			q: "I sent out my first 2 rounds of letters and some of them were joint accounts and now my
+
+	Ex is paying the collection agencies. Will this affect what happens? Will the collection
+
+	accounts that have currently disappeared reappear as paid in full and if so what should I
+
+	do? Wait until he is done paying off everything and then send my last two letters?", 
+			a: "They will most likely not reappear on your report, but if they do THEN you dispute them
+
+	and if they don’t come off you have to dispute some a couple more rounds or hire a
+
+	lawyer to sue the credit bureaus for doing that."
+		},
+
+		{ 
+			q: "It’s been 30 days some of the bureau&#39;s responded or some of them didn’t
+
+	respond or they didn’t get the letters what do I do?", 
+			a: "Send your next round of letters. ALWAYS SEND THE NEXT ROUND OF DISPUTES.
+
+	DON’T STOP THAT’S WHAT THEY WANT YOU TO DO."
+		},
+
+		{ 
+			q: "Where can I get my credit report for free?", 
+			a: "https://www.annualcreditreport.com/index.action
+
+	Be very careful when answering their security questions to obtain your credit report. If
+
+	you get them wrong you will have to write the individual CRA for your free credit report."
+		},
+
+		{ 
+			q: "Where can I get my credit score?", 
+			a: "The only true credit score out there is the FICO score. You can get it here:
+
+	http://www.myfico.com/"
+		},
+
+		{ 
+			q: "I see my credit report on credit karma but I can&#39;t locate any account numbers?", 
+			a: "
+	<a href='https://www.privacyguard.com/'>https://www.privacyguard.com/</a>
+	<div>
+	<a href='https://wallethub.com/'>https://wallethub.com/</a>
+	</div>
+	<div>
+	Or <a href='https://www.annualcreditreport.com/index.action'>https://www.annualcreditreport.com/index.action</a>
+	</div>
+	<div>
+	Or <a href='http://www.myfico.com/'>http://www.myfico.com/</a>
+	</div>
+	<div>
+	Or <a href='https://www.creditchecktotal.com/'>https://www.creditchecktotal.com/</a>
+	</div>
+"
+		},
+
+		{ 
+			q: "I&#39;m getting my letters ready and have a question can I dispute accounts that say
+
+&quot;closed&quot; payment &quot;unknown&quot;.", 
+			a: "Yes. Dispute ALL negative accounts."
+		},
+
+		{ 
+			q: "I sent my first round of letters but I noticed that I accidentally left one off should I
+
+submit another letter with only that one negative account that I accidentally left
+
+off?", 
+			a: "No, just add it to your next round of dispute letters."
+		},
+
+		{ 
+			q: "What if a credit bureau sends me proof?", 
+			a: "They won’t they never have. Only an original creditor can. However, let’s say for some
+
+reason there is proof of the account saying it’s yours, either from a creditor or a credit
+
+bureau, you can negotiate a pay for removal with your original creditor. Remember, a
+
+collection agency NEVER has proof the debt is yours. This system will work every time
+
+on a collection agency so you don’t need to pay a collection agency."
+		},
+
+		{ 
+			q: "Equifax sent me a letter, along with a copy of my credit report (inquiry) as they
+
+call it.15 days after I sent first letter. Along with a dispute form. Saying I should
+
+go to their web site and do it online for faster service. Should I ignore this and
+
+send letter # 2?", 
+			a: "Yes, don’t do any disputes online. Yes, send letter 2."
+		},
+
+		{ 
+			q: "I had a company dispute for me; will this still work for me?", 
+			a: "Yes. Make sure you dispute ALL NEGATIVE ACCOUNTS."
+		},
+
+		{ 
+			q: "It has now been almost 4 weeks and I have not received any responses from the
+
+credit reporting agencies. What should I be expecting at this time? When do I
+
+send the next round of letters? Are they supposed to send me an updated report
+
+and when do they update the reports and fico scores?", 
+			a: "If it’s been 30 days send your next round of letters. They are SUPPOSED to send you
+
+an updated report but they get thousands of disputes every day. Fico scores update 30-
+
+ish days."
+		},
+
+		{ 
+			q: "The credit bureaus say they “verified” or “will not re-investigate” or “Meets FCRA”
+
+what do I do?", 
+			a: "Remember you must send your next round of disputes. If you have not sent all 4
+
+rounds of disputes you must continue. “Verified” or “Will not re-investigate” or “Meets
+
+FCRA” or anything else besides getting a signed contract from the credit bureaus mean
+
+they are LYING TO YOU. THEY ARE TRYING TO SCARE YOU TO STOP. You must
+
+continue to dispute."
+		},
+
+		{ 
+			q: "I sent out my first 2 rounds of letters and some of them were joint accounts and
+
+now my Ex is paying the collection agencies. Will this affect what happens? Will
+
+the collection accounts that have currently disappeared reappear as paid in full
+
+and if so what should I do? Wait until he is done paying off everything and then
+
+send my last two letters?", 
+			a: "They will most likely not reappear on your report, but if they do THEN you dispute them
+
+and if they don’t come off you have to dispute some a couple more rounds or hire a
+
+lawyer to sue the credit bureaus for doing that."
+		},
+
+		{ 
+			q: "I just received an email from Equifax to do online dispute after they received my
+
+first letter what should I do?", 
+			a: "Never do disputes online."
+		},
+
+		{ 
+			q: "I recently went to court for a debt (a medical debt), and promised to pay on a
+
+payment plan. Can I still dispute this even though I promised to pay?", 
+			a: "Yes. Again, always dispute ALL YOUR NEGATIVE ACCOUNTS."
+		},
+
+		{ 
+			q: "What if the account is open can I dispute it and will I still have to pay?", 
+			a: "You can dispute it. Sometimes you can remove it can be a little harder, but it is
+
+possible. If it is off your credit report you MAY still have to pay. The creditor or collector
+
+may still try to get you to pay. In my opinion, (not legal advice) I would not pay a
+
+collector or creditor unless they show you an original signed contract proving the debt is
+
+yours. IF YOU ARE SUED GET A LAWYER ASAP."
+		},
+
+		{ 
+			q: "Will this work in my state?", 
+			a: "This is a federal law, so YES, it will work in your state. It will work in all 50 states."
+		},
+
+		{ 
+			q: "Does this work for repos?", 
+			a: "Yes, 100%. People remove repos every day. Make sure to dispute."
+		},
+
+		{ 
+			q: "Does this remove judgements?", 
+			a: "Yes, 100%. Many people report judgments removal. You may not have an account
+
+number. That is okay, just put as much information as you can so they can identify the
+
+judgment."
+		},
+
+		{ 
+			q: "Collection Agencies keep calling me what should I do?", 
+			a: "Collection agencies typically have old accounts that have been charged-off and sold
+
+from the original creditor. They typically don’t have any proof the debt is yours. If they
+
+try to sue you seek legal counsel, but remember to ask to see an original signed
+
+contract with your original signature on it. Make them prove it’s your debt and never
+
+admit guilt. Ask them to prove it.
+
+And remember paying a debt collector typically will not help your credit score unless you
+
+negotiate they remove the account from your credit report. But the video above
+
+explains reasons not to pay."
+		},
+
+		{ 
+			q: "If my accounts cannot be verified can the creditors come after me, or resubmit for
+
+another collection? How can I keep these from continuously being added to my
+
+credit report?", 
+			a: "Once a collection or creditor or bank or loan or negative account is removed the credit
+
+bureaus keeps it off because it is unverified and illegal so if it comes back you can SUE.
+
+or at the very least dispute again and if it does not come off hire an attorney and SUE. You have the rights; they are on your side. Be brave. You may have to sue if they are
+
+breaking the law. If you get a BRAND NEW COLLECTION on there that you never had
+
+and never disputed you have to dispute and you know the process."
+		},
+
+		{ 
+			q: "Should I pay my old delinquent accounts?", 
+			a: "In most cases no. Having the delinquent account there will not change if you pay the
+
+account. If you call the creditor and negotiate a pay for removal first then it will help
+
+your FICO score, however, you can remove delinquent accounts using this system
+
+without paying a creditor."
+		},
+
+		{ 
+			q: "There is also a public record debt that is now a 0.00 balance and showing on my
+
+report do I dispute this too?", 
+			a: "Yes! ALL NEGATIVE ACCOUNTS. They all make your score worse."
+		},
+
+		{ 
+			q: "If the public record is a judgment, I just put judgment on my dispute? If so what
+
+about account number?", 
+			a: "There may not be an account number. Put all the info you have. There may be a docket
+
+number or just put judgment or however it is identified."
+		},
+
+		{ 
+			q: "I got a request from collectors or credit bureaus for “more information”.", 
+			a: "Ignore it. Wait for the official dispute summary in the mail."
+		},
+
+		{ 
+			q: "I got a request to get my disputes online what do I do?", 
+			a: "Ignore it. Wait for the official dispute summary in the mail. Also NEVER DISPUTE
+
+ONLINE."
+		},
+
+		{ 
+			q: "I got a request to remove myself from promotional offers do I need to fill that out?", 
+			a: "No you can ignore it. Just wait for the official dispute summary via mail."
+		},
+
+		{ 
+			q: "Is it normal for a creditor to send your past due account to a collection agency
+
+right after you send your first round of letters?", 
+			a: "No, but if you have been past due for a while they may have just done so."
+		},
+
+		{ 
+			q: "I only included the original credit account and the account #.... Should I have also
+
+included the collection company that bought the account? Should I send another
+
+round for those as well?", 
+			a: "Yes, you want to dispute both even if it is the same credit line because it is reported
+
+twice. Remember: DISPUTE ALL NEGATIVE ACCOUNTS."
+		},
+
+		{ 
+			q: "I disputed online can I still dispute or will this still work for me?", 
+			a: "Yes. DISPUTE ALL YOUR NEGATIVE ACCOUNTS."
+		},
+
+		{ 
+			q: "Okay so I got an update from Equifax. One account was removed but 3 others
+
+were only updated. Is this when I send the second round of letters?", 
+			a: "Yes, send round two."
+		},
+
+		{ 
+			q: "They sent a statement showing what I owe, can I still dispute?", 
+			a: "Yes. That is NOT proof of your debt. You must get an ORIGINAL SIGNED CONTRACT
+
+as proof of debt. And you have not gotten one yet."
+		},
+
+		{ 
+			q: "I paid the debt or collector, can I still dispute?", 
+			a: "Yes. ALL NEGATIVE ACCOUNTS."
+		},
+
+		{ 
+			q: "My adverse/negative accounts say “verified” or “meets FCRA” what does that
+
+mean? What do I do?", 
+			a: "Keep Disputing. These statements are designed to scare, confuse, and intimidate you.
+
+Did you receive an original contract with your signature on it? Of course not, so how is
+
+this “verified” or “meeting FCRA”? It does it. Keep disputing."
+		},
+
+		{ 
+			q: "The credit bureaus say they will not re-investigate unless I send supporting
+
+documents. What do I do?", 
+			a: "Again, keep disputing. These statements are designed to scare, confuse, and intimidate
+
+you. Don’t be fooled, you can get rid of the negative accounts, but you must keep going."
+		},
+
+		{ 
+			q: "Should I dispute an adverse account even though it’s paid and closed?", 
+			a: "Yes. Dispute ALL your adverse/negative accounts. Any account in the
+
+adverse/negative column of your credit report is bringing your FICO score down."
+		},
+
+		{ 
+			q: "What if they verify an account after all 4 letters?", 
+			a: "In the unlikely event that occurs you can send a dispute letter to the actual creditor and
+
+demand to see the original instrument of indebtedness in its original form to see if they
+
+do indeed have it.
+
+If they don&#39;t remove it and don’t have proof you can sue. CRAs and the creditors who
+
+supply information to them must provide and keep your credit information current. When
+
+your credit circumstances have changed and the information in your credit report is not
+
+updated to reflect these changes, this is a violation of the Fair credit reporting act. Each
+
+7
+
+violation can be a $1,000 fine, so it&#39;s money in your pocket. In addition, you are going to
+
+help make someone else&#39;s life better by suing someone who has broken the law. If
+
+everyone took action when their rights were violated, the credit bureaus would lose a
+
+fortune in legal disputes. It&#39;s time to protect your rights as a consumer as well as
+
+protecting the rights of your fellow United States citizens."
+		},
+
+		{ 
+			q: "Why do they send you 5 year notice letter to have your name taking off a list I
+
+have been just sending the letters and ignoring what they send am I doing the
+
+right thing?", 
+			a: "Yes, you are. There is a footnote that removes you from pre-approved notices. It helps
+
+with the repair process."
+		},
+
+		{ 
+			q: "What is a judgment?", 
+			a: "A judgment is an order entered by a court of law indicating the court’s findings. A
+
+judgment gives the creditor the right to use additional collection methods to collect the
+
+debt owed to them. For example, if the credit card company proves to the court that you
+
+owe $5,000, a court may enter a judgment saying that you owe $5,000 (plus costs and
+
+interest). The creditor may then use the additional collection methods to get paid."
+		},
+
+		{ 
+			q: "Can this work for a tax lien?", 
+			a: "
+<div id='tax-lien-answer'>
+<div>HOW TO REMOVE TAX LIEN JUDGEMENT:</div>
+<div class='step'>
+Step 1: Complete IRS Form 12277
+</div>
+<div>
+This form serves as a request for withdrawal of the original tax lien. Before filling out this
+
+form, try to locate the Form 668(Y) you were sent by the IRS as notification of the
+
+original tax lien. This can help to expedite the process. However, you can still fill out this
+
+form if you don’t have the 668(Y).
+</div>
+<div>
+For questions 11 on the form, select the option that states:
+</div>
+<div>
+“The taxpayer, or the Taxpayer Advocate acting on behalf of the taxpayer, believes
+
+withdrawal is in the best interest of the taxpayer and the government.”
+</div>
+<div>
+For question 12, enter the words “Fresh Start Program.”
+</div>
+<div class='step'>
+Step 2: Send Form 122277 to the IRS
+</div>
+<div>
+Use <a href='http://www.irs.gov/pub/irs-pdf/p4235.pdf'>IRS publication 4235</a> to determine the regional IRS where your form should be
+
+mailed. Send your form via certified mail.
+</div>
+<div class='step'>
+Step 3: Wait for response from IRS
+</div>
+<div>
+After 30-45 days, the IRS will contact the court-house where the lien was filed to notify
+
+them to withdraw it. You will also be sent a copy of this notification.
+</div>
+<div class='step'>
+Step 4: Dispute the lien with the Credit Reporting Agencies
+</div>
+<div>
+When you dispute a tax lien with Equifax, Experian or TransUnion, they contact the courthouse
+
+where the lien was filed to determine if the information is still accurate. Since the courthouse
+
+has been notified that your lien was withdrawn, by disputing the lien with the above Credit
+
+Reporting Agencies at their respective websites, you should be able to have the lien removed
+
+quickly.
+</div>
+<div class='step'>
+Step 5: Final confirmation
+</div>
+<div>
+Each of the credit reporting agencies will send you a notification of how your dispute turned out.
+
+If the lien was not removed from any or all of your reports, file a second dispute in writing and
+
+include a copy of the notification from the IRS that your lien has been withdrawn.
+</div>
+<div>
+Tax liens on a credit report can not only bring down your credit score significantly, but they can
+
+also be a deciding factor in a lender deciding to deny you a loan or credit card. Getting them
+
+resolved and off your credit reports a quickly as possible is imperative. If you have unpaid liens,
+
+visit <a href='http://www.irs.gov/'>IRS.gov</a> to learn more about your options for settlement or payment plan.
+</div>
+</div>"
+		}
+	]
+%}
+
+{% import 'FAQ_questions.twig' as faq %}
+{% block content %}
+<div class="col-xs-11">
+	<div class="row">
+		<h1 class="text-center">Frequently Asked Questions</h1>
+	</div>
+	<div id="faqs">
+		<div class="col-md-3  col-xs-12" id="question_links">
+			<ul>
+				{% for i,q in questions %}
+					<li><a href="#question_{{i}}">{{ q.q|raw }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="col-md-8 col-md-offset-1 col-xs-12">
+			{% for i,q in questions %}
+				{{ faq.qa(q.q, q.a, {id: "question_#{i}"}) }}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

@@ -18,7 +18,6 @@
 	if ($_POST["form_type"] === "HIPPA_violation" 
 			|| $_POST["form_type"] === "intent_to_file_lawsuit"
 			|| $_POST["form_type"] === "x_deletion"
-			|| $_POST["form_type"]
 			|| substr($_POST["form_type"], 0, 11) === "section_609"
 	){
 		$includeCreditBureaus = true;
