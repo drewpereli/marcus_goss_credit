@@ -7,7 +7,7 @@
 			));
 		die();
 	}
-	else { //If we need to send a password reactivation has to the given email
+	else { //If we need to send a password reactivation link to the given email
 		try{
 			$user = ORM::forTable('users')->where("email", $_POST["email"])->findOne();
 			if (!$user){

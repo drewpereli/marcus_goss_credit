@@ -39,6 +39,8 @@
 			a: "30 days."
 		},
 
+
+
 		{ 
 			q: "I sent out my first 2 rounds of letters and some of them were joint accounts and now my
 
@@ -46,8 +48,8 @@
 
 	accounts that have currently disappeared reappear as paid in full and if so what should I
 
-	do? Wait until he is done paying off everything and then send my last two letters?", 
-			a: "They will most likely not reappear on your report, but if they do THEN you dispute them
+	do?", 
+			a: "Wait until he or she is done paying off everything and then send your last two letters. They will most likely not reappear on your report, but if they do THEN you dispute them
 
 	and if they don’t come off you have to dispute some a couple more rounds or hire a
 
@@ -522,12 +524,13 @@ visit <a href='http://www.irs.gov/'>IRS.gov</a> to learn more about your options
 
 {% import 'FAQ_questions.twig' as faq %}
 {% block content %}
-<div class="col-xs-11">
+<div class="col-md-11 col-xs-12">
 	<div class="row">
-		<h1 class="text-center">Frequently Asked Questions</h1>
+		<h1 class="text-center hidden-xs hidden-sm">Frequently Asked Questions</h1>
+		<h2 class="text-center hidden-md hidden-lg">Frequently Asked Questions</h2>
 	</div>
 	<div id="faqs">
-		<div class="col-md-3  col-xs-12" id="question_links">
+		<div class="col-md-3 hidden-xs hidden-sm" id="question_links">
 			<ul>
 				{% for i,q in questions %}
 					<li><a href="#question_{{i}}">{{ q.q|raw }}</a></li>
