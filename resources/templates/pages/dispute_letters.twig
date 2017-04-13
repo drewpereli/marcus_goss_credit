@@ -44,6 +44,9 @@
 {% block content %}
 <div class="row">
 	<div class="col-xs-12 col-md-6 col-md-offset-3">
+		<h1>Dispute Letters</h1>
+		<div>&nbsp;</div>
+		<div>&nbsp;</div>
 		<form class="bs-form" 
 				action="letter.php" 
 				method="POST" 
@@ -53,6 +56,7 @@
 					name: "dispute_method",
 					required: true,
 					values: [
+						"Select_a_dispute_method",
 						"request_for_validation",
 						"HIPPA_violation",
 						"section_609_verification"
@@ -60,115 +64,117 @@
 				})
 			}}
 			<script>
-				$("#dispute_method").change(function(){
-					var val = $(this).val();
-					$("#" + val + "_modal").modal("show");
-				});
+				
 			</script>
-			<span class="display-none" id="form_type_templates">
-				<span class="request_for_validation">
-					{{ field.option("request_for_validation") }}
-					{{ field.option("x_deletion") }}
-					{{ field.option("intent_to_file_lawsuit") }}
-				</span>
-				<span class="HIPPA_violation">
-					{{ field.option("HIPPA_violation") }}
-				</span>
-				<span class="section_609_verification">
-					{{ field.option("section_609_verification:_first_attempt") }}
-					{{ field.option("section_609_verification:_second_attempt") }}
-					{{ field.option("section_609_verification:_third_attempt") }}
-					{{ field.option("section_609_verification:_fourth_attempt") }}
-				</span>
-			</span>
-			{{ 
-				field.select({
-								name: "form_type", 
-								required: true, 
-								values: [
-										"request_for_validation",
-										"x_deletion",
-										"intent_to_file_lawsuit",
-										]
-				}) 
-			}}
-			<div class="field-group">
-				<h3>Your Info</h3>
-				{{ field.contact_info({user:current_user, include_county: true}) }}
-				{{ field.text({name:"date_of_birth", type:"date"}) }}
-				{{ 
-					field.text({
-								type: "number", 
-								name:"social_security_number", 
-								label: "Last Four Digits of Social Security Number"
-								}) 
-				}}
-				{{ field.text({name:"item"}) }}
-				<span id="accounts-in-question_field" class="display-none">
-					{{ 
-						field.select({
-							name: "number_of_accounts_in_question",
-							values: ["1","2","3","4","5","6","7","8","9",]
-						}) 
-					}}
-				</span>
-				<span id="account_numbers">
-					<span class="display-none">
-						{{ 
-							field.text({
-										name:"account_number", 
-										label:"Account Number",
-										id: "account_number_template"
-										}) 
-						}}
+			<div id="main-fields" class="no-display">
+				<span class="display-none" id="form_type_templates">
+					<span class="request_for_validation">
+						{{ field.option("request_for_validation") }}
+						{{ field.option("x_deletion") }}
+						{{ field.option("intent_to_file_lawsuit") }}
 					</span>
-					{{ 
-						field.text({
-									name:"account_number[0]", 
-									label:"Account Number 1",
-									}) 
-					}}
-					<span id="extra_accounts">
-						<!-- If the user has more than one account in question
-							the elements will go here -->
+					<span class="HIPPA_violation">
+						{{ field.option("HIPPA_violation") }}
+					</span>
+					<span class="section_609_verification">
+						{{ field.option("section_609_verification:_first_attempt") }}
+						{{ field.option("section_609_verification:_second_attempt") }}
+						{{ field.option("section_609_verification:_third_attempt") }}
+						{{ field.option("section_609_verification:_fourth_attempt") }}
 					</span>
 				</span>
 				{{ 
 					field.select({
-						name: "reason",
-						values: [
-							"This account does not belong to me",
-							"I was not 30, 60, 90, or 120 days late on this account",
-							"This is a duplicate account",
-							"This account is closed",
-							"This account is open",
-							"You are not reporting the correct limit on my account",
-							"You are not reporting a positive account on my credit report",
-							"This collection/charge-off was paid",
-							"I never authorized this inquiry",
-							"The 7-year reporting period has expired on this account",
-							"You are reporting incorrect addresses on my credit report",
-							"You are reporting incorrect names on my credit report",
-							"You are reporting the wrong birth date on my credit report",
-							"You are reporting the wrong employment on my credit report",
-							"I am an authorized user on this account. Please remove it"
-						]
+									name: "form_type", 
+									required: true, 
+									values: [
+											"request_for_validation",
+											"x_deletion",
+											"intent_to_file_lawsuit",
+											]
 					}) 
 				}}
-			</div>
-			<div class="field-group" id="creditor_fields">
-				<h3>Collection Agency Info</h3>
-				{{ field.contact_info({name:"collection_agency"}) }}
-			</div>
-			<input type="hidden" name="action" value="email" id="action-field"/>
-			<button type="button" class="btn btn-primary submit-btn" id="email-btn">
-				Request Letter
-			</button>
-			{% if current_user.role == 1 %}
-				<button type="button" class="btn btn-primary submit-btn" id="download-btn">
-					Download Letter
+				<div class="field-group">
+					<h3>Your Info</h3>
+					{{ field.contact_info({user:current_user, include_county: true}) }}
+					{{ field.text({name:"date_of_birth", type:"date"}) }}
+					{{ 
+						field.text({
+									type: "number", 
+									name:"social_security_number", 
+									label: "Last Four Digits of Social Security Number"
+									}) 
+					}}
+					{{ field.text({name:"item"}) }}
+					<span id="accounts-in-question_field" class="display-none">
+						{{ 
+							field.select({
+								name: "number_of_accounts_in_question",
+								values: ["1","2","3","4","5","6","7","8","9",]
+							}) 
+						}}
+					</span>
+					<span id="account_numbers">
+						<span class="display-none">
+							{{ 
+								field.text({
+											name:"account_number", 
+											label:"Account Number",
+											id: "account_number_template"
+											}) 
+							}}
+						</span>
+						{{ 
+							field.text({
+										name:"account_number[0]", 
+										label:"Account Number 1",
+										}) 
+						}}
+						<span id="extra_accounts">
+							<!-- If the user has more than one account in question
+								the elements will go here -->
+						</span>
+					</span>
+					{{ 
+						field.select({
+							name: "reason",
+							values: [
+								"This account does not belong to me",
+								"I was not 30, 60, 90, or 120 days late on this account",
+								"This is a duplicate account",
+								"This account is closed",
+								"This account is open",
+								"You are not reporting the correct limit on my account",
+								"You are not reporting a positive account on my credit report",
+								"This collection/charge-off was paid",
+								"I never authorized this inquiry",
+								"The 7-year reporting period has expired on this account",
+								"You are reporting incorrect addresses on my credit report",
+								"You are reporting incorrect names on my credit report",
+								"You are reporting the wrong birth date on my credit report",
+								"You are reporting the wrong employment on my credit report",
+								"I am an authorized user on this account. Please remove it"
+							]
+						}) 
+					}}
+				</div>
+				<div class="field-group" id="creditor_fields">
+					<h3>Collection Agency Info</h3>
+					{{ field.contact_info({name:"collection_agency"}) }}
+				</div>
+				<input type="hidden" name="action" value="email" id="action-field"/>
+				<button type="button" class="btn btn-primary submit-btn" id="email-btn">
+					Request Letter
 				</button>
-			{% endif %}
+				{% if current_user.role == 1 %}
+					<button type="button" class="btn btn-primary submit-btn" id="download-btn">
+						Download Letter
+					</button>
+				{% endif %}
+			</div>
+			<script>
+				$("#main-fields").hide();
+			</script>
 		</form>
 		<div id="progress-bar-container" class="hidden">
 			<div class="progress letter-generator-progress">
@@ -187,6 +193,7 @@
 </div>
 <script>
 	$(function() {
+
 		var userRole = "{{ current_user.role }}";
 		//First make name input read only if their not an admin
 		if (userRole == 0)
@@ -194,11 +201,22 @@
 
 		//When dispute method changes, change form type options 
 		//(and select the top form type so the input fields change)
-		$("#disupte_method").change(function(){
-			var dispute_method = $(this).val();
-			//Get options based on disupte method
-			var options = $("#form_type_templates ." + dispute_method).html();
-			$("#form_type").html(options).change();
+		$("#dispute_method").change(function(){
+			var val = $(this).val();
+			if (val !== "Select_a_dispute_method"){
+				$("#" + val + "_modal").modal("show");
+				if ($("#main-fields").hasClass("no-display")){
+					$("#main-fields")
+						.removeClass("no-display")
+						.slideDown();
+				}
+				//Get options based on disupte method
+				var options = $("#form_type_templates ." + val).html();
+				$("#form_type").html(options).change();
+			}
+			else{
+				$("#main-fields").slideUp().addClass("no-display");
+			}
 		})
 
 		//When the form type changes, change the input fields as well
@@ -234,6 +252,7 @@
 					$("#reason").parent().addClass("display-none");
 					break;
 				case "section_609_verification":
+					console.log("stuff");
 					$("#social_security_number").parent().removeClass("display-none");
 					$("#creditor_fields").addClass("display-none").find(".required").removeAttr("required");
 					$("#accounts-in-question_field").removeClass("display-none");

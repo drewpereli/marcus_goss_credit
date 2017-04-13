@@ -20,7 +20,7 @@
 			unset($_POST["password"]);
 			logIn($user);
 			$flasher->success = "You are now logged in.";
-			header("Location: /");
+			header("Location: /dispute_letters");
 			die();
 		}
 		catch(Exception $e){

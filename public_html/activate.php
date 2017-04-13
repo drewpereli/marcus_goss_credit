@@ -16,7 +16,7 @@
 		$user->save();
 		logIn($user);
 		$flasher->success = "Your account has been activated!";
-		header("Location: /");
+		header("Location: /dispute_letters");
 		die();
 	}
 	catch (Exception $e){
