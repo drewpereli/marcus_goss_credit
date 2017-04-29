@@ -13,6 +13,9 @@
 @ocean-blue: rgb(70, 118, 184);
 @white: #f0f0f0;
 @black: #111;
+@red: #e51c23;
+@yellow: #ff9800;
+@green: #4caf50;
 
 
 
@@ -37,6 +40,7 @@
 body{
   padding-top: 64px;
   background-color: @white;
+  color: @black;
   font-family: @defaultFontFamily;
   font-weight: 600;
   @media screen and (max-width: @md){
@@ -49,6 +53,11 @@ body{
 }
 
 h1,h2,h3,.btn{
+  font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+  color: darken(@black, 100%);
   font-weight: bold;
 }
 
@@ -192,12 +201,13 @@ h1,h2,h3,.btn{
     box-shadow: -5px 5px 10px black;
     .text-container{
       font-size: 1.8vw;
+      text-align: center;
       color: @black;
       font-weight: bold;
       //text-shadow: -1px 1px 1px @white;
       width: @circleRadius;
-      padding-left: @circleOffset / 4;
-      padding-right: @circleOffset / 2;
+      //padding-left: @circleOffset / 4;
+      //padding-right: @circleOffset / 2;
     }
     > span{
       display: flex;
@@ -220,18 +230,18 @@ h1,h2,h3,.btn{
     }
   }
   > :nth-child(1){
-    background-color: darken(@blue, 20%);
+    background-color: @red;
     left: 0;
     .img-container{
       width: 70% !important;
     }
   }
   > :nth-child(2){
-    background-color: @blue;
+    background-color: @yellow;
     left: @circleOffset;
   }
   > :nth-child(3){
-    background-color: lighten(@blue, 20%);
+    background-color: @green;
     left: 2 * @circleOffset;
     .img-container{
       margin-left: 17%;
@@ -301,6 +311,25 @@ h1,h2,h3,.btn{
   }
 }
 
+
+#our-guarantee-row {
+  > div{
+    font-size: 1.6em;
+  }
+}
+
+
+#link-row{
+  background-color: @ocean-blue;
+  > div{
+    min-height: 15em;
+    display: flex;
+    align-items: center; 
+    .btn{
+      font-size: 1.5em;
+    }
+  } 
+}
 
 
 

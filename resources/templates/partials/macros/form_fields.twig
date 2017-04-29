@@ -20,6 +20,9 @@
 			{% if p.title %}
 				title="{{p.title}}"
 			{% endif %}
+			{% if p.max %}
+				max="{{p.max}}"
+			{% endif %}
 		/>
 	</div>
 {% endmacro %}
@@ -209,6 +212,11 @@
 	</div>
 {% endmacro %}
 
+{% macro zip(p) %}
+	{% import _self as field %}
+	{{ field.text({name: p.name, type: "number", classes: "zip-code-input", max: "99999"}) }}
+{% endmacro %}
+
 
 {% macro submit(text="Submit") %}
 	<input type="submit" value="{{ text }}" class="btn btn-primary" />
@@ -239,7 +247,7 @@
 		{{ field.text({name:"#{name}county"}) }}
 	{% endif %}
 	{{ field.state({name:"#{name}state"}) }}
-	{{ field.text({name:"#{name}zip", type:"number"}) }}
+	{{ field.zip({name:"#{name}zip"}) }}
 {% endmacro %}
 
 

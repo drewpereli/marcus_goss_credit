@@ -45,7 +45,7 @@
 		<script>
 			window.addEventListener("hashchange", function() { scrollBy(0, -64) });
 			var controller = new ScrollMagic.Controller();
-			$(()=>{
+			$(function(){
 				$("[title]").tooltip();
 				var pwoptions = {
 					ui: {
@@ -127,6 +127,22 @@
 						navbarAnimation.reverse();
 					}
 				);
+
+				//
+				//
+				//
+				//Zip code entry restriction
+				$('.zip-code-input').keydown( function(e){
+				    if ($(this).val().length >= 5) { 
+				        $(this).val($(this).val().substr(0, 5));
+				    }
+				});
+
+				$('.zip-code-input').keyup( function(e){
+				    if ($(this).val().length >= 5) { 
+				        $(this).val($(this).val().substr(0, 5));
+				    }
+				});
 				
 			});
 
@@ -135,26 +151,13 @@
 				//When everything's done, remove the loading gif and display the content
 				$("#container").removeClass("display-none");
 				$("#loading-img-container").remove();
-				setTimeout(function(){
-					/*
-					//Hacky style fix
-					var circleContainerWidth = $(".circle-container").width(); //C container width in pixels
-					var circleOffset = 30; //In percent!!!!!!
-					var circleOffsetPx = circleContainerWidth * circleOffset / 100; //circle offset in px
-					var circleRadius = circleContainerWidth - 2 * circleOffsetPx;
-					$(".circle-container, .circle").css("height", circleRadius + "px");
-					*/
-				}, 0);
 			});
 		</script>
 	{% endblock %}
 </head>
 <body>
 	<div id="loading-img-container">
-		<img 
-			id="loading-img"
-			src="img/loading.gif"
-		/>
+		{% include "loading_spinner.twig" %}
 	</div>
 
 	{% block modals %}{% endblock %}
@@ -180,14 +183,14 @@
 			        <span class="icon-bar"></span>
 			      </button>
 			      <a class="navbar-brand" href="/">
-			      	<img src="img/logo.png" class="logo"/>
+			      	<img src="img/new_logo.png" class="logo"/>
 			      	<span>Basics Credit</span>
 			      </a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="navbar-collapse">
 			      <ul class="nav navbar-nav navbar-right">
 			      	{{ navbar.link("Home", "/") }}
-			      	{{ navbar.link("Contact", "/#contact-row") }}
+			      	{{ navbar.link("How It Works", "/how_it_works") }}
 			      	{{ navbar.link("FAQ", "/FAQ") }}
 			        {% if current_user %}
 			        	{{ navbar.link("Dispute Letters", "/dispute_letters") }}
@@ -197,6 +200,7 @@
 			        	{{ navbar.link("Sign Up", "/#sign-up") }}
 			        	{{ navbar.link("Log In", "/#log-in") }}
 				    {% endif %}
+				    {{ navbar.link("Contact", "/#contact-row") }}
 				    {% if current_user %}
 				    	{{ navbar.link("Log Out", "logOut") }}
 				    {% endif %}  
@@ -233,11 +237,14 @@
 						<b>INFORMATION WHICH IS ACCURATE, VERIFIABLE AND NON-MISLEADING CANNOT BE REMOVED.</b>
 					</div>
 					<div>
-						ˆ The testimonials and results provided are for illustrative purposes only.
+						* The testimonials and results provided are for illustrative purposes only.
 						As with any legal work, no outcome is promised and your results may vary.
 					</div>
 					<div>
-						* Terms and Conditions Apply, see our Promise Page for a detailed explanation of our performance based Refund Policy. If eligible for a full refund client is not liable for any costs. 
+						** Terms and Conditions Apply, see our Promise Page for a detailed explanation of our performance based Refund Policy.
+					</div>
+					<div>
+						*** If eligible for a full refund client is not liable for any costs. 
 					</div>
 					<div>
 						This is a Solicitation and Advertisement for services offered by Basics Credit

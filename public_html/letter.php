@@ -59,7 +59,8 @@
 			$content = $twig->render($_POST["form_type"] . ".twig", $_POST);
 		}
 		catch (Exception $e){
-			echo $e->getFile() . ":" . $e->getLine()." -- ".$e->getMessage();
+			error_log($e->getFile() . ":" . $e->getLine()." -- ".$e->getMessage());
+			$flasher->danger = "There was an error. Please try again later.";
 			foreach ($letters as $l){
 				unlink($l);
 			}
