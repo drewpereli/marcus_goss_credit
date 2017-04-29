@@ -1,0 +1,10 @@
+{% extends 'page.twig' %}
+{% import 'form_fields.twig' as field %}
+{% block content %}
+<div class="col-md-10 col-xs-offset-1 col-xs-12">
+	<h1>Make a Payment</h1>
+	<form>
+		{{ field.stripe }}
+	</form>
+</div>
+{% endblock %}
