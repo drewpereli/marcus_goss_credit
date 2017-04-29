@@ -94,7 +94,17 @@
 		$mailer->addAddress($user->email, "{$user->first_name} {$user->last_name}");
 		$mailer->Subject = 'Basics Credit';
 		$mailer->isHTML(true);
-		$mailer->Body = $twig->render($_POST["form_type"] . "_email.twig");
+		//Temporary
+		//If the form type is section_609_verification, strip the :first_attempt, :second_attempt, etc from the end
+		//to find the proper email template (which is just section_609_verification_email.twig);
+		$form_type;
+		if (substr($_POST["form_type"], 0, 24) === "section_609_verification"){
+			$form_type = "section_609_verification";
+		}
+		else{
+			$form_type = $_POST["form_type"];
+		}
+		$mailer->Body = $twig->render($form_type . "_email.twig");
 		foreach ($letters as $l){
 			$mailer->addAttachment($l, "Credit_Repair_Letter_{$i}.pdf");
 		}
@@ -106,7 +116,7 @@
 		foreach ($letters as $l){
 			unlink($l);
 		}
-		header("Location:letter_generator.php");
+		header("Location:dispute_letters");
 		die();
 	}
 	if ($_POST["action"] === 'download'){
