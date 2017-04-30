@@ -5,7 +5,7 @@
 	<h1>Make a Payment</h1>
 	<h5>
 	{% if current_user.has_made_first_payment == 0 %}
-		You need to make your initial signup payment of {{ sign_up_price|number_format(2) }}. This grants you 30 days of access to our credit dispute services. Each subsequent payment is only {{ montly_price|number_format(2) }}.
+		You need to make your initial signup payment of {{ sign_up_price|number_format(2) }}. This grants you 30 days of access to our credit dispute services. Each subsequent payment is only ${{ monthly_price|number_format(2) }}.
 	{% else %}
 		{% if user_has_access %}
 			You have access to our services until {{ current_user.has_access_until|date("F jS, Y \\a\\t g:i A", "America/Chicago") }}. A payment of ${{ monthly_price|number_format(2) }} will extend your service period an additional 30 days.

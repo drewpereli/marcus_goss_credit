@@ -1,7 +1,7 @@
 <?php
 	use mikehaertl\wkhtmlto\Pdf;
 	require_once __DIR__ . "/../resources/config.php";
-	requireLogIn();
+	requirePaymentToAccess();
 	//
 	//Validate $_POST here
 	//
