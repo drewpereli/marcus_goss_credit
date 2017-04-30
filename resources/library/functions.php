@@ -18,17 +18,37 @@
 
 	function getCurrentUserAsArray(){
 		$u = getCurrentUser();
-		return $u ? $u->asArray('id', 'first_name', 'last_name', 'email', 'role') : false;
+		return $u ? $u->asArray('id', 'first_name', 'last_name', 'email', 'role', 'has_made_first_payment', 'has_access_until') : false;
 	}
 
 	function requireLogIn(){
 		if (!isLoggedIn()){
-			$flasher->danger = "You must be logged in to view that page.";
+			$GLOBALS['flasher']->danger = "You must be logged in to view that page.";
 			header("Location:logIn");
 			die();
 		}
 	}
 
+	//Put at the top of any page that requires that the user be paid up to access it (unless they're an admin).
+	function requirePaymentToAccess(){
+		requireLogIn();
+		$u = getCurrentUser();
+		if (userIsAdmin($u)){
+			return;
+		}
+		//If the current datetime is past when the current user has access to
+		if (!currentUserHasPaidAccess($u)){
+			$GLOBALS['flasher']->danger = "You must make a payment to access that page.";
+			header("Location:/");
+			die();
+		}
+	}
+
+
+
+	function userIsAdmin($u){
+		return $u->role == 1;
+	}
 
 
 
@@ -77,7 +97,20 @@
 	}
 
 
+	//Returns true if $date1 is before $date2. Returns false if they are the same or $date1 is after $date2
+	function dateIsBefore($date1, $date2){
+		return $date2->diff($date1)->invert === 1;
+	}
+
+
+	//Returns true if the current user has access to paid services. Else returns false
+	function currentUserHasPaidAccess($u){
+		return dateIsBefore(new DateTime(), new DateTime($u->has_access_until));
+	}
 
 
 
 ?>
+
+
+

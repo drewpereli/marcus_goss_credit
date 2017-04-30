@@ -1,10 +1,33 @@
 {% extends 'page.twig' %}
 {% import 'form_fields.twig' as field %}
 {% block content %}
-<div class="col-md-10 col-xs-offset-1 col-xs-12">
+<div class="col-md-10 col-md-offset-1 col-xs-12">
 	<h1>Make a Payment</h1>
-	<form>
-		{{ field.stripe }}
+	<h5>
+	{% if current_user.has_made_first_payment == 0 %}
+		You need to make your initial signup payment of {{ sign_up_price|number_format(2) }}. This grants you 30 days of access to our credit dispute services. Each subsequent payment is only {{ montly_price|number_format(2) }}.
+	{% else %}
+		{% if user_has_access %}
+			You have access to our services until {{ current_user.has_access_until|date("F jS, Y \\a\\t g:i A", "America/Chicago") }}. A payment of ${{ monthly_price|number_format(2) }} will extend your service period an additional 30 days.
+		{% else %}
+			Please make a payment of {{ monthly_price|number_format(2) }} to restore access to our dispute services.
+		{% endif %}
+	{% endif %}
+	</h5>
+	<h4>
+		{% if current_user.has_made_first_payment == 1 %}
+		{% elseif current_user.has_made_first_payment == 0 %}
+			Make initial payment of ${{ sign_up_price|number_format(2) }}
+		{% endif %}
+	</h4>
+	<form method="POST">
+		{% if current_user.has_made_first_payment == 0 %}
+			{% set amount = sign_up_price %}
+		{% else %}
+			{% set amount = monthly_price %}
+		{% endif %}
+		{{ field.stripe(amount, stripe_public_key) }}
+		{{ field.submit("Make Payment") }}
 	</form>
 </div>
 {% endblock %}

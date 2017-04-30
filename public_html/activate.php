@@ -15,8 +15,8 @@
 		$user->activated = '1';
 		$user->save();
 		logIn($user);
-		$flasher->success = "Your account has been activated!";
-		header("Location: /dispute_letters");
+		$flasher->success = "Your account has been activated! You must make an initial payment before utilizing our services.";
+		header("Location: /make_payment");
 		die();
 	}
 	catch (Exception $e){

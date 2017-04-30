@@ -1,10 +1,16 @@
 <?php
-	define("ENVIRONMENT", "PRODUCTION");
-	define("PROTOCOL", "https");
+	define("ENVIRONMENT", "DEVELOPMENT");
 	
 	require_once __DIR__ . "/library/vendor/autoload.php";
 	require_once __DIR__ . "/secrets.php";
 	require_once __DIR__ . "/library/functions.php";
+
+	define("PROTOCOL", "https");
+	define("GENERIC_ERROR_MESSAGE", "There was an error. Please try again later.");
+	define("SIGN_UP_PRICE", 78.99);
+	define("MONTHLY_PRICE", 38.50);
+	define("ACCESS_PERIOD", 30); //Access period for each payment, in days
+	$accessInterval = new DateInterval("P" . ACCESS_PERIOD . "D");
 
 	$flasher = new Flasher();
 	
@@ -21,8 +27,10 @@
 	if (ENVIRONMENT === "DEVELOPMENT"){	
 		define("HOST_URL", PROTOCOL . "://marcus-credit.drewpereli.com/");
 		$twig = new Twig_Environment($loader, array(
+			'debug' => true
 		    //'cache' => __DIR__ . "/../resources/templates/compilation_cache/",
 		));
+		$twig->addExtension(new Twig_Extension_Debug());
 	}
 	elseif (ENVIRONMENT === "PRODUCTION"){
 		define("HOST_URL", PROTOCOL . "://basicscredit.com/");
@@ -31,7 +39,7 @@
 		));
 	}
 
-	define("GENERIC_ERROR_MESSAGE", "There was an error. Please try again later.");
+	
 
 	ORM::configure('mysql:host=localhost;dbname=credit_db');
 	ORM::configure('username', DB_USER);
