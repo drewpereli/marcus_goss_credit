@@ -6,10 +6,16 @@
 			//Check if the code is correct
 			$user = ORM::forTable('users')->findOne($_GET["i"]);
 			if (!$user){
-				throw new Exception("Bad id.");
+				error_log("User tried to reset password with bad id. Id: {$_GET['id']}");
+				throw new Exception(GENERIC_ERROR_MESSAGE);
+			}
+			if ($user->password_reset_hash === '0' || is_null($user->password_reset_hash)){
+				throw new Exception(GENERIC_ERROR_MESSAGE);
 			}
 			if (!password_verify($_GET["c"], $user->password_reset_hash)){
-				throw new Exception("Bad code.");
+				//$flasher->info = $_GET["c"] . "<br/>" . $user->password_reset_hash;
+				error_log("User {$user->id} tried to reset password with bad code. Code: {$_GET['c']}. User's reset hash is {}$user->password_reset_hash}");
+				throw new Exception(GENERIC_ERROR_MESSAGE);
 			}
 			//If we're here, render the form
 			echo $twig->render("set_new_password.twig", array("code"=>$_GET["c"], 
@@ -32,6 +38,9 @@
 			if (!$user){
 				throw new Exception(GENERIC_ERROR_MESSAGE);
 			}
+			if ($user->password_reset_hash === '0' || is_null($user->password_reset_hash)){
+				throw new Exception(GENERIC_ERROR_MESSAGE);
+			}
 			if (!password_verify($_POST["code"], $user->password_reset_hash)){
 				throw new Exception(GENERIC_ERROR_MESSAGE);
 			}
@@ -44,7 +53,7 @@
 				throw new Exception("Your password must be at least 8 characters long, contain at least 1 lowercase letter, at least 1 uppercase letter, and at least 1 number.");
 			//If we're here, we're good
 			$user->password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-			$user->password_reset_hash = "0";
+			$user->password_reset_hash = NULL;
 			$user->save();
 			$flasher->success = "Your password has been reset!";
 			header("Location: /");
