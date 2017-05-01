@@ -37,7 +37,7 @@
 			return;
 		}
 		//If the current datetime is past when the current user has access to
-		if (!currentUserHasPaidAccess($u)){
+		if (!userHasPaidAccess($u)){
 			$GLOBALS['flasher']->danger = "You must make a payment to access that page.";
 			header("Location:/");
 			die();
@@ -104,7 +104,7 @@
 
 
 	//Returns true if the current user has access to paid services. Else returns false
-	function currentUserHasPaidAccess($u){
+	function userHasPaidAccess($u){
 		return dateIsBefore(new DateTime(), new DateTime($u->has_access_until));
 	}
 

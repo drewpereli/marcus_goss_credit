@@ -44,7 +44,7 @@
 			$currentUserAccessTime = new DateTime($currentUser->has_access_until);
 			$now = new DateTime();
 			$newAccessTime;
-			if (!currentUserHasPaidAccess($currentUser)){
+			if (!userHasPaidAccess($currentUser)){
 				$newAccessTime = $now->add($accessInterval);
 			}
 			else{
@@ -54,7 +54,7 @@
 			//If this is the current user's sign up payment, mark them as having made their first payment.
 			$currentUser->has_made_first_payment = 1;
 			$currentUser->save();
-			$flasher->success = "Thank you for your payment of \$" . $amount . "!";
+			$flasher->success = "Thank you for your payment of \$" . number_format($amount, 2) . "!";
 		}
 		catch (Exception $e){
 			if (!$expectedException){
@@ -70,7 +70,7 @@
 		"sign_up_price" => SIGN_UP_PRICE,
 		"monthly_price" => MONTHLY_PRICE,
 		"stripe_public_key" => STRIPE_PUBLIC_KEY,
-		"user_has_access" => currentUserHasPaidAccess(getCurrentUser())
+		"user_has_access" => userHasPaidAccess(getCurrentUser())
 		));
 ?>
 

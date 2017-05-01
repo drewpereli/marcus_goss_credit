@@ -53,6 +53,16 @@
     $mailer->SMTPSecure = 'ssl';                 
     $mailer->Port = 465;
     $mailer->setFrom(EMAIL_USER, 'Basics Credit');
+
+
+    $paginatedLetters = array(
+    	"section_609_verification:_first_attempt" => 2,
+    	"section_609_verification:_second_attempt" => 2,
+    	"section_609_verification:_third_attempt" => 2,
+    	"section_609_verification:_fourth_attempt" => 2,
+    	"request_for_validation" => 2
+    );
+
 ?>
 
 

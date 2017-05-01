@@ -15,6 +15,7 @@
 	//If it's a hippa or intent to file lawsuit letter, generate one for each bureau
 	$numLetters;
 	$includeCreditBureaus;
+	$pages;//Number of pages in the letter
 	if ($_POST["form_type"] === "HIPPA_violation" 
 			|| $_POST["form_type"] === "intent_to_file_lawsuit"
 			|| $_POST["form_type"] === "x_deletion"
@@ -26,6 +27,12 @@
 	else{
 		$includeCreditBureaus = false;
 		$numLetters = 1;
+	}
+	if (array_key_exists($_POST["form_type"], $paginatedLetters)){
+		$pages = $paginatedLetters[$_POST["form_type"]];
+	}
+	else{
+		$pages = 1;
 	}
 	$letters = array();
 	for ($i = 0 ; $i < $numLetters ; $i++){	
@@ -55,28 +62,32 @@
 					break;
 			}
 		}
-		try{
-			$content = $twig->render($_POST["form_type"] . ".twig", $_POST);
-		}
-		catch (Exception $e){
-			error_log($e->getFile() . ":" . $e->getLine()." -- ".$e->getMessage());
-			$flasher->danger = "There was an error. Please try again later.";
-			foreach ($letters as $l){
-				unlink($l);
+		
+		$fileHash;
+		$pdfPath;
+		$pdf = new Pdf();
+		for ($page = 1 ; $page <= $pages ; $page++){
+			$_POST["page"] = $page;
+			try{
+				$content = $twig->render($_POST["form_type"] . ".twig", $_POST);
+				//Write to temp html file
+				$fileHash = md5(rand());
+				//$htmlPath = __DIR__ . '/../tmp/' . $fileHash . '.html';
+				$htmlPath = __DIR__ . "/tmp/{$fileHash}.html"; 
+				$file = fopen($htmlPath, "w");
+				fwrite($file, $content);
+				fclose($file);
+				$pdf->addPage(HOST_URL . "tmp/{$fileHash}.html");
 			}
-			die();
+			catch (Exception $e){
+				error_log($e->getFile() . ":" . $e->getLine()." -- ".$e->getMessage());
+				$flasher->danger = "There was an error. Please try again later.";
+				foreach ($letters as $l){
+					unlink($l);
+				}
+				die();
+			}
 		}
-		//Write to temp html file
-		$fileHash = md5(rand());
-		//$htmlPath = __DIR__ . '/../tmp/' . $fileHash . '.html';
-		$htmlPath = __DIR__ . "/tmp/{$fileHash}.html"; 
-		$file = fopen($htmlPath, "w");
-		fwrite($file, $content);
-		fclose($file);
-		//chmod($htmlPath, 0400);
-		//Create temp pdf of temp html file
-		//$pdf = new Pdf($htmlPath);
-		$pdf = new Pdf(HOST_URL . "tmp/{$fileHash}.html");
 		$pdfPath = __DIR__ . "/../tmp/{$fileHash}.pdf";
 		$success = $pdf->saveAs($pdfPath);
 		//Delete html file

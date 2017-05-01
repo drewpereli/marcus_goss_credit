@@ -2,7 +2,7 @@
 {% import "contact_info.twig" as contact %}
 {% block content %}
 	<div id="letter-body" class="col-xs-10 col-xs-offset-1">
-		<div>&nbsp;</div>
+		<div class="text-right">Page 1 of 1</div>
 		<div>{{"now"|date_modify("+7 days")|date("F jS, Y")}}</div>
 		<div>&nbsp;</div>
 		{{ contact.display(bureau_name, bureau_street_address, bureau_city, bureau_state, bureau_zip) }}

@@ -2,106 +2,108 @@
 {% import "contact_info.twig" as contact %}
 {% block content %}
 	<div id="letter-body" class="col-xs-10 col-xs-offset-1">
-		<div>&nbsp;</div>
-		<div>{{"now"|date_modify("+7 days")|date("F jS, Y")}}</div>
-		<div>&nbsp;</div>
-		{{ contact.display(name, street_address, city, state, zip) }}
-		<div>
-			{% if social_security_number|length > 0 %}
-				***-**-{{social_security_number}} |
-			{% endif %}
-			DOB: {{ date_of_birth }}</div>
-		<div>&nbsp;</div>
-		{{ contact.display(bureau_name, bureau_street_address, bureau_city, bureau_state, bureau_zip) }}
-		<div>&nbsp;</div>
-		<div>According to the Fair Credit Reporting Act, Section 609 (a)(1)(A), <b>you are required by
+		{% if page == 1 %}
+			<div class="text-right">Page 1 of 2</div>
+			<div>{{"now"|date_modify("+7 days")|date("F jS, Y")}}</div>
+			<div>&nbsp;</div>
+			{{ contact.display(name, street_address, city, state, zip) }}
+			<div>
+				{% if social_security_number|length > 0 %}
+					***-**-{{social_security_number}} |
+				{% endif %}
+				DOB: {{ date_of_birth }}</div>
+			<div>&nbsp;</div>
+			{{ contact.display(bureau_name, bureau_street_address, bureau_city, bureau_state, bureau_zip) }}
+			<div>&nbsp;</div>
+			<div>According to the Fair Credit Reporting Act, Section 609 (a)(1)(A), <b>you are required by
 
-	federal law to verify</b> - through the physical verification of the original signed consumer
+		federal law to verify</b> - through the physical verification of the original signed consumer
 
-	contract - any and all accounts you post on a credit report. Otherwise, anyone paying
+		contract - any and all accounts you post on a credit report. Otherwise, anyone paying
 
-	for your reporting services could fax, mail or email in a fraudulent account.</div>
-		<div>&nbsp;</div>
-		<div>
-			I demand to see Verifiable Proof (<b>an original Consumer Contract with my Signature
+		for your reporting services could fax, mail or email in a fraudulent account.</div>
+			<div>&nbsp;</div>
+			<div>
+				I demand to see Verifiable Proof (<b>an original Consumer Contract with my Signature
 
-	on it</b>) you have on file of the accounts listed below. Your failure to positively verify these
+		on it</b>) you have on file of the accounts listed below. Your failure to positively verify these
 
-	accounts has hurt my ability to obtain credit. Under the FCRA, unverified accounts
+		accounts has hurt my ability to obtain credit. Under the FCRA, unverified accounts
 
-	must be removed and if you are unable to provide me a copy of verifiable proof, you
+		must be removed and if you are unable to provide me a copy of verifiable proof, you
 
-	must remove the accounts listed below.
-		</div>
-		<div>&nbsp;</div>
-		<div><b>I demand the following accounts be verified or removed immediately.</b></div>
-		<table class="table table-bordered">
-			<tr>
-				<th>Name of Account</th><th>Account Number</th><th>Provide Physical Verification</th>
-			</tr>
-			{% for i in range (1, number_of_accounts_in_question) %}
-				<tr><td></td><td></td><td></td></tr>
-			{% endfor %}
-		</table>
-		<div><small>* Please remove all <b>non-account holding inquiries</b> over 30 days old.</small></div>
-		<div><small>* Please add a <b>Promotional Suppression</b> to my credit file.</small></div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>Thank you,</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>{{ name }}</div>
-		<div>&nbsp;</div>
-		<div>IN WITNESS WHEREOF, the said party has signed and sealed these presents the day and year
-
-	first above written.</div>
-		<div>&nbsp;</div>
-		<div style="width:50%;float:left;">Signed, sealed and delivered in the presence of:</div>
-		<div style="width:50%;float:left;">
+		must remove the accounts listed below.
+			</div>
+			<div>&nbsp;</div>
+			<div><b>I demand the following accounts be verified or removed immediately.</b></div>
+			<table class="table table-bordered">
+				<tr>
+					<th>Name of Account</th><th>Account Number</th><th>Provide Physical Verification</th>
+				</tr>
+				{% for i in range (1, number_of_accounts_in_question) %}
+					<tr><td></td><td></td><td></td></tr>
+				{% endfor %}
+			</table>
+			<div><small>* Please remove all <b>non-account holding inquiries</b> over 30 days old.</small></div>
+			<div><small>* Please add a <b>Promotional Suppression</b> to my credit file.</small></div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>Thank you,</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
 			<div>{{ name }}</div>
 			<div>&nbsp;</div>
+			<div>IN WITNESS WHEREOF, the said party has signed and sealed these presents the day and year
+
+		first above written.</div>
 			<div>&nbsp;</div>
-			<div class="signature-line"></div>
-			<div>Signature</div>
-		</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>STATE OF {{ state }}</div>
-		<div>COUNTY OF {{ county }}</div>
-		<div>&nbsp;</div>
-		<div>I HEREBY CERTIFY that on this day before me, an officer duly qualified to take
+			<div style="width:50%;float:left;">Signed, sealed and delivered in the presence of:</div>
+			<div style="width:50%;float:left;">
+				<div>{{ name }}</div>
+				<div>&nbsp;</div>
+				<div>&nbsp;</div>
+				<div class="signature-line"></div>
+				<div>Signature</div>
+			</div>
 
-	acknowledgments, personally appeared {{ name }}, who is personally known to me or
 
-	who has produced _____________________________________________ as identification and
 
-	who executed the foregoing instrument and he/she acknowledged before me that he/she executed
+		{% elseif page == 2 %}
+			<div class="text-right">Page 2 of 2</div>
+			<div>STATE OF {{ state }}</div>
+			<div>COUNTY OF {{ county }}</div>
+			<div>&nbsp;</div>
+			<div>I HEREBY CERTIFY that on this day before me, an officer duly qualified to take
 
-	the same.</div>
-		<div>&nbsp;</div>
-		<div>
-			WITNESS my hand and official seal in the County and State aforesaid this _____ day of
+		acknowledgments, personally appeared {{ name }}, who is personally known to me or
 
-	____________________ 2016.
-		</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
-		<div style="width:50%">
-			<div class="signature-line"></div>
-		</div>
-		<div>&nbsp;</div>
-		<div>Notary Public:</div>
-		<div>Printed Name:</div>
-		<div>&nbsp;</div>
-		<div>My commission expires:</div>
-		<div>&nbsp;</div>
-		<div>&nbsp;</div>
+		who has produced _____________________________________________ as identification and
+
+		who executed the foregoing instrument and he/she acknowledged before me that he/she executed
+
+		the same.</div>
+			<div>&nbsp;</div>
+			<div>
+				WITNESS my hand and official seal in the County and State aforesaid this _____ day of
+
+		____________________ {{"now"|date_modify("+7 days")|date("Y")}}.
+			</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div style="width:50%">
+				<div class="signature-line"></div>
+			</div>
+			<div>&nbsp;</div>
+			<div>Notary Public:</div>
+			<div>Printed Name:</div>
+			<div>&nbsp;</div>
+			<div>My commission expires:</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+		{% endif %}
 	</div>
 
 {% endblock %}

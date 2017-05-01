@@ -19,8 +19,12 @@
 			//If we're here, we're good. Log the user in.
 			unset($_POST["password"]);
 			logIn($user);
-			$flasher->success = "You are now logged in.";
-			header("Location: /dispute_letters");
+			if (userHasPaidAccess(getCurrentUser())){
+				header("Location: /dispute_letters");
+			}
+			else{
+				header("Location: /make_payment");
+			}
 			die();
 		}
 		catch(Exception $e){
