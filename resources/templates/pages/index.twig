@@ -29,34 +29,55 @@
 {% endblock %}
 
 {% block content %}
+
+	<div class="row" id="video-row">
+		<video src="videos/header_video.mp4" class="paused" id="header_video"></video>
+		<div class="play-btn-container">
+			<img src="img/play_icon.png" class="play-btn" data-toggles="#header_video"/>
+		</div>
+	</div>
 	
 	{% if current_user == false %}
 		<div class="row" id="get-started-row">
 			<div class="col-xs-12 col-md-4 text-center"><h3>Get Started</h3></div>
 			<div class="col-xs-12 col-md-4 text-center"><h4>It's Easy</h4></div>
 			<div class="col-xs-12 col-md-4 text-center">
-				<a href="#sign-up" class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 btn btn-success"><b>Sign Up</b></a>
+				<a href="#sign-up" class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 btn btn-success btn-lg"><b>Sign Up</b></a>
 			</div>
 		</div>
 	{% endif %}
 	<div class="row">
 		<div class="col-xs-12 col-md-10 col-md-offset-1">
-			<h1>How it works</h1>
+			<h1 class="text-center">How it works</h1>
 			<div>&nbsp;</div>
 			<div class="circle-container xs-hidden">
 				<span class="circle text-center">
 					<span>
-						<a href="how_it_works#review" target="_blank">Review</a>
+						<a href="#" data-html="true"
+							title="Once you have successfully pulled your credit report, you will begin the review process. 
+				You will look for collections accounts,  errors, false information, miscalculations, and so on. 
+				There is a good chance that errors will be found on your report, since about 25% of credit reports contain mistakes."
+						>
+							Review
+						</a>
 					</span>
 				</span>
 				<span class="circle text-center">
 					<span>
-						<a href="how_it_works#resolve" target="_blank">Resolve</a>
+						<a href="#" data-html="true"
+							title="After reviewing your credit report,  we'll begin to dispute the questionable items on your credit report. According to the Fair Credit Reporting Act, the credit bureaus are obligated to read and respond to every letter that they receive, so you will receive response  correspondence letters typically within 30 days of our dispute."
+						>
+							Resolve
+						</a>
 					</span>
 				</span>
 				<span class="circle text-center">
 					<span>
-						<a href="how_it_works#results" target="_blank">Results</a>
+						<a href="#" data-html="true"
+							title="Within only 30-60 days, you will begin seeing results on your credit report due to the effectiveness of our disputing process. Meanwhile, our friendly customer service staff will provide you with constant notifications about which items are being removed, and any changes that are happening to your credit report. Once the process is complete and your negative items are removed, you can then begin establishing new credit."
+						>
+							Results
+						</a>
 					</span>
 				</span>
 			</div>
@@ -71,8 +92,8 @@
 			<div>&nbsp;</div>
 			{% if current_user == false %}
 				<div class="col-xs-12 col-md-6 col-md-offset-3" id="instructions">
-					The only thing you need before you <a href="#sign-up">signing up</a> is your credit report.
-					Once you've done this, you can sign up with Basics Credit and start contesting your credit claims.
+					The only thing you need before <a href="#sign-up">signing up</a> is your credit report.
+					Once you have it, you can sign up with Basics Credit and start contesting your credit claims.
 				</div>
 			{% endif %}
 		</div>
@@ -171,11 +192,11 @@
 		</div>
 	{% endif %}
 	<div class="row" id="contact-row">
-		<h3 class="col-xs-12 col-md-7 col-md-offset-1 col-md-offset-1">
-			<span>Contact Us</span>
-		</h3>
+		<div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
+			<h3>Contact Us</h3>
+			<h5>Feel free to call us at 1-800-215-7211, or use the contact form below to get in touch.</h5>
+		</div>
 		<div class="col-xs-12 col-md-8 col-md-offset-1">
-			<div>Feel free to call us at 1-800-215-7211, or use the contact form below to get in touch.</div>
 			<div>&nbsp;</div>
 			<form class="bs-form" action="contact.php" method="POST">
 				{{ field.text({name:"name", value:current_user.name, id:"contact_name"}) }}

@@ -11,6 +11,7 @@
 @teal: rgb(120, 192, 204);
 @blue: rgb(40, 93, 169);
 @ocean-blue: rgb(70, 118, 184);
+@royal-blue: rgb(61, 83, 206);
 @white: #f0f0f0;
 @black: #111;
 @red: #e51c23;
@@ -146,38 +147,48 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   margin: 0em;
 }
 
-.carousel{
-  z-index: -1;
-  & > *{
 
+
+
+
+#video-row{
+  position: relative;
+  padding: 0;
+
+  video{
+    width: 100%;
+    margin-bottom: -10px;
+
+    &.playing{
+      cursor: pointer;
+    }
   }
-}
 
-#main-carousel{
-  height: 100vh;
-  .slide{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    height: 100%;
-    opacity: 0;
+  .play-btn-container{
+    position: absolute;
+    top: 40%;
+    height: 20%;
+    width: 100%;
+    text-align: center;
     img{
-      width: 100%;
-    }
-    &.active{
-      opacity: 1;
+      height: 100%;
+      cursor: pointer;
     }
   }
 }
+
+
+
+
+
 
 #get-started-row{
   @media screen and (min-width: @md){
     display: flex;
     align-items: center;
-    height: 130px;
   }
-  background-color: @light-blue;
+  background-color: @royal-blue;
+  min-height: 15em;
 }
 
 
@@ -221,6 +232,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
         border: 1px solid @circleLinkColor;
 
         &:hover{
+          text-decoration: none;
           color: lighten(@circleLinkColor, 20%);
           border-color: lighten(@circleLinkColor, 20%);
         }
@@ -243,6 +255,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     left: 2 * @circleOffset;
     .img-container{
       margin-left: 17%;
+    }
+  }
+
+  .tooltip {
+    &.in {
+      opacity: .95;
+      filter: alpha(opacity=95);
+    }
+    > .tooltip-inner {
+      background-color: lighten(@black, 5%);
     }
   }
 }
@@ -270,7 +292,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
       height: @circleRadius;
       > span{
         padding: 1em;
-        font-size: 3vw;
+        font-size: 7vw;
       }
     }
     > :nth-child(1){

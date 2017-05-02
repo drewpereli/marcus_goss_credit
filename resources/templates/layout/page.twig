@@ -145,6 +145,22 @@
 				    }
 				});
 				
+
+				$("video").click(function(){
+					if ($(this).hasClass("playing")){
+						var v = $(this)[0];
+						$(v).removeClass("playing").addClass("paused");
+						$(v).parent().find(".play-btn-container").removeClass("display-none");
+						v.pause();
+					}
+				});
+
+				$(".play-btn").click(function(){
+					var v = $($(this).data("toggles"))[0];
+					$(v).removeClass("paused").addClass("playing");
+					$(this).parent().addClass("display-none");
+					v.play();
+				});
 			});
 
 
