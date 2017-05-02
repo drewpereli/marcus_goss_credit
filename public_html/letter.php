@@ -135,33 +135,24 @@
 		if ($currentUser->role == '1')
 		{
 			$downloadPath;
-			$filename = $_POST['form_type'];
-			$contentType;
+			$filename = $_POST['form_type'] . ".pdf";
+			$contentType = 'application/octet-stream';
 			//If there is more than one letter, create a zip archive of them
 			if (sizeof($letters) > 1){ 
-				apache_setenv('no-gzip', 1);
-				ini_set('zlib.output_compression', 0);
-				//Create zip of pdfs
-				$zipFile = "./tmp/" . md5(rand()) . ".zip";
-				$zip = new ZipArchive();
-				if ($zip->open($zipFile, ZipArchive::CREATE)!==TRUE) {
-				    $flasher->danger = "There was an error creating your zip file. Please try agian later.";
-				    die();
-				}
-				$bureaus = array("equifax", "experian", "transunion");
+				//$downloadPath = "tmp/" . md5(rand()) . ".pdf";
+				$downloadPath = __DIR__ . "/../tmp/test.pdf";
+				$command = "gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=$downloadPath";
 				foreach ($letters as $i=>$l){
-					$name = $_POST['form_type'] . "_" . $bureaus[$i] . ".pdf";
-					$zip->addFile($l, $name);
+					$command .= " $l";
 				}
-				$zip->close();
-				$downloadPath = $zipFile;
-				$filename .= ".zip";
-				$contentType = 'application/zip';
+				exec($command);
+				foreach ($letters as $l){
+					//unlink($l);
+				}
+				$letters[0] = $downloadPath;
 			}
 			else{
 				$downloadPath = $letters[0];
-				$filename .= ".pdf";
-				$contentType = 'application/octet-stream';
 			}
 			//Provide download link
 			if (headers_sent()) {
@@ -196,7 +187,7 @@
 		//unlink($downloadPath);
 	}
     foreach ($letters as $l){
-		unlink($l);
+		//unlink($l);
 	}
 	die();
 ?>
