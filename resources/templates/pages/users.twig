@@ -1,0 +1,24 @@
+{% extends 'page.twig' %}
+{% block content %}
+<div class="col-md-10 col-md-offset-1 col-xs-12">
+	<h1>Users</h1>
+	<table id="users-table" class="table table-striped">
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Date they joined</th>
+			<th>How they heard about us</th>
+			<th>Amount Paid</th>
+		</tr>
+		{% for user in users %}
+			<tr>
+				<td>{{ user.first_name }} {{ user.last_name }}</td>
+				<td>{{ user.email }}</td>
+				<td>{{ user.created_at|date("F jS, Y") }}</td>
+				<td>
+				<td>${{ user.amount|default('0')  }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

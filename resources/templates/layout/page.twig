@@ -219,6 +219,9 @@
 			        	{{ navbar.link("Log In", "/#log-in") }}
 				    {% endif %}
 				    {{ navbar.link("Contact", "/#contact-row") }}
+				    {% if current_user.role == 1 %}
+				    	{{ navbar.link("Users", "/users") }}
+				    {% endif %}
 				    {% if current_user %}
 				    	{{ navbar.link("Log Out", "logOut") }}
 				    {% endif %}  

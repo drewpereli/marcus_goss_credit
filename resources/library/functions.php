@@ -45,6 +45,15 @@
 	}
 
 
+	function requireAdmin(){
+		requireLogIn();
+		if (!userIsAdmin(getCurrentUser())){
+			header("Location:/");
+			die();
+		}
+	}
+
+
 
 	function userIsAdmin($u){
 		return $u->role == 1;
