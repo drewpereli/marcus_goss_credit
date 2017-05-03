@@ -13,15 +13,17 @@
 			name="{{ p.name }}"
 			type="{{ p.type|default('text') }}"
 			class="form-control {{p.required}} {{p.classes}}"
-			value="{{ p.value|default('') }}"
+			{% if p.value %}
+				value="{{ p.value }}"
+			{% endif %}
 			{% if p.required %}
 				required="true"
 			{% endif %}
 			{% if p.title %}
 				title="{{p.title}}"
 			{% endif %}
-			{% if p.max %}
-				max="{{p.max}}"
+			{% if p.maxlength %}
+				maxlength="{{p.maxlength}}"
 			{% endif %}
 		/>
 	</div>
@@ -214,7 +216,7 @@
 
 {% macro zip(p) %}
 	{% import _self as field %}
-	{{ field.text({name: p.name, type: "number", classes: "zip-code-input", max: "99999"}) }}
+	{{ field.text({name: p.name, type: "number", classes: "zip-code-input", maxlength: "4"}) }}
 {% endmacro %}
 
 

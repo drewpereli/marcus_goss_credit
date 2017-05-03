@@ -31,7 +31,7 @@
 {% block content %}
 
 	<div class="row" id="video-row">
-		<video src="videos/header_video.mp4" class="paused" id="header_video"></video>
+		<video src="videos/header-video.mp4" class="paused" id="header_video"></video>
 		<div class="play-btn-container">
 			<img src="img/play_icon.png" class="play-btn" data-toggles="#header_video"/>
 		</div>
@@ -163,6 +163,7 @@
 					{{ field.text({name:"email", type:"email", value:post_data.email, id:"sign_up_email"}) }}
 					{{ field.password }}
 					{{ field.password_confirmation }}
+					{{ field.text({name:"heard_through", label:"How did you hear about us?"}) }}
 					<!-- Button trigger modal -->
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmation_modal">
 					  Sign Up

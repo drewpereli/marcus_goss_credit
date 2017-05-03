@@ -129,6 +129,22 @@
 					}
 				);
 
+
+				//Fallback in case maxlength attribute isn't supported
+				$("input[maxlength]").keydown(function(e){
+					var maxlength = ~~$(this).attr("maxlength");
+					if ($(this).val().length > maxlength) { 
+				        $(this).val($(this).val().substr(0, maxlength));
+				    }
+				});
+
+				$("input[maxlength]").keyup(function(e){
+					var maxlength = ~~$(this).attr("maxlength");
+					if ($(this).val().length > maxlength) { 
+				        $(this).val($(this).val().substr(0, maxlength));
+				    }
+				});
+				/*
 				//
 				//
 				//
@@ -144,7 +160,7 @@
 				        $(this).val($(this).val().substr(0, 5));
 				    }
 				});
-				
+				*/
 
 				$("video").click(function(){
 					if ($(this).hasClass("playing")){

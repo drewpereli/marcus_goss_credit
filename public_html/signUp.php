@@ -34,6 +34,7 @@
 			$user->last_name = $_POST["last_name"];
 			$user->email = $email;
 			$user->password_hash = $pwd;
+			$user->heard_through = $_POST["heard_through"];
 			//$user->activation_hash = hash('sha256', rand());
 			$user->save();
 			if (!sendActivationEmail($user)){

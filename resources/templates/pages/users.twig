@@ -15,7 +15,7 @@
 				<td>{{ user.first_name }} {{ user.last_name }}</td>
 				<td>{{ user.email }}</td>
 				<td>{{ user.created_at|date("F jS, Y") }}</td>
-				<td>
+				<td>{{ user.heard_through }}</td>
 				<td>${{ user.amount|default('0')  }}</td>
 			</tr>
 		{% endfor %}
