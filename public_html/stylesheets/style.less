@@ -38,6 +38,12 @@
   text-align: center;
 }
 
+
+//Translator
+#WidgetFloaterPanels{
+  display: none !important;
+}
+
 body{
   padding-top: 64px;
   background-color: @white;
@@ -273,8 +279,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
       opacity: .95;
       filter: alpha(opacity=95);
     }
-    > .tooltip-inner {
-      background-color: lighten(@black, 5%);
+    @tooltipColor: lighten(@black, 5%);
+    > .tooltip-inner{
+      background-color: @tooltipColor;
+    }
+    > .tooltip-arrow{
+      border-top-color: @tooltipColor;
     }
   }
 }
@@ -355,8 +365,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     min-height: 15em;
     display: flex;
     align-items: center; 
+    justify-content: center;
     .btn{
       font-size: 1.5em;
+      min-width: 50%;
     }
   } 
 }

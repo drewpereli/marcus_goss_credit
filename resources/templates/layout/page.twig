@@ -38,6 +38,8 @@
 		<script src="library/pwstrength/pwstrength.min.js"></script>
 		<!-- stripe -->
 		<script src="https://js.stripe.com/v3/"></script>
+		<!-- bing translate -->
+		<script src="https://www.microsoftTranslator.com/ajax/v3/WidgetV3.ashx?siteData=ueOIGRSKkd965FeEGM5JtQ**&ctf=false&ui=false" type="text/javascript"></script>
 		<!-- custom css -->
 		<link rel="stylesheet/less" href="stylesheets/style.less" type="text/css" />
 		<link rel="stylesheet" href="stylesheets/forms.css" type="text/css" />	
@@ -48,6 +50,8 @@
 				window.addEventListener("hashchange", function() { scrollBy(0, -64) });
 
 				$("[title]").tooltip();
+
+
 				var pwoptions = {
 					ui: {
 						progressBarEmptyPercentage: 10,
@@ -56,7 +60,6 @@
 						scores: [10, 20, 30, 40, 50]
 					}
 				}
-				
 				$(".pwstrength").pwstrength(pwoptions);
 
 				$(".alert-close").click(function(){
@@ -162,6 +165,7 @@
 				});
 				*/
 
+				//Video stuff
 				$("video").click(function(){
 					if ($(this).hasClass("playing")){
 						var v = $(this)[0];
@@ -177,6 +181,68 @@
 					$(this).parent().addClass("display-none");
 					v.play();
 				});
+
+
+				//Translate stuff
+				//Circle titles (which won't translate dynamically)
+				var circleTitles = [
+					{
+						en: "Once you have successfully pulled your credit report, you will begin the review process. You will look for collections accounts,  errors, false information, miscalculations, and so on. There is a good chance that errors will be found on your report, since about 25% of credit reports contain mistakes.",
+						es: "Una vez que haya sacado con éxito su informe de crédito, comenzará el proceso de revisión. Buscará cuentas de colecciones, errores, información falsa, errores de cálculo, etc. Hay una buena probabilidad de que se encuentren errores en su informe, ya que aproximadamente el 25% de los informes de crédito contienen errores."
+					},
+					{
+						en: "After reviewing your credit report,  we'll begin to dispute the questionable items on your credit report. According to the Fair Credit Reporting Act, the credit bureaus are obligated to read and respond to every letter that they receive, so you will receive response  correspondence letters typically within 30 days of our dispute.",
+						es: "Después de revisar su informe de crédito, comenzaremos a disputar los elementos cuestionables en su informe de crédito. De acuerdo con la Fair Credit Reporting Act, las agencias de crédito están obligadas a leer y responder a cada carta que reciben, por lo que recibirá cartas de correspondencia de respuesta normalmente dentro de los 30 días de nuestra disputa."
+					},
+					{
+						en: "Within only 30-60 days, you will begin seeing results on your credit report due to the effectiveness of our disputing process. Meanwhile, our friendly customer service staff will provide you with constant notifications about which items are being removed, and any changes that are happening to your credit report. Once the process is complete and your negative items are removed, you can then begin establishing new credit.",
+						es: "Dentro de sólo 30-60 días, comenzará a ver resultados en su informe de crédito debido a la eficacia de nuestro proceso de contestación. Mientras tanto, nuestro amable personal de servicio al cliente le proporcionará notificaciones constantes sobre qué artículos se eliminan y cualquier cambio que esté ocurriendo en su informe de crédito. Una vez que el proceso es completo y sus artículos negativos se quitan, usted puede entonces comenzar a establecer nuevo crédito."
+					}
+				]
+				var currentLang = "en";
+				$("#translate-btn").click(function(){
+					currentLang = currentLang === "en" ? "es" : "en";
+					if(currentLang === "es")
+					{
+						Microsoft.Translator.Widget.Translate(null, currentLang, 
+							function(prog){
+								Microsoft.Translator.Widget.domTranslator.showHighlight = false;
+								Microsoft.Translator.Widget.domTranslator.showTooltips = false;
+							},// On progress
+							null, //On error 
+							function(){//On complete
+								$("#lang").html(currentLang === "es" ? "Inglés" : "Spanish");
+								Microsoft.Translator.Widget.domTranslator.showHighlight = false;
+								Microsoft.Translator.Widget.domTranslator.showTooltips = false;
+							},
+							function(){ //On restore original
+								restoreOriginal();
+							}
+						);
+						$(".circle > span > a").each(function(i, e){
+							$(e).attr("title", circleTitles[i][currentLang]);
+						});
+						$(".circle > span > a").tooltip("fixTitle");
+					}
+					else if (currentLang === "en"){
+						Microsoft.Translator.Widget.RestoreOriginal();
+						restoreOriginal();
+					}
+					
+
+
+
+					function restoreOriginal(){
+						currentLang = "en";
+						//Set the titles of the circles to the proper language
+						$(".circle > span > a").each(function(i, e){
+							$(e).attr("title", circleTitles[i][currentLang]);
+						});
+						$(".circle > span > a").tooltip("fixTitle");
+					}
+					
+				})
+
 			});
 
 
@@ -198,13 +264,6 @@
 	<div class="container-fluid display-none" id="container">
 		<div  id="content">
 		{% block header %}
-			<!--
-			<div class="row display-none" id="main-header">
-				<img class="img-responsive col-xs-2" 
-					src="http://stockpictures.io/wp-content/uploads/2016/06/42471-cube-box-shape-concept-abstract-3d-block-creative-element-group-geometric-symbol-presentation-structure-decor.png"/>
-				<h2 class="col-xs-10">Basics Credit</h2>
-			</div>
-		-->
 			<nav class="navbar navbar-default navbar-fixed-top" id="navbar">
 			  <div class="container-fluid">
 			    <!-- Brand and toggle get grouped for better mobile display -->
@@ -222,14 +281,8 @@
 			    </div>
 			    <div class="collapse navbar-collapse" id="navbar-collapse">
 			      <ul class="nav navbar-nav">
-			      	<li id="google_translate_element_container">
-			      		<div id="google_translate_element"></div>
-			      		<script type="text/javascript">
-							function googleTranslateElementInit() {
-							  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es', autoDisplay: false}, 'google_translate_element');
-							}
-						</script>
-						<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+			      	<li>
+			      		<a href="#" id="translate-btn">Translate to <span id="lang">Spanish</span></a>
 			      	</li>
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right">
