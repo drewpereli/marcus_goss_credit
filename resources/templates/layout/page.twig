@@ -46,6 +46,15 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
 		<script>
 			var controller = new ScrollMagic.Controller();
+
+			//If logged in, after 20 minutes, log the user out
+			{% if current_user %}
+				setTimeout(function(){
+					window.location = "/logOut?reason=sessionExpired";
+				}, 1000 * 60 * 20);
+			{% endif %}
+
+
 			$(function(){
 				window.addEventListener("hashchange", function() { scrollBy(0, -64) });
 
@@ -241,7 +250,9 @@
 						$(".circle > span > a").tooltip("fixTitle");
 					}
 					
-				})
+				});
+
+
 
 			});
 
@@ -255,6 +266,18 @@
 	{% endblock %}
 </head>
 <body>
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-98620115-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+
 	<div id="loading-img-container">
 		{% include "loading_spinner.twig" %}
 	</div>
@@ -300,7 +323,15 @@
 				    {% endif %}
 				    {{ navbar.link("Contact", "/#contact-row") }}
 				    {% if current_user.role == 1 %}
-				    	{{ navbar.link("Users", "/users") }}
+				    	{{ 
+				    		navbar.submenu(
+				    			"Admin", 
+				    			[
+				    				{text:"Users", href:"/users"}, 
+				    				{text:"Analytics", href:"https://analytics.google.com/analytics/web/?authuser=0#report/visitors-overview/a98620115w145097281p149806506/", target: "_blank"}
+				    			]
+				    		) 
+				    	}}
 				    {% endif %}
 				    {% if current_user %}
 				    	{{ navbar.link("Log Out", "logOut") }}

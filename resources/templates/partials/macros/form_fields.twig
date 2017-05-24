@@ -216,7 +216,7 @@
 
 {% macro zip(p) %}
 	{% import _self as field %}
-	{{ field.text({name: p.name, type: "number", classes: "zip-code-input", maxlength: "4"}) }}
+	{{ field.text({name: p.name, type: "number", classes: "zip-code-input", maxlength: "5"}) }}
 {% endmacro %}
 
 

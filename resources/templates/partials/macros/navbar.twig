@@ -4,3 +4,21 @@
 		<a href="{{href}}">{{ text }}</a>
 	</li>
 {% endmacro %}
+
+{% macro submenu(text, links) %}
+	{% import _self as navbar %}
+	<li class="dropdown">
+		<span class="nav-link-fill"></span>
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			{{text}}<span class="caret"></span>
+		</a>
+			<ul class="dropdown-menu">
+				{% for link in links %}
+					<li>
+						<a href="{{link.href}}" target="{{link.target|default('')}}">{{link.text}}</a>
+					</li>
+				{% endfor %}
+			</ul>
+
+	</li>
+{% endmacro %}
