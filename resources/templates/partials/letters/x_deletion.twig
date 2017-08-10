@@ -58,10 +58,10 @@ should be no charge for this notification.</div>
 		{{ contact.display(name, street_address, city, state, zip) }}
 		{% if social_security_number|length > 0 %}
 			<div>
-				***-**-{{social_security_number}}
+				SSN: ***-**-{{social_security_number}}
 			</div>
 		{% endif %}
-		<div>Date of Birth: {{date_of_birth}}</div>
+		<div>Date of Birth: {{date_of_birth|date("n/j/Y")}}</div>
 	</div>
 {% endblock %}
 

@@ -9,9 +9,9 @@
 			{{ contact.display(name, street_address, city, state, zip) }}
 			<div>
 				{% if social_security_number|length > 0 %}
-					***-**-{{social_security_number}} |
+					SSN: ***-**-{{social_security_number}} |
 				{% endif %}
-				DOB: {{ date_of_birth }}</div>
+				DOB: {{ date_of_birth|date("n/j/Y") }}</div>
 			<div>&nbsp;</div>
 			{{ contact.display(bureau_name, bureau_street_address, bureau_city, bureau_state, bureau_zip) }}
 			<div>&nbsp;</div>

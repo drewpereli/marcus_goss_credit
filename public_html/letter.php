@@ -1,6 +1,8 @@
 <?php
 	use mikehaertl\wkhtmlto\Pdf;
 	require_once __DIR__ . "/../resources/config.php";
+	//print_r($_POST);
+	//die();
 	requirePaymentToAccess();
 	//
 	//Validate $_POST here
@@ -75,6 +77,7 @@
 				//$htmlPath = __DIR__ . '/../tmp/' . $fileHash . '.html';
 				$htmlPath = __DIR__ . "/tmp/{$fileHash}.html"; 
 				$file = fopen($htmlPath, "w");
+
 				fwrite($file, $content);
 				fclose($file);
 				$pdf->addPage(HOST_URL . "tmp/{$fileHash}.html");
@@ -139,15 +142,15 @@
 			$contentType = 'application/octet-stream';
 			//If there is more than one letter, create a zip archive of them
 			if (sizeof($letters) > 1){ 
-				//$downloadPath = "tmp/" . md5(rand()) . ".pdf";
-				$downloadPath = __DIR__ . "/../tmp/test.pdf";
+				$downloadPath = "tmp/" . md5(rand()) . ".pdf";
+				//$downloadPath = __DIR__ . "/../tmp/test.pdf";
 				$command = "gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=$downloadPath";
 				foreach ($letters as $i=>$l){
 					$command .= " $l";
 				}
 				exec($command);
 				foreach ($letters as $l){
-					//unlink($l);
+					unlink($l);
 				}
 				$letters[0] = $downloadPath;
 			}
@@ -184,10 +187,10 @@
 		else{
 			$flasher->danger = "You're not allowed to do that.";
 		}
-		//unlink($downloadPath);
+		unlink($downloadPath);
 	}
     foreach ($letters as $l){
-		//unlink($l);
+		unlink($l);
 	}
 	die();
 ?>

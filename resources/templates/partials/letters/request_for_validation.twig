@@ -167,12 +167,12 @@
 			{{name}}
 			</div>
 			<div>
-			DOB: {{date_of_birth|date("F jS, Y")}}
+			DOB: {{date_of_birth|date("n/j/Y")}}
 			</div>
 			<div>
 				SSN:
 				{% if social_security_number|length > 0 %}
-					***-**-{{social_security_number}}
+					SSN: ***-**-{{social_security_number}}
 				{% endif %}
 			</div>
 		{% endif %}
